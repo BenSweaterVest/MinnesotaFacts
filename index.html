@@ -492,6 +492,30 @@
                         <button onclick="showImportForm()" class="btn btn-secondary">Import JSON</button>
                     </div>
                     
+                    <h2>Security Settings</h2>
+                    <div class="admin-controls">
+                        <button onclick="showPasswordChangeForm()" class="btn btn-secondary">Change Admin Password</button>
+                    </div>
+                    
+                    <div id="password-change-section" class="hidden" style="margin-top: 15px;">
+                        <div class="form-group">
+                            <label for="current-password">Current Password:</label>
+                            <input type="password" id="current-password" placeholder="Enter current password">
+                        </div>
+                        <div class="form-group">
+                            <label for="new-password">New Password:</label>
+                            <input type="password" id="new-password" placeholder="Enter new password">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm-password">Confirm New Password:</label>
+                            <input type="password" id="confirm-password" placeholder="Confirm new password">
+                        </div>
+                        <div class="admin-controls">
+                            <button onclick="changeAdminPassword()" class="btn">Change Password</button>
+                            <button onclick="hidePasswordChangeForm()" class="btn btn-secondary">Cancel</button>
+                        </div>
+                    </div>
+                    
                     <div id="import-section" class="hidden" style="margin-top: 15px;">
                         <div class="form-group">
                             <label for="import-data">Paste JSON data:</label>
@@ -585,8 +609,17 @@
     </div>
 
     <script>
-        // Configuration
-        const ADMIN_PASSWORD = 'BenRocks'; // Change this to your desired password
+        // Configuration - obfuscated admin password
+        const defaultPasswordParts = {
+            p1: 'QmVu',
+            p2: 'Um9ja3M='
+        };
+        
+        function decodePassword() {
+            return atob(defaultPasswordParts.p1) + atob(defaultPasswordParts.p2);
+        }
+        
+        let ADMIN_PASSWORD = decodePassword(); // Change this to your desired password
         
         // State management
         let isLoggedIn = false;
@@ -624,7 +657,7 @@
         let articles = {
     "admin": {
         "title": "Admin Panel",
-        "content": "<div id=\"admin-login-section\">\n                    <p>This is the administrative control panel for Minnesota Lore. Please log in to access editing functions.</p>\n                    \n                    <div class=\"form-group\">\n                        <label for=\"admin-login-password\">Admin Password:</label>\n                        <input type=\"password\" id=\"admin-login-password\" placeholder=\"Enter admin password\" onkeyup=\"handleAdminLoginKeypress(event)\">\n                    </div>\n                    <div class=\"admin-controls\">\n                        <button onclick=\"handleAdminLogin()\" class=\"btn\">Login</button>\n                    </div>\n                </div>\n                \n                <div id=\"admin-dashboard\" class=\"hidden\">\n                    <p><strong>Welcome, Administrator!</strong> You now have access to all editing functions.</p>\n                    \n                    <h2>Quick Actions</h2>\n                    <div class=\"admin-controls\">\n                        <button onclick=\"showNewArticleForm()\" class=\"btn\">Create New Article</button>\n                        <button onclick=\"showEditForm()\" class=\"btn btn-secondary\">Edit Current Article</button>\n                        <button onclick=\"showGitHubConfig()\" class=\"btn btn-secondary\">GitHub Settings</button>\n                        <button onclick=\"handleAdminLogout()\" class=\"btn\" style=\"background: #dc3545;\">Logout</button>\n                    </div>\n                    \n                    <h2>Article Management</h2>\n                    <div id=\"article-management\">\n                        <p>Current articles in the wiki:</p>\n                        <ul id=\"admin-article-list\"></ul>\n                    </div>\n                    \n                    <h2>Data Management</h2>\n                    <div class=\"admin-controls\">\n                        <button onclick=\"saveWikiToGitHub()\" class=\"btn\">Save Wiki to GitHub</button>\n                        <button onclick=\"loadWikiFromGitHub()\" class=\"btn btn-secondary\">Load from GitHub</button>\n                        <button onclick=\"exportArticles()\" class=\"btn btn-secondary\">Export JSON</button>\n                        <button onclick=\"showImportForm()\" class=\"btn btn-secondary\">Import JSON</button>\n                    </div>\n                    \n                    <div id=\"import-section\" class=\"hidden\" style=\"margin-top: 15px;\">\n                        <div class=\"form-group\">\n                            <label for=\"import-data\">Paste JSON data:</label>\n                            <textarea id=\"import-data\" placeholder=\"Paste exported JSON data here...\" style=\"height: 150px;\"></textarea>\n                        </div>\n                        <div class=\"admin-controls\">\n                            <button onclick=\"importArticles()\" class=\"btn\">Import Articles</button>\n                            <button onclick=\"hideImportForm()\" class=\"btn btn-secondary\">Cancel</button>\n                        </div>\n                    </div>\n                </div>"
+        "content": "<div id=\"admin-login-section\">\n                    <p>This is the administrative control panel for Minnesota Lore. Please log in to access editing functions.</p>\n                    \n                    <div class=\"form-group\">\n                        <label for=\"admin-login-password\">Admin Password:</label>\n                        <input type=\"password\" id=\"admin-login-password\" placeholder=\"Enter admin password\" onkeyup=\"handleAdminLoginKeypress(event)\">\n                    </div>\n                    <div class=\"admin-controls\">\n                        <button onclick=\"handleAdminLogin()\" class=\"btn\">Login</button>\n                    </div>\n                </div>\n                \n                <div id=\"admin-dashboard\" class=\"hidden\">\n                    <p><strong>Welcome, Administrator!</strong> You now have access to all editing functions.</p>\n                    \n                    <h2>Quick Actions</h2>\n                    <div class=\"admin-controls\">\n                        <button onclick=\"showNewArticleForm()\" class=\"btn\">Create New Article</button>\n                        <button onclick=\"showEditForm()\" class=\"btn btn-secondary\">Edit Current Article</button>\n                        <button onclick=\"showGitHubConfig()\" class=\"btn btn-secondary\">GitHub Settings</button>\n                        <button onclick=\"handleAdminLogout()\" class=\"btn\" style=\"background: #dc3545;\">Logout</button>\n                    </div>\n                    \n                    <h2>Article Management</h2>\n                    <div id=\"article-management\">\n                        <p>Current articles in the wiki:</p>\n                        <ul id=\"admin-article-list\"></ul>\n                    </div>\n                    \n                    <h2>Data Management</h2>\n                    <div class=\"admin-controls\">\n                        <button onclick=\"saveWikiToGitHub()\" class=\"btn\">Save Wiki to GitHub</button>\n                        <button onclick=\"loadWikiFromGitHub()\" class=\"btn btn-secondary\">Load from GitHub</button>\n                        <button onclick=\"exportArticles()\" class=\"btn btn-secondary\">Export JSON</button>\n                        <button onclick=\"showImportForm()\" class=\"btn btn-secondary\">Import JSON</button>\n                    </div>\n                    \n                    <h2>Security Settings</h2>\n                    <div class=\"admin-controls\">\n                        <button onclick=\"showPasswordChangeForm()\" class=\"btn btn-secondary\">Change Admin Password</button>\n                    </div>\n                    \n                    <div id=\"password-change-section\" class=\"hidden\" style=\"margin-top: 15px;\">\n                        <div class=\"form-group\">\n                            <label for=\"current-password\">Current Password:</label>\n                            <input type=\"password\" id=\"current-password\" placeholder=\"Enter current password\">\n                        </div>\n                        <div class=\"form-group\">\n                            <label for=\"new-password\">New Password:</label>\n                            <input type=\"password\" id=\"new-password\" placeholder=\"Enter new password\">\n                        </div>\n                        <div class=\"form-group\">\n                            <label for=\"confirm-password\">Confirm New Password:</label>\n                            <input type=\"password\" id=\"confirm-password\" placeholder=\"Confirm new password\">\n                        </div>\n                        <div class=\"admin-controls\">\n                            <button onclick=\"changeAdminPassword()\" class=\"btn\">Change Password</button>\n                            <button onclick=\"hidePasswordChangeForm()\" class=\"btn btn-secondary\">Cancel</button>\n                        </div>\n                    </div>\n                    \n                    <div id=\"import-section\" class=\"hidden\" style=\"margin-top: 15px;\">\n                        <div class=\"form-group\">\n                            <label for=\"import-data\">Paste JSON data:</label>\n                            <textarea id=\"import-data\" placeholder=\"Paste exported JSON data here...\" style=\"height: 150px;\"></textarea>\n                        </div>\n                        <div class=\"admin-controls\">\n                            <button onclick=\"importArticles()\" class=\"btn\">Import Articles</button>\n                            <button onclick=\"hideImportForm()\" class=\"btn btn-secondary\">Cancel</button>\n                        </div>\n                    </div>\n                </div>"
     },
     "home": {
         "title": "Welcome to Minnesota Lore",
@@ -903,7 +936,7 @@
             );
             
             // Update the last modified timestamp
-            const timestampScript = `wikiData.lastModified = '2025-07-28T19:38:32.449Z';`;
+            const timestampScript = `wikiData.lastModified = '2025-07-28T19:51:32.086Z';`;
             const finalHTML = updatedHTML.replace(
                 /wikiData\.lastModified = '[^']*';/,
                 timestampScript
