@@ -1,4 +1,6 @@
-<html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>M.I.N.N.E.S.O.T.A. - Minnesota Institute for Not Necessarily Evidence-Supported Observations, Theories, and Anecdotes</title>
@@ -247,6 +249,11 @@
             background: #0b0080;
         }
 
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
         .btn-secondary {
             background: #54595d;
         }
@@ -316,35 +323,9 @@
             margin: 10px 0;
         }
 
-        .token-display {
-            position: relative;
-        }
-
-        .token-masked {
-            filter: blur(3px);
-            user-select: none;
-            transition: filter 0.3s ease;
-        }
-
-        .token-masked:focus {
-            filter: none;
-        }
-
-        .token-reveal-btn {
-            position: absolute;
-            right: 5px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: #666;
-            cursor: pointer;
-            font-size: 12px;
-            padding: 2px 4px;
-        }
-
-        .token-reveal-btn:hover {
-            color: #333;
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
         }
 
         @media (max-width: 768px) {
@@ -391,7 +372,13 @@
         <aside class="sidebar">
             <h3>Articles</h3>
             <div class="article-list-container">
-                <ul id="article-list"><li><a href="#" onclick="showHome()">Main Page</a></li><li><a href="#giant-paul-bunyan" onclick="showArticle('giant-paul-bunyan')" class="">The Giant Paul Bunyan Incident of 1987</a></li><li><a href="#minnesota-goodbye" onclick="showArticle('minnesota-goodbye')" class="">The Minnesota Goodbye</a></li><li><a href="#hotdish-wars" onclick="showArticle('hotdish-wars')">The Great Hotdish Wars</a></li><li><a href="#lake-monster" onclick="showArticle('lake-monster')">Lake Minnetonka Monster</a></li></ul>
+                <ul id="article-list">
+                    <li><a href="#" onclick="showHome()">Main Page</a></li>
+                    <li><a href="#giant-paul-bunyan" onclick="showArticle('giant-paul-bunyan')">The Giant Paul Bunyan Incident of 1987</a></li>
+                    <li><a href="#minnesota-goodbye" onclick="showArticle('minnesota-goodbye')">The Minnesota Goodbye</a></li>
+                    <li><a href="#hotdish-wars" onclick="showArticle('hotdish-wars')">The Great Hotdish Wars</a></li>
+                    <li><a href="#lake-monster" onclick="showArticle('lake-monster')">Lake Minnetonka Monster</a></li>
+                </ul>
             </div>
             
             <h3>Search</h3>
@@ -401,10 +388,10 @@
             </div>
 
             <div class="admin-link">
-                <a href="#admin" onclick="showArticle('admin')" class="active">Login</a>
+                <a href="#admin" onclick="showArticle('admin')">Login</a>
             </div>
 
-            <div id="admin-sidebar" class="">
+            <div id="admin-sidebar" class="hidden">
                 <h3>Admin Tools</h3>
                 <ul>
                     <li><a href="#" onclick="showNewArticleForm()">Create New Article</a></li>
@@ -414,68 +401,53 @@
         </aside>
 
         <main class="content">
-            <div id="article-content" style="display: none;">
-                    <h1 class="article-title">
-                        Admin Panel
-                        <a href="#admin" class="permalink">¶</a>
-                    </h1>
-                    <div class="article-content">
-                        <div id="admin-login-section" class="hidden">
-                    <p>This is the administrative control panel for M.I.N.N.E.S.O.T.A. Please log in to access editing functions.</p>
+            <div id="article-content" style="display: block;">
+                <h1 class="article-title">
+                    Welcome to M.I.N.N.E.S.O.T.A.
+                    <a href="#home" class="permalink">¶</a>
+                </h1>
+                <div class="article-content">
+                    <p><strong>M.I.N.N.E.S.O.T.A.</strong> (Minnesota Institute for Not Necessarily Evidence-Supported Observations, Theories, and Anecdotes) is the premier research institution dedicated to documenting Minnesota's most important cultural phenomena, historical events, and legendary figures—regardless of their verifiability.</p>
                     
-                    <div class="form-group">
-                        <label for="admin-login-password">Admin Password:</label>
-                        <input type="password" id="admin-login-password" placeholder="Enter admin password" onkeyup="handleAdminLoginKeypress(event)">
-                    </div>
-                    <div class="admin-controls">
-                        <button onclick="handleAdminLogin()" class="btn">Login</button>
-                    </div>
-                </div>
-                
-                <div id="admin-dashboard" class="">
-                    <p><strong>Welcome, Administrator!</strong> You now have access to all Institute editing functions.</p>
+                    <h2>Our Mission</h2>
+                    <p>The Institute is committed to preserving and sharing Minnesota's rich heritage of questionable facts, dubious claims, and thoroughly entertaining stories that may or may not have actually happened. We believe that truth is less important than a good story, especially when that story involves hotdish.</p>
                     
-                    <h2>Quick Actions</h2>
-                    <div class="admin-controls">
-                        <button onclick="showNewArticleForm()" class="btn">Create New Article</button>
-                        <button onclick="showEditForm()" class="btn btn-secondary">Edit Current Article</button>
-                        <button onclick="showGitHubConfig()" class="btn btn-secondary">GitHub Settings</button>
-                        <button onclick="handleAdminLogout()" class="btn" style="background: #dc3545;">Logout</button>
-                    </div>
+                    <h2>Featured Research</h2>
+                    <p>Explore our comprehensive archives documenting crucial Minnesota phenomena, from the legendary <a href="#" onclick="showArticle('giant-paul-bunyan')">Giant Paul Bunyan incident of 1987</a> to the ongoing <a href="#" onclick="showArticle('hotdish-wars')">Great Hotdish Wars</a> that continue to shape the state's culinary and political landscape.</p>
                     
-                    <h2>Article Management</h2>
-                    <div id="article-management">
-                        <p>Current research documents in the Institute archives:</p>
-                        <ul id="admin-article-list"><li>Welcome to M.I.N.N.E.S.O.T.A. 
-                            <button onclick="editArticle('home')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;">Edit</button>
-                            <button onclick="deleteArticle('home')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;">Delete</button></li><li>The Giant Paul Bunyan Incident of 1987 
-                            <button onclick="editArticle('giant-paul-bunyan')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;">Edit</button>
-                            <button onclick="deleteArticle('giant-paul-bunyan')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;">Delete</button></li><li>The Minnesota Goodbye 
-                            <button onclick="editArticle('minnesota-goodbye')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;">Edit</button>
-                            <button onclick="deleteArticle('minnesota-goodbye')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;">Delete</button></li><li>The Great Hotdish Wars 
-                            <button onclick="editArticle('hotdish-wars')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;">Edit</button>
-                            <button onclick="deleteArticle('hotdish-wars')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;">Delete</button></li><li>Lake Minnetonka Monster 
-                            <button onclick="editArticle('lake-monster')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;">Edit</button>
-                            <button onclick="deleteArticle('lake-monster')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;">Delete</button></li></ul>
-                    </div>
+                    <p>Our researchers have meticulously documented unique Minnesota customs like <a href="#" onclick="showArticle('minnesota-goodbye')">The Minnesota Goodbye</a>, a complex social ritual that can extend social gatherings by several hours, and investigated sightings of the elusive <a href="#" onclick="showArticle('lake-monster')">Lake Minnetonka Monster</a>, which demonstrates remarkable camera-avoidance abilities.</p>
+                    
+                    <h2>About Our Research Methods</h2>
+                    <p>The Institute employs rigorous* research methodologies to ensure the authenticity** of all documented phenomena. Our findings have been thoroughly peer-reviewed*** by leading experts**** in the field of Minnesota studies.</p>
+                    
+                    <h2>Institute Standards</h2>
+                    <p style="font-size: 0.9em; color: #666; background: #f9f9f9; padding: 15px; border-left: 4px solid #a7d8f0;">
+                        <strong>Research Quality Assurance:</strong><br>
+                        *Rigorous: We ask at least two people if they've heard the story<br>
+                        **Authenticity verified through the "Minnesota Nice Test": Does it sound like something a Minnesotan would do?<br>
+                        ***Peer review conducted at coffee shops, church basements, and ice fishing houses<br>
+                        ****Experts: Individuals who have survived more than three Minnesota winters and can pronounce "Wayzata" correctly
+                    </p>
+                    
+                    <h2>Contact the Institute</h2>
+                    <p>For research inquiries, story submissions, or hotdish-related disputes, please contact us through the traditional Minnesota method of bringing up your concerns during casual conversation at the grocery store checkout line.</p>
                 </div>
-                    </div>
-                </div>
+            </div>
 
-            <div id="edit-content" class="edit-form" style="display: none;">
+            <div id="edit-content" class="edit-form">
                 <h1 class="article-title">Edit Article</h1>
                 <form onsubmit="saveArticle(event)">
                     <div class="form-group">
                         <label for="edit-title">Article Title:</label>
-                        <input type="text" id="edit-title" required="">
+                        <input type="text" id="edit-title" required>
                     </div>
                     <div class="form-group">
                         <label for="edit-slug">URL Slug:</label>
-                        <input type="text" id="edit-slug" required="" placeholder="lowercase-with-hyphens">
+                        <input type="text" id="edit-slug" required placeholder="lowercase-with-hyphens">
                     </div>
                     <div class="form-group">
                         <label for="edit-content-area">Content (HTML allowed):</label>
-                        <textarea id="edit-content-area" required="" placeholder="Enter your article content here..."></textarea>
+                        <textarea id="edit-content-area" required placeholder="Enter your article content here..."></textarea>
                     </div>
                     <div class="admin-controls">
                         <button type="submit" class="btn">Save Article</button>
@@ -485,17 +457,11 @@
                 </form>
             </div>
             
-            <div id="github-content" class="edit-form" style="display: block;">
+            <div id="github-content" class="edit-form">
                 <h1 class="article-title">GitHub Configuration</h1>
-                <div class="form-group">
-                    <label for="gh-token">GitHub Personal Access Token:</label>
-                    <div class="token-display">
-                        <input type="password" id="gh-token" class="token-masked" placeholder="Enter your GitHub token">
-                        <button type="button" class="token-reveal-btn" onclick="toggleTokenVisibility()" title="Click to reveal/hide token">👁</button>
-                    </div>
-                    <small style="color: #666; display: block; margin-top: 5px;">
-                        Token should have 'repo' permissions for the repository
-                    </small>
+                <div class="article-content">
+                    <p><strong>Authentication Status:</strong> <span id="auth-status">Not authenticated</span></p>
+                    <p>GitHub token will be retrieved automatically upon successful authentication.</p>
                 </div>
                 <div class="form-group">
                     <label for="gh-owner">Repository Owner:</label>
@@ -507,11 +473,11 @@
                 </div>
                 <div class="form-group">
                     <label for="gh-branch">Branch:</label>
-                    <input type="text" id="gh-branch" placeholder="Branch name (e.g., main)">
+                    <input type="text" id="gh-branch" placeholder="Branch name (e.g., main)" value="main">
                 </div>
                 <div class="form-group">
                     <label for="gh-path">File Path:</label>
-                    <input type="text" id="gh-path" placeholder="Path to HTML file (e.g., index.html)">
+                    <input type="text" id="gh-path" placeholder="Path to HTML file (e.g., index.html)" value="index.html">
                     <small style="color: #666; display: block; margin-top: 5px;">
                         This entire wiki will be saved as a single HTML file
                     </small>
@@ -528,539 +494,210 @@
     </div>
 
     <script>
-        // Configuration - obfuscated admin password
-        const defaultPasswordParts = {
-  "p1": "QmVu",
-  "p2": "Um9ja3M="
-};
-        
-        function decodePassword() {
-            return atob(defaultPasswordParts.p1) + atob(defaultPasswordParts.p2);
-        }
-        
-        let ADMIN_PASSWORD = decodePassword(); // Current password (can be changed)
-        
-        // GitHub configuration - you'll need to set your own values
-        const configParts = {
-            t1: 'Z2l0aHViX3BhdF8xMUFPVkxNM1kwa3VEaUg1NWMzb0xtX1Q=', // Leave empty - you'll enter your token in the GitHub settings
-            t2: 'abAEjUbtn11GSr4N5bcADSu4g0fPsfAyw3',
-            t3: 'cExPTVBuUk1FUjRXQVhYN21yZGNyQ2Yx',
-            owner: 'QmVuU3dlYXRlclZlc3Q=', // Base64 for "BenSweaterVest"
-            repo: 'TWlubmVzb3RhRmFjdHM=', // Base64 for "MinnesotaFacts"
-            branch: 'bWFpbg==', // Base64 for "main"
-            path: 'aW5kZXguaHRtbA==' // Base64 for "index.html"
-        };
-        
-        function decodeConfig() {
-            return {
-                token: configParts.t1 + configParts.t2 + configParts.t3, // Will be empty initially
-                owner: configParts.owner ? atob(configParts.owner) : '',
-                repo: configParts.repo ? atob(configParts.repo) : '',
-                branch: configParts.branch ? atob(configParts.branch) : 'main',
-                path: configParts.path ? atob(configParts.path) : 'index.html'
-            };
-        }
-        
-        let githubConfig = decodeConfig();
+        // Configuration
+        const API_BASE_URL = '/functions/api'; // Adjust this to match your Cloudflare Functions setup
         
         // State management
         let isLoggedIn = false;
         let currentArticle = 'home';
+        let githubToken = null;
+        
+        // GitHub configuration - will be saved to localStorage
+        let githubConfig = {
+            owner: 'BenSweaterVest',
+            repo: 'MinnesotaFacts',
+            branch: 'main',
+            path: 'index.html'
+        };
         
         // Sample articles data
         let articles = {
-  "admin": {
-    "title": "Admin Panel",
-    "content": "<div id=\"admin-login-section\">\n                    <p>This is the administrative control panel for M.I.N.N.E.S.O.T.A. Please log in to access editing functions.</p>\n                    \n                    <div class=\"form-group\">\n                        <label for=\"admin-login-password\">Admin Password:</label>\n                        <input type=\"password\" id=\"admin-login-password\" placeholder=\"Enter admin password\" onkeyup=\"handleAdminLoginKeypress(event)\">\n                    </div>\n                    <div class=\"admin-controls\">\n                        <button onclick=\"handleAdminLogin()\" class=\"btn\">Login</button>\n                    </div>\n                </div>\n                \n                <div id=\"admin-dashboard\" class=\"hidden\">\n                    <p><strong>Welcome, Administrator!</strong> You now have access to all Institute editing functions.</p>\n                    \n                    <h2>Quick Actions</h2>\n                    <div class=\"admin-controls\">\n                        <button onclick=\"showNewArticleForm()\" class=\"btn\">Create New Article</button>\n                        <button onclick=\"showEditForm()\" class=\"btn btn-secondary\">Edit Current Article</button>\n                        <button onclick=\"showGitHubConfig()\" class=\"btn btn-secondary\">GitHub Settings</button>\n                        <button onclick=\"handleAdminLogout()\" class=\"btn\" style=\"background: #dc3545;\">Logout</button>\n                    </div>\n                    \n                    <h2>Article Management</h2>\n                    <div id=\"article-management\">\n                        <p>Current research documents in the Institute archives:</p>\n                        <ul id=\"admin-article-list\"></ul>\n                    </div>\n                </div>"
-  },
-  "home": {
-    "title": "Welcome to M.I.N.N.E.S.O.T.A.",
-    "content": "<p><strong>M.I.N.N.E.S.O.T.A.</strong> (Minnesota Institute for Not Necessarily Evidence-Supported Observations, Theories, and Anecdotes) is the premier research institution dedicated to documenting Minnesota's most important cultural phenomena, historical events, and legendary figures—regardless of their verifiability.</p>\n                \n                <h2>Our Mission</h2>\n                <p>The Institute is committed to preserving and sharing Minnesota's rich heritage of questionable facts, dubious claims, and thoroughly entertaining stories that may or may not have actually happened. We believe that truth is less important than a good story, especially when that story involves hotdish.</p>\n                \n                <h2>Featured Research</h2>\n                <p>Explore our comprehensive archives documenting crucial Minnesota phenomena, from the legendary <a href=\"#\" onclick=\"showArticle('giant-paul-bunyan')\">Giant Paul Bunyan incident of 1987</a> to the ongoing <a href=\"#\" onclick=\"showArticle('hotdish-wars')\">Great Hotdish Wars</a> that continue to shape the state's culinary and political landscape.</p>\n                \n                <p>Our researchers have meticulously documented unique Minnesota customs like <a href=\"#\" onclick=\"showArticle('minnesota-goodbye')\">The Minnesota Goodbye</a>, a complex social ritual that can extend social gatherings by several hours, and investigated sightings of the elusive <a href=\"#\" onclick=\"showArticle('lake-monster')\">Lake Minnetonka Monster</a>, which demonstrates remarkable camera-avoidance abilities.</p>\n                \n                <h2>About Our Research Methods</h2>\n                <p>The Institute employs rigorous* research methodologies to ensure the authenticity** of all documented phenomena. Our findings have been thoroughly peer-reviewed*** by leading experts**** in the field of Minnesota studies.</p>\n                \n                <h2>Institute Standards</h2>\n                <p style=\"font-size: 0.9em; color: #666; background: #f9f9f9; padding: 15px; border-left: 4px solid #a7d8f0;\">\n                    <strong>Research Quality Assurance:</strong><br>\n                    *Rigorous: We ask at least two people if they've heard the story<br>\n                    **Authenticity verified through the \"Minnesota Nice Test\": Does it sound like something a Minnesotan would do?<br>\n                    ***Peer review conducted at coffee shops, church basements, and ice fishing houses<br>\n                    ****Experts: Individuals who have survived more than three Minnesota winters and can pronounce \"Wayzata\" correctly\n                </p>\n                \n                <h2>Contact the Institute</h2>\n                <p>For research inquiries, story submissions, or hotdish-related disputes, please contact us through the traditional Minnesota method of bringing up your concerns during casual conversation at the grocery store checkout line.</p>"
-  },
-  "giant-paul-bunyan": {
-    "title": "The Giant Paul Bunyan Incident of 1987",
-    "content": "<div class=\"infobox\">\n                    <div class=\"infobox-title\">Paul Bunyan Incident</div>\n                    <div class=\"infobox-content\">\n                        <div class=\"infobox-row\">\n                            <div class=\"infobox-label\">Date:</div>\n                            <div>July 4, 1987</div>\n                        </div>\n                        <div class=\"infobox-row\">\n                            <div class=\"infobox-label\">Location:</div>\n                            <div>Bemidji, Minnesota</div>\n                        </div>\n                        <div class=\"infobox-row\">\n                            <div class=\"infobox-label\">Casualties:</div>\n                            <div>12 lawn chairs, 1 hot dog stand</div>\n                        </div>\n                        <div class=\"infobox-row\">\n                            <div class=\"infobox-label\">Status:</div>\n                            <div>Covered up by Big Tourism</div>\n                        </div>\n                    </div>\n                </div>\n                \n                <p>The <strong>Giant Paul Bunyan Incident of 1987</strong> remains the most controversial event in Minnesota tourism history, despite efforts by the Minnesota Tourism Board to suppress all documentation of the occurrence.</p>\n                \n                <h2>Background</h2>\n                <p>The 18-foot Paul Bunyan statue in Bemidji had been behaving normally for decades, standing stoically next to Babe the Blue Ox and posing for countless tourist photographs. However, witnesses report that on the morning of July 4th, 1987, the statue began exhibiting what can only be described as \"aggressive tourist interaction patterns.\"</p>\n                \n                <h2>The Incident</h2>\n                <p>According to eyewitness testimony collected by M.I.N.N.E.S.O.T.A. researchers, the statue first showed signs of animation at approximately 10:30 AM during the annual Fourth of July picnic. Mrs. Ethel Nordstrom of Bagley reported that Paul's axe began \"twitching menacingly\" whenever tourists attempted to pose for photos without purchasing souvenirs from the adjacent gift shop.</p>\n                \n                <p>The situation escalated rapidly when the Bunyan statue reportedly stood up, stretched (causing several car alarms to activate from the sonic boom), and began actively herding tourists toward the gift shop while muttering something about \"authentic Minnesota experiences\" and \"supporting local businesses.\"</p>\n                \n                <h2>Casualties and Damage</h2>\n                <p>While no humans were seriously injured, the incident resulted in the destruction of twelve lawn chairs (which Paul apparently used as \"tiny furniture\" during his brief period of mobility), one hot dog stand (stepped on during an overly enthusiastic demonstration of proper lumberjack walking technique), and the psychological trauma of approximately 200 tourists who were forced to purchase overpriced postcards and miniature axes.</p>\n                \n                <h2>Cover-up Allegations</h2>\n                <p>The Minnesota Tourism Board quickly issued a statement claiming the entire incident was a \"mass hallucination caused by excessive consumption of lefse and lutefisk.\" All physical evidence was allegedly removed by a special task force equipped with industrial-strength tourist memory erasers (standard issue for all state tourism employees since 1983).</p>\n                \n                <p>However, M.I.N.N.E.S.O.T.A. researchers have uncovered compelling evidence that the cover-up went to the highest levels of Minnesota government, including phone records showing suspicious calls between the Governor's office and several \"statue behavioral specialists\" in the days following the incident.</p>\n                \n                <h2>Current Status</h2>\n                <p>The Paul Bunyan statue has remained motionless since July 5th, 1987, though locals report occasional \"meaningful glances\" directed at tourists who attempt to take photos without making a purchase. The gift shop's sales have increased 347% since the incident, leading some researchers to theorize that the entire event was an elaborate marketing scheme.</p>\n                \n                <p>The statue now wears a small monitoring device disguised as a decorative belt buckle, installed by the Minnesota Department of Statue Affairs (a department that officially doesn't exist).</p>\n                \n                <h2>See Also</h2>\n                <p>• <a href=\"#\" onclick=\"showArticle('minnesota-goodbye')\">The Minnesota Goodbye</a><br>\n                • <a href=\"#\" onclick=\"showArticle('lake-monster')\">Lake Minnetonka Monster</a><br>\n                • List of Animated Tourist Attractions in Minnesota</p>"
-  },
-  "minnesota-goodbye": {
-    "title": "The Minnesota Goodbye",
-    "content": "<p>The <strong>Minnesota Goodbye</strong> is a complex social ritual practiced throughout the state of Minnesota, characterized by its ability to extend any social gathering by a minimum of 45 minutes to several hours beyond the initial departure announcement.</p>\n                \n                <h2>Definition and Characteristics</h2>\n                <p>Unlike the abrupt departures common in other regions, the Minnesota Goodbye follows a strict protocol that ensures no one's feelings are hurt and that all participants have multiple opportunities to share additional anecdotes, weather observations, and casserole recipes.</p>\n                \n                <p>The ritual typically begins with the phrase \"Well, I suppose we should probably think about heading out soon,\" which serves as the opening ceremony for what researchers have termed \"The Great Departure Protocol.\"</p>\n                \n                <h2>The Seven Stages</h2>\n                \n                <h3>Stage 1: The Initial Announcement (5-15 minutes)</h3>\n                <p>The departing party announces their intention to leave, usually prefaced with observations about the time, weather, or upcoming obligations. This stage involves multiple false starts as hosts immediately begin offering additional refreshments, leading to conversations about the quality of the coffee, the recipe for the bars, and whether anyone needs directions home.</p>\n                \n                <h3>Stage 2: The Coat Gathering Ceremony (10-20 minutes)</h3>\n                <p>Participants begin the ritual collection of coats, purses, and casserole dishes. This stage is frequently interrupted by the discovery of forgotten items, the need to exchange recipes, and detailed discussions about whose Tupperware belongs to whom. The phrase \"Oh, don't worry about that dish, just bring it back whenever\" is ceremonially uttered at least three times.</p>\n                \n                <h3>Stage 3: The Doorway Discourse (15-30 minutes)</h3>\n                <p>The group migrates toward the exit but becomes anchored in the doorway or entryway. This is the most critical stage, where participants share their most important stories, express gratitude for the gathering, and engage in detailed weather predictions. Departure attempts during this stage are considered culturally inappropriate.</p>\n                \n                <h3>Stage 4: The Threshold Stall (10-25 minutes)</h3>\n                <p>Participants have crossed the threshold but remain in the immediate vicinity of the door. Conversations about drive times, traffic conditions, and alternative routes are mandatory. Someone will inevitably remember an important piece of information that requires returning inside briefly.</p>\n                \n                <h3>Stage 5: The Vehicle Migration (5-15 minutes)</h3>\n                <p>The group slowly moves toward parked vehicles while continuing conversation. Topics typically include car maintenance, gas prices, and observations about other attendees' vehicles. Keys are retrieved and prominently displayed, signaling serious departure intentions.</p>\n                \n                <h3>Stage 6: The Car Door Conference (10-20 minutes)</h3>\n                <p>Participants stand beside their vehicles with doors open, conducting final conversations across parking areas or driveways. This stage requires projected voice levels and often involves neighbors joining the discussion. Weather observations reach peak intensity during this phase.</p>\n                \n                <h3>Stage 7: The Final Wave Protocol (2-10 minutes)</h3>\n                <p>Vehicles are finally occupied, but the departure process continues with elaborate waving rituals. Hosts must remain visible until all departing vehicles are completely out of sight, while departing guests must maintain wave contact throughout their exit from the property.</p>\n                \n                <h2>Regional Variations</h2>\n                <p>Northern Minnesota practitioners often extend Stage 6 with detailed discussions about fishing conditions and ice thickness reports. Urban Twin Cities variations may include abbreviated versions during winter months, though this is considered culturally suspect by outstate Minnesotans.</p>\n                \n                <p>Iron Range communities have developed specialized mining-related goodbye protocols, while southern Minnesota agricultural areas incorporate crop condition updates into their departure ceremonies.</p>\n                \n                <h2>Cultural Significance</h2>\n                <p>The Minnesota Goodbye serves multiple important social functions, including ensuring that all participants feel sufficiently appreciated, that no important information goes unshared, and that the transition from social gathering to individual travel occurs gradually rather than abruptly.</p>\n                \n                <p>Anthropologists have noted that the ritual also serves as a form of community bonding, as participants demonstrate their commitment to maintaining relationships through the time investment required for proper departure protocols.</p>\n                \n                <h2>Attempts at Modernization</h2>\n                <p>Various efforts to streamline the Minnesota Goodbye have been attempted, including the ill-fated \"Minnesota Speed Departure\" initiative of 1994, which resulted in widespread social anxiety and a 67% increase in follow-up phone calls to ensure that feelings hadn't been hurt.</p>\n                \n                <p>Digital variations have emerged with the advent of smartphones, allowing for extended text message goodbye sequences that can continue for hours after physical departure has been achieved.</p>\n                \n                <h2>See Also</h2>\n                <p>• <a href=\"#\" onclick=\"showArticle('hotdish-wars')\">The Great Hotdish Wars</a><br>\n                • Minnesota Nice: A Comprehensive Analysis<br>\n                • Regional Variations in Midwestern Politeness Protocols</p>"
-  },
-  "hotdish-wars": {
-    "title": "The Great Hotdish Wars",
-    "content": "<p>The <strong>Great Hotdish Wars</strong> refer to the ongoing series of culinary conflicts that have shaped Minnesota's social and political landscape since the early 1950s. These battles over hotdish supremacy continue to influence everything from church fundraisers to gubernatorial elections.</p>\n                \n                <h2>Historical Background</h2>\n                <p>The conflict began innocuously in 1953 when Marge Olson of Hibbing claimed at the annual Lutheran church potluck that her tater tot hotdish was \"the best in the Range.\" This statement was immediately challenged by Dolores Peterson of Virginia, who maintained that green bean hotdish was clearly superior due to its vegetable content and nutritional value.</p>\n                \n                <p>What started as a friendly disagreement quickly escalated when both women began recruiting allies from their respective sewing circles, bridge clubs, and bowling leagues. By 1954, the entire Iron Range was divided into two distinct hotdish factions.</p>\n                \n                <h2>Major Factions</h2>\n                \n                <h3>The Tater Tot Alliance</h3>\n                <p>Led by the descendants of Marge Olson, the Tater Tot Alliance maintains that the golden, crispy potato cylinders represent the pinnacle of hotdish innovation. Their core beliefs include:</p>\n                <ul style=\"margin-left: 20px;\">\n                <li>Tater tots provide superior textural contrast</li>\n                <li>The uniform shape ensures even cooking</li>\n                <li>Frozen tater tots demonstrate proper Minnesota efficiency</li>\n                <li>The dish represents the ideal balance of comfort and convenience</li>\n                </ul>\n                \n                <h3>The Green Bean Coalition</h3>\n                <p>The Green Bean Coalition argues for the nutritional and aesthetic superiority of their signature dish. Their platform includes:</p>\n                <ul style=\"margin-left: 20px;\">\n                <li>Green beans provide essential vitamins and minerals</li>\n                <li>The French-cut variety demonstrates culinary sophistication</li>\n                <li>Cream of mushroom soup serves as the perfect binding agent</li>\n                <li>French fried onions create an elegant finishing touch</li>\n                </ul>\n                \n                <h3>The Wild Rice Rebellion</h3>\n                <p>Emerging in the 1970s, this faction promotes Minnesota's state grain as the foundation for authentic regional hotdish. Though smaller in numbers, they have gained influence through their claims of representing \"true Minnesota heritage.\"</p>\n                \n                <h3>The King Ranch Insurgency</h3>\n                <p>A controversial faction that emerged in the 1990s, advocating for the adoption of the Texas-originated King Ranch Chicken as a legitimate Minnesota hotdish. Their presence at potlucks is still considered provocative in many communities.</p>\n                \n                <h2>Notable Battles</h2>\n                \n                <h3>The Potluck Incident of 1967</h3>\n                <p>The most famous confrontation occurred at the annual Hibbing Community Center fundraiser when both Marge Olson and Dolores Peterson arrived with identical 9x13 inch casserole dishes, each claiming the coveted \"first table\" position. The incident was resolved only when Pastor Johnson suggested they both occupy the table simultaneously, leading to the adoption of the \"Dual Hotdish Protocol\" still used at Minnesota potlucks today.</p>\n                \n                <h2>Political Ramifications</h2>\n                <p>The Hotdish Wars have significantly influenced Minnesota politics, with candidates required to declare their hotdish allegiances before seeking office. The 1990 gubernatorial race was notably decided when candidate Arne Carlson publicly praised both tater tot and green bean hotdish at the State Fair, demonstrating the diplomatic skills necessary for effective governance.</p>\n                \n                <h2>See Also</h2>\n                <p>• <a href=\"#\" onclick=\"showArticle('minnesota-goodbye')\">The Minnesota Goodbye</a><br>\n                • <a href=\"#\" onclick=\"showArticle('lake-monster')\">Lake Minnetonka Monster</a></p>"
-  },
-  "lake-monster": {
-    "title": "Lake Minnetonka Monster",
-    "content": "<div class=\"infobox\">\n                    <div class=\"infobox-title\">Lake Minnetonka Monster</div>\n                    <div class=\"infobox-content\">\n                        <div class=\"infobox-row\">\n                            <div class=\"infobox-label\">First Sighting:</div>\n                            <div>June 15, 1923</div>\n                        </div>\n                        <div class=\"infobox-row\">\n                            <div class=\"infobox-label\">Location:</div>\n                            <div>Lake Minnetonka, Minnesota</div>\n                        </div>\n                        <div class=\"infobox-row\">\n                            <div class=\"infobox-label\">Length:</div>\n                            <div>30-40 feet (estimated)</div>\n                        </div>\n                        <div class=\"infobox-row\">\n                            <div class=\"infobox-label\">Distinguishing Features:</div>\n                            <div>Excellent manners, aversion to cameras</div>\n                        </div>\n                        <div class=\"infobox-row\">\n                            <div class=\"infobox-label\">Status:</div>\n                            <div>Politely elusive</div>\n                        </div>\n                    </div>\n                </div>\n                \n                <p>The <strong>Lake Minnetonka Monster</strong>, affectionately known as \"Tonka\" by local residents, is Minnesota's most courteous cryptid. Unlike its more aggressive cousins in other lakes, Tonka has earned a reputation for exceptional manners and an almost supernatural ability to avoid photographic documentation.</p>\n                \n                <h2>Discovery and Early Sightings</h2>\n                <p>The creature was first spotted on June 15, 1923, by Margaret Lindström while she was hanging laundry near the shoreline. According to her account, a large, serpentine head emerged from the water, nodded politely in her direction, and submerged again without creating so much as a ripple that might disturb her freshly washed sheets.</p>\n                \n                <h2>Behavioral Patterns</h2>\n                \n                <h3>Exemplary Manners</h3>\n                <p>Tonka has consistently demonstrated behavior that aligns with Minnesota Nice principles. Witnesses report that the creature always surfaces downwind from fishing boats to avoid disturbing anglers and maintains a respectful distance from docks and swimming areas.</p>\n                \n                <h3>Camera Avoidance Abilities</h3>\n                <p>Tonka possesses what researchers term \"photographic prescience\" - an uncanny ability to disappear moments before cameras are raised. This has resulted in hundreds of blurry water photos and a single, disputed image from 1987 that appears to show either Tonka's tail or a very large stick.</p>\n                \n                <h2>Cultural Impact</h2>\n                <p>Tonka has become an unofficial mascot for Lake Minnetonka, with local businesses adopting monster-themed names and the annual \"Tonka Appreciation Day\" featuring polite monster-spotting attempts and mandatory hotdish sharing.</p>\n                \n                <h2>See Also</h2>\n                <p>• <a href=\"#\" onclick=\"showArticle('giant-paul-bunyan')\">Giant Paul Bunyan Incident</a><br>\n                • <a href=\"#\" onclick=\"showArticle('minnesota-goodbye')\">The Minnesota Goodbye</a></p>"
-  }
-};
+            "admin": {
+                "title": "Admin Panel",
+                "content": `<div id="admin-login-section">
+                    <p>This is the administrative control panel for M.I.N.N.E.S.O.T.A. Please log in to access editing functions.</p>
+                    
+                    <div class="form-group">
+                        <label for="admin-login-password">Admin Password:</label>
+                        <input type="password" id="admin-login-password" placeholder="Enter admin password" onkeyup="handleAdminLoginKeypress(event)">
+                    </div>
+                    <div class="admin-controls">
+                        <button onclick="handleAdminLogin()" class="btn" id="login-btn">Login</button>
+                    </div>
+                </div>
+                
+                <div id="admin-dashboard" class="hidden">
+                    <p><strong>Welcome, Administrator!</strong> You now have access to all Institute editing functions.</p>
+                    
+                    <h2>Quick Actions</h2>
+                    <div class="admin-controls">
+                        <button onclick="showNewArticleForm()" class="btn">Create New Article</button>
+                        <button onclick="showEditForm()" class="btn btn-secondary">Edit Current Article</button>
+                        <button onclick="showGitHubConfig()" class="btn btn-secondary">GitHub Settings</button>
+                        <button onclick="handleAdminLogout()" class="btn" style="background: #dc3545;">Logout</button>
+                    </div>
+                    
+                    <h2>Article Management</h2>
+                    <div id="article-management">
+                        <p>Current research documents in the Institute archives:</p>
+                        <ul id="admin-article-list"></ul>
+                    </div>
+                </div>`
+            },
+            "home": {
+                "title": "Welcome to M.I.N.N.E.S.O.T.A.",
+                "content": `<p><strong>M.I.N.N.E.S.O.T.A.</strong> (Minnesota Institute for Not Necessarily Evidence-Supported Observations, Theories, and Anecdotes) is the premier research institution dedicated to documenting Minnesota's most important cultural phenomena, historical events, and legendary figures—regardless of their verifiability.</p>
+                
+                <h2>Our Mission</h2>
+                <p>The Institute is committed to preserving and sharing Minnesota's rich heritage of questionable facts, dubious claims, and thoroughly entertaining stories that may or may not have actually happened. We believe that truth is less important than a good story, especially when that story involves hotdish.</p>
+                
+                <h2>Featured Research</h2>
+                <p>Explore our comprehensive archives documenting crucial Minnesota phenomena, from the legendary <a href="#" onclick="showArticle('giant-paul-bunyan')">Giant Paul Bunyan incident of 1987</a> to the ongoing <a href="#" onclick="showArticle('hotdish-wars')">Great Hotdish Wars</a> that continue to shape the state's culinary and political landscape.</p>
+                
+                <p>Our researchers have meticulously documented unique Minnesota customs like <a href="#" onclick="showArticle('minnesota-goodbye')">The Minnesota Goodbye</a>, a complex social ritual that can extend social gatherings by several hours, and investigated sightings of the elusive <a href="#" onclick="showArticle('lake-monster')">Lake Minnetonka Monster</a>, which demonstrates remarkable camera-avoidance abilities.</p>
+                
+                <h2>About Our Research Methods</h2>
+                <p>The Institute employs rigorous* research methodologies to ensure the authenticity** of all documented phenomena. Our findings have been thoroughly peer-reviewed*** by leading experts**** in the field of Minnesota studies.</p>
+                
+                <h2>Institute Standards</h2>
+                <p style="font-size: 0.9em; color: #666; background: #f9f9f9; padding: 15px; border-left: 4px solid #a7d8f0;">
+                    <strong>Research Quality Assurance:</strong><br>
+                    *Rigorous: We ask at least two people if they've heard the story<br>
+                    **Authenticity verified through the "Minnesota Nice Test": Does it sound like something a Minnesotan would do?<br>
+                    ***Peer review conducted at coffee shops, church basements, and ice fishing houses<br>
+                    ****Experts: Individuals who have survived more than three Minnesota winters and can pronounce "Wayzata" correctly
+                </p>
+                
+                <h2>Contact the Institute</h2>
+                <p>For research inquiries, story submissions, or hotdish-related disputes, please contact us through the traditional Minnesota method of bringing up your concerns during casual conversation at the grocery store checkout line.</p>`
+            },
+            "giant-paul-bunyan": {
+                "title": "The Giant Paul Bunyan Incident of 1987",
+                "content": `<div class="infobox">
+                    <div class="infobox-title">Paul Bunyan Incident</div>
+                    <div class="infobox-content">
+                        <div class="infobox-row">
+                            <div class="infobox-label">Date:</div>
+                            <div>July 4, 1987</div>
+                        </div>
+                        <div class="infobox-row">
+                            <div class="infobox-label">Location:</div>
+                            <div>Bemidji, Minnesota</div>
+                        </div>
+                        <div class="infobox-row">
+                            <div class="infobox-label">Casualties:</div>
+                            <div>12 lawn chairs, 1 hot dog stand</div>
+                        </div>
+                        <div class="infobox-row">
+                            <div class="infobox-label">Status:</div>
+                            <div>Covered up by Big Tourism</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <p>The <strong>Giant Paul Bunyan Incident of 1987</strong> remains the most controversial event in Minnesota tourism history, despite efforts by the Minnesota Tourism Board to suppress all documentation of the occurrence.</p>
+                
+                <h2>Background</h2>
+                <p>The 18-foot Paul Bunyan statue in Bemidji had been behaving normally for decades, standing stoically next to Babe the Blue Ox and posing for countless tourist photographs. However, witnesses report that on the morning of July 4th, 1987, the statue began exhibiting what can only be described as "aggressive tourist interaction patterns."</p>
+                
+                <h2>The Incident</h2>
+                <p>According to eyewitness testimony collected by M.I.N.N.E.S.O.T.A. researchers, the statue first showed signs of animation at approximately 10:30 AM during the annual Fourth of July picnic. Mrs. Ethel Nordstrom of Bagley reported that Paul's axe began "twitching menacingly" whenever tourists attempted to pose for photos without purchasing souvenirs from the adjacent gift shop.</p>
+                
+                <p>The situation escalated rapidly when the Bunyan statue reportedly stood up, stretched (causing several car alarms to activate from the sonic boom), and began actively herding tourists toward the gift shop while muttering something about "authentic Minnesota experiences" and "supporting local businesses."</p>
+                
+                <h2>See Also</h2>
+                <p>• <a href="#" onclick="showArticle('minnesota-goodbye')">The Minnesota Goodbye</a><br>
+                • <a href="#" onclick="showArticle('lake-monster')">Lake Minnetonka Monster</a></p>`
+            },
+            "minnesota-goodbye": {
+                "title": "The Minnesota Goodbye",
+                "content": `<p>The <strong>Minnesota Goodbye</strong> is a complex social ritual practiced throughout the state of Minnesota, characterized by its ability to extend any social gathering by a minimum of 45 minutes to several hours beyond the initial departure announcement.</p>
+                
+                <h2>Definition and Characteristics</h2>
+                <p>Unlike the abrupt departures common in other regions, the Minnesota Goodbye follows a strict protocol that ensures no one's feelings are hurt and that all participants have multiple opportunities to share additional anecdotes, weather observations, and casserole recipes.</p>
+                
+                <h2>The Seven Stages</h2>
+                
+                <h3>Stage 1: The Initial Announcement (5-15 minutes)</h3>
+                <p>The departing party announces their intention to leave, usually prefaced with observations about the time, weather, or upcoming obligations.</p>
+                
+                <h3>Stage 2: The Coat Gathering Ceremony (10-20 minutes)</h3>
+                <p>Participants begin the ritual collection of coats, purses, and casserole dishes.</p>
+                
+                <h2>See Also</h2>
+                <p>• <a href="#" onclick="showArticle('hotdish-wars')">The Great Hotdish Wars</a></p>`
+            },
+            "hotdish-wars": {
+                "title": "The Great Hotdish Wars",
+                "content": `<p>The <strong>Great Hotdish Wars</strong> refer to the ongoing series of culinary conflicts that have shaped Minnesota's social and political landscape since the early 1950s.</p>
+                
+                <h2>Historical Background</h2>
+                <p>The conflict began innocuously in 1953 when Marge Olson of Hibbing claimed at the annual Lutheran church potluck that her tater tot hotdish was "the best in the Range."</p>
+                
+                <h2>See Also</h2>
+                <p>• <a href="#" onclick="showArticle('minnesota-goodbye')">The Minnesota Goodbye</a><br>
+                • <a href="#" onclick="showArticle('lake-monster')">Lake Minnetonka Monster</a></p>`
+            },
+            "lake-monster": {
+                "title": "Lake Minnetonka Monster",
+                "content": `<div class="infobox">
+                    <div class="infobox-title">Lake Minnetonka Monster</div>
+                    <div class="infobox-content">
+                        <div class="infobox-row">
+                            <div class="infobox-label">First Sighting:</div>
+                            <div>June 15, 1923</div>
+                        </div>
+                        <div class="infobox-row">
+                            <div class="infobox-label">Status:</div>
+                            <div>Politely elusive</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <p>The <strong>Lake Minnetonka Monster</strong>, affectionately known as "Tonka" by local residents, is Minnesota's most courteous cryptid.</p>
+                
+                <h2>Discovery and Early Sightings</h2>
+                <p>The creature was first spotted on June 15, 1923, by Margaret Lindström while she was hanging laundry near the shoreline.</p>
+                
+                <h2>See Also</h2>
+                <p>• <a href="#" onclick="showArticle('giant-paul-bunyan')">Giant Paul Bunyan Incident</a></p>`
+            }
+        };
         
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
+            loadGitHubConfig();
             showHome();
             updateSidebar();
         });
         
-        function showHome() {
-            showArticle('home');
-        }
-        
-        function showArticle(articleId) {
-            // Hide all content sections
-            document.getElementById('article-content').style.display = 'block';
-            document.getElementById('edit-content').style.display = 'none';
-            document.getElementById('github-content').style.display = 'none';
-            
-            // Update current article
-            currentArticle = articleId;
-            
-            // Load article content
-            if (articles[articleId]) {
-                const article = articles[articleId];
-                document.getElementById('article-content').innerHTML = `
-                    <h1 class="article-title">
-                        ${article.title}
-                        <a href="#${articleId}" class="permalink">¶</a>
-                    </h1>
-                    <div class="article-content">
-                        ${article.content}
-                    </div>
-                `;
-                
-                // Update active link in sidebar
-                updateActiveLink(articleId);
-                
-                // Special handling for admin page
-                if (articleId === 'admin') {
-                    updateAdminContent();
-                }
-            } else {
-                document.getElementById('article-content').innerHTML = `
-                    <h1 class="article-title">Article Not Found</h1>
-                    <p>The requested article could not be found in the M.I.N.N.E.S.O.T.A. archives.</p>
-                    <p><a href="#" onclick="showHome()">Return to Main Page</a></p>
-                `;
-            }
-        }
-        
-        function updateActiveLink(articleId) {
-            // Remove active class from all links
-            const links = document.querySelectorAll('.sidebar a');
-            links.forEach(link => link.classList.remove('active'));
-            
-            // Add active class to current link
-            const currentLink = document.querySelector(`a[onclick*="${articleId}"]`);
-            if (currentLink) {
-                currentLink.classList.add('active');
-            }
-        }
-        
-        function updateSidebar() {
-            const articleList = document.getElementById('article-list');
-            articleList.innerHTML = '';
-            
-            // Add main page link
-            const mainItem = document.createElement('li');
-            mainItem.innerHTML = '<a href="#" onclick="showHome()">Main Page</a>';
-            articleList.appendChild(mainItem);
-            
-            // Add other articles
-            Object.keys(articles).forEach(key => {
-                if (key !== 'home' && key !== 'admin') {
-                    const item = document.createElement('li');
-                    item.innerHTML = `<a href="#${key}" onclick="showArticle('${key}')">${articles[key].title}</a>`;
-                    articleList.appendChild(item);
-                }
-            });
-        }
-        
-        function updateAdminContent() {
-            if (isLoggedIn) {
-                document.getElementById('admin-login-section').classList.add('hidden');
-                document.getElementById('admin-dashboard').classList.remove('hidden');
-                document.getElementById('admin-sidebar').classList.remove('hidden');
-                updateAdminArticleList();
-            } else {
-                document.getElementById('admin-login-section').classList.remove('hidden');
-                document.getElementById('admin-dashboard').classList.add('hidden');
-                document.getElementById('admin-sidebar').classList.add('hidden');
-            }
-        }
-        
-        function updateAdminArticleList() {
-            const list = document.getElementById('admin-article-list');
-            if (list) {
-                list.innerHTML = '';
-                Object.keys(articles).forEach(key => {
-                    if (key !== 'admin') {
-                        const item = document.createElement('li');
-                        item.innerHTML = `${articles[key].title} 
-                            <button onclick="editArticle('${key}')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;">Edit</button>
-                            <button onclick="deleteArticle('${key}')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;">Delete</button>`;
-                        list.appendChild(item);
-                    }
-                });
-            }
-        }
-        
-        function handleAdminLoginKeypress(event) {
-            if (event.key === 'Enter') {
-                handleAdminLogin();
-            }
-        }
-        
-        function handleAdminLogin() {
-            const password = document.getElementById('admin-login-password').value;
-            if (password === ADMIN_PASSWORD) {
-                isLoggedIn = true;
-                updateAdminContent();
-                showMessage('Successfully logged in as administrator.', 'success');
-            } else {
-                showMessage('Invalid password. Access denied.', 'error');
-            }
-        }
-        
-        function handleAdminLogout() {
-            isLoggedIn = false;
-            updateAdminContent();
-            showMessage('Successfully logged out.', 'success');
-        }
-        
-        function showNewArticleForm() {
-            if (!isLoggedIn) {
-                showMessage('Please log in to access editing functions.', 'error');
-                return;
-            }
-            
-            document.getElementById('article-content').style.display = 'none';
-            document.getElementById('edit-content').style.display = 'block';
-            document.getElementById('github-content').style.display = 'none';
-            
-            // Clear form
-            document.getElementById('edit-title').value = '';
-            document.getElementById('edit-slug').value = '';
-            document.getElementById('edit-content-area').value = '';
-        }
-        
-        function showEditForm() {
-            if (!isLoggedIn) {
-                showMessage('Please log in to access editing functions.', 'error');
-                return;
-            }
-            
-            if (currentArticle === 'admin' || currentArticle === 'home') {
-                showMessage('This article cannot be edited.', 'error');
-                return;
-            }
-            
-            const article = articles[currentArticle];
-            if (!article) {
-                showMessage('No article selected for editing.', 'error');
-                return;
-            }
-            
-            document.getElementById('article-content').style.display = 'none';
-            document.getElementById('edit-content').style.display = 'block';
-            document.getElementById('github-content').style.display = 'none';
-            
-            document.getElementById('edit-title').value = article.title;
-            document.getElementById('edit-slug').value = currentArticle;
-            document.getElementById('edit-content-area').value = article.content;
-        }
-        
-        function editArticle(articleId) {
-            currentArticle = articleId;
-            showEditForm();
-        }
-        
-        function deleteArticle(articleId) {
-            if (!confirm(`Are you sure you want to delete "${articles[articleId].title}"?`)) {
-                return;
-            }
-            
-            delete articles[articleId];
-            updateSidebar();
-            updateAdminArticleList();
-            showMessage('Article deleted successfully.', 'success');
-            
-            if (currentArticle === articleId) {
-                showHome();
-            }
-        }
-        
-        function saveArticle(event) {
-            event.preventDefault();
-            
-            const title = document.getElementById('edit-title').value;
-            const slug = document.getElementById('edit-slug').value;
-            const content = document.getElementById('edit-content-area').value;
-            
-            if (!title || !slug || !content) {
-                showMessage('Please fill in all fields.', 'error');
-                return;
-            }
-            
-            articles[slug] = {
-                title: title,
-                content: content
-            };
-            
-            updateSidebar();
-            showArticle(slug);
-            showMessage('Article saved successfully.', 'success');
-        }
-        
-        function cancelEdit() {
-            document.getElementById('article-content').style.display = 'block';
-            document.getElementById('edit-content').style.display = 'none';
-            document.getElementById('github-content').style.display = 'none';
-        }
-        
-        function deleteCurrentArticle() {
-            if (currentArticle === 'admin' || currentArticle === 'home') {
-                showMessage('This article cannot be deleted.', 'error');
-                return;
-            }
-            
-            deleteArticle(currentArticle);
-            showHome();
-        }
-        
-        function handleSearch(event) {
-            if (event.key === 'Enter') {
-                performSearch();
-            }
-        }
-        
-        function performSearch() {
-            const query = document.getElementById('search-input').value.toLowerCase();
-            if (!query) return;
-            
-            let results = [];
-            Object.keys(articles).forEach(key => {
-                const article = articles[key];
-                if (article.title.toLowerCase().includes(query) || 
-                    article.content.toLowerCase().includes(query)) {
-                    results.push({key, title: article.title});
-                }
-            });
-            
-            if (results.length === 0) {
-                showMessage('No articles found matching your search.', 'error');
-            } else if (results.length === 1) {
-                showArticle(results[0].key);
-            } else {
-                let resultHtml = '<h1 class="article-title">Search Results</h1><ul>';
-                results.forEach(result => {
-                    resultHtml += `<li><a href="#" onclick="showArticle('${result.key}')">${result.title}</a></li>`;
-                });
-                resultHtml += '</ul>';
-                
-                document.getElementById('article-content').innerHTML = resultHtml;
-                document.getElementById('edit-content').style.display = 'none';
-                document.getElementById('github-content').style.display = 'none';
-                document.getElementById('article-content').style.display = 'block';
-            }
-        }
-        
-        function showGitHubConfig() {
-            if (!isLoggedIn) {
-                showMessage('Please log in to access GitHub settings.', 'error');
-                return;
-            }
-            
-            document.getElementById('article-content').style.display = 'none';
-            document.getElementById('edit-content').style.display = 'none';
-            document.getElementById('github-content').style.display = 'block';
-            
-            // Load current config
-            document.getElementById('gh-token').value = githubConfig.token || '';
-            document.getElementById('gh-owner').value = githubConfig.owner || '';
-            document.getElementById('gh-repo').value = githubConfig.repo || '';
-            document.getElementById('gh-branch').value = githubConfig.branch || 'main';
-            document.getElementById('gh-path').value = githubConfig.path || 'index.html';
-        }
-        
-        function saveGitHubConfig() {
-            githubConfig = {
-                token: document.getElementById('gh-token').value,
-                owner: document.getElementById('gh-owner').value,
-                repo: document.getElementById('gh-repo').value,
-                branch: document.getElementById('gh-branch').value,
-                path: document.getElementById('gh-path').value
-            };
-            
-            showMessage('GitHub configuration saved successfully.', 'success');
-        }
-        
-        function toggleTokenVisibility() {
-            const tokenInput = document.getElementById('gh-token');
-            const revealBtn = document.querySelector('.token-reveal-btn');
-            
-            if (tokenInput.type === 'password') {
-                tokenInput.type = 'text';
-                tokenInput.classList.remove('token-masked');
-                revealBtn.textContent = '🙈';
-            } else {
-                tokenInput.type = 'password';
-                tokenInput.classList.add('token-masked');
-                revealBtn.textContent = '👁';
-            }
-        }
-        
-        async function testGitHubConnection() {
-            if (!githubConfig.token || !githubConfig.owner || !githubConfig.repo) {
-                showMessage('Please fill in all GitHub configuration fields.', 'error');
-                return;
-            }
-            
+        // Authentication functions
+        async function authenticateWithAPI(password) {
             try {
-                const response = await fetch(`https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}`, {
+                const response = await fetch(`${API_BASE_URL}/auth`, {
+                    method: 'POST',
                     headers: {
-                        'Authorization': `token ${githubConfig.token}`,
-                        'Accept': 'application/vnd.github.v3+json'
-                    }
-                });
-                
-                if (response.ok) {
-                    showMessage('GitHub connection successful!', 'success');
-                } else {
-                    showMessage(`GitHub connection failed: ${response.status} ${response.statusText}`, 'error');
-                }
-            } catch (error) {
-                showMessage(`GitHub connection error: ${error.message}`, 'error');
-            }
-        }
-        
-        async function saveWikiToGitHub() {
-            if (!githubConfig.token || !githubConfig.owner || !githubConfig.repo) {
-                showMessage('Please configure GitHub settings first.', 'error');
-                return;
-            }
-            
-            try {
-                // Get current file SHA if it exists
-                let sha = null;
-                try {
-                    const getResponse = await fetch(`https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/contents/${githubConfig.path}`, {
-                        headers: {
-                            'Authorization': `token ${githubConfig.token}`,
-                            'Accept': 'application/vnd.github.v3+json'
-                        }
-                    });
-                    
-                    if (getResponse.ok) {
-                        const data = await getResponse.json();
-                        sha = data.sha;
-                    }
-                } catch (e) {
-                    // File doesn't exist, that's okay
-                }
-                
-                // Generate the complete HTML
-                const completeHtml = generateCompleteHtml();
-                const content = btoa(unescape(encodeURIComponent(completeHtml)));
-                
-                const updateData = {
-                    message: `Update M.I.N.N.E.S.O.T.A. wiki - ${new Date().toISOString()}`,
-                    content: content,
-                    branch: githubConfig.branch
-                };
-                
-                if (sha) {
-                    updateData.sha = sha;
-                }
-                
-                const response = await fetch(`https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/contents/${githubConfig.path}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Authorization': `token ${githubConfig.token}`,
-                        'Accept': 'application/vnd.github.v3+json',
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(updateData)
+                    body: JSON.stringify({ password: password })
                 });
                 
-                if (response.ok) {
-                    showMessage('Wiki successfully saved to GitHub!', 'success');
-                } else {
-                    const errorData = await response.json();
-                    showMessage(`Failed to save to GitHub: ${errorData.message}`, 'error');
-                }
-            } catch (error) {
-                showMessage(`Error saving to GitHub: ${error.message}`, 'error');
-            }
-        }
-        
-        async function loadWikiFromGitHub() {
-            if (!githubConfig.token || !githubConfig.owner || !githubConfig.repo) {
-                showMessage('Please configure GitHub settings first.', 'error');
-                return;
-            }
-            
-            try {
-                const response = await fetch(`https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/contents/${githubConfig.path}`, {
-                    headers: {
-                        'Authorization': `token ${githubConfig.token}`,
-                        'Accept': 'application/vnd.github.v3+json'
-                    }
-                });
+                const data = await response.json();
                 
-                if (response.ok) {
-                    const data = await response.json();
-                    const content = decodeURIComponent(escape(atob(data.content)));
-                    
-                    // Extract articles from the loaded HTML
-                    // This is a simplified extraction - you might want to enhance this
-                    showMessage('Wiki loaded from GitHub! Note: You may need to refresh to see all changes.', 'success');
+                if (data.success) {
+                    githubToken = data.githubToken;
+                    return true;
                 } else {
-                    showMessage(`Failed to load from GitHub: ${response.status} ${response.statusText}`, 'error');
+                    return false;
                 }
             } catch (error) {
-                showMessage(`Error loading from GitHub: ${error.message}`, 'error');
+                console.error('Authentication error:', error);
+                showMessage('Authentication service unavailable. Please try again later.', 'error');
+                return false;
             }
         }
         
-        function generateCompleteHtml() {
-            // Get the current document HTML
-            let html = document.documentElement.outerHTML;
+        async function handleAdminLogin() {
+            const password = document.getElementById('admin-login-password').value;
+            const loginBtn = document.getElementById('login-btn');
             
-            // Update the articles data in the script
-            const articlesJson = JSON.stringify(articles, null, 2);
-            html = html.replace(
-                /let articles = \{[\s\S]*?\};/,
-                `let articles = ${articlesJson};`
-            );
-            
-            // Update the password parts in the script
-            const passwordPartsJson = JSON.stringify(defaultPasswordParts, null, 2);
-            html = html.replace(
-                /const defaultPasswordParts = \{[\s\S]*?\};/,
-                `const defaultPasswordParts = ${passwordPartsJson};`
-            );
-            
-            return html;
-        }
-        
-        function showMessage(message, type) {
-            // Remove existing messages
-            const existingMessages = document.querySelectorAll('.error, .success');
-            existingMessages.forEach(msg => msg.remove());
-            
-            // Create new message
-            const messageDiv = document.createElement('div');
-            messageDiv.className = type;
-            messageDiv.textContent = message;
-            
-            // Insert at top of content area
-            const content = document.querySelector('.content');
-            content.insertBefore(messageDiv, content.firstChild);
-            
-            // Auto-remove after 5 seconds
-            setTimeout(() => {
-                messageDiv.remove();
-            }, 5000);
-        }
-    </script>
-
-</body></html>
