@@ -47,31 +47,6 @@
             font-style: italic;
         }
 
-        .auth-section {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            font-size: 0.85em;
-        }
-
-        .auth-section #auth-btn {
-            background: transparent;
-            color: #666;
-            border: 1px solid #ccc;
-            padding: 4px 8px;
-            font-size: 0.8em;
-        }
-
-        .auth-section #auth-btn:hover {
-            background: #f0f0f0;
-            color: #333;
-        }
-
-        .auth-section #auth-status {
-            color: #666;
-            font-size: 0.8em;
-        }
-
         .main-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -416,7 +391,7 @@
         <aside class="sidebar">
             <h3>Articles</h3>
             <div class="article-list-container">
-                <ul id="article-list"><li><a href="#" onclick="showHome()">Main Page</a></li><li><a href="#giant-paul-bunyan" onclick="showArticle('giant-paul-bunyan')">The Giant Paul Bunyan Incident of 1987</a></li><li><a href="#minnesota-goodbye" onclick="showArticle('minnesota-goodbye')">The Minnesota Goodbye</a></li><li><a href="#hotdish-wars" onclick="showArticle('hotdish-wars')">The Great Hotdish Wars</a></li><li><a href="#lake-monster" onclick="showArticle('lake-monster')">Lake Minnetonka Monster</a></li></ul>
+                <ul id="article-list"><li><a href="#" onclick="showHome()">Main Page</a></li><li><a href="#giant-paul-bunyan" onclick="showArticle('giant-paul-bunyan')" class="">The Giant Paul Bunyan Incident of 1987</a></li><li><a href="#minnesota-goodbye" onclick="showArticle('minnesota-goodbye')" class="">The Minnesota Goodbye</a></li><li><a href="#hotdish-wars" onclick="showArticle('hotdish-wars')">The Great Hotdish Wars</a></li><li><a href="#lake-monster" onclick="showArticle('lake-monster')">Lake Minnetonka Monster</a></li></ul>
             </div>
             
             <h3>Search</h3>
@@ -426,7 +401,7 @@
             </div>
 
             <div class="admin-link">
-                <a href="#admin" onclick="showArticle('admin')" class="active">Administrative Panel</a>
+                <a href="#admin" onclick="showArticle('admin')" class="active">Login</a>
             </div>
 
             <div id="admin-sidebar" class="">
@@ -509,6 +484,7 @@
                     </div>
                 </form>
             </div>
+            
             <div id="github-content" class="edit-form" style="display: block;">
                 <h1 class="article-title">GitHub Configuration</h1>
                 <div class="form-group">
@@ -548,13 +524,14 @@
                     <button type="button" class="btn btn-secondary" onclick="showArticle('admin')">Back to Admin</button>
                 </div>
             </div>
-    </main></div>
+        </main>
+    </div>
 
     <script>
         // Configuration - obfuscated admin password
         const defaultPasswordParts = {
-          "p1": "QmVu",
-          "p2": "Um9ja3M="
+  "p1": "QmVu",
+  "p2": "Um9ja3M="
 };
         
         function decodePassword() {
@@ -606,15 +583,15 @@
   },
   "minnesota-goodbye": {
     "title": "The Minnesota Goodbye",
-    "content": "<p>The <strong>Minnesota Goodbye</strong> is a complex social ritual practiced throughout the state of Minnesota, characterized by its ability to extend any social gathering by a minimum of 45 minutes to several hours beyond the initial departure announcement.</p>\n                \n                <h2>Definition and Characteristics</h2>\n                <p>Unlike the abrupt departures common in other regions, the Minnesota Goodbye follows a strict protocol that ensures no one's feelings are hurt and that all participants have multiple opportunities to share additional anecdotes, weather observations, and casserole recipes.</p>\n                \n                <p>The ritual typically begins with the phrase \"Well, I suppose we should probably think about heading out soon,\" which serves as the opening ceremony for what researchers have termed \"The Great Departure Protocol.\"</p>\n                \n                <h2>The Seven Stages</h2>\n                \n                <h3>Stage 1: The Initial Announcement (5-15 minutes)</h3>\n                <p>The departing party announces their intention to leave, usually prefaced with observations about the time, weather, or upcoming obligations. This stage involves multiple false starts as hosts immediately begin offering additional refreshments, leading to conversations about the quality of the coffee, the recipe for the bars, and whether anyone needs directions home.</p>\n                \n                <h3>Stage 2: The Coat Gathering Ceremony (10-20 minutes)</h3>\n                <p>Participants begin the ritual collection of coats, purses, and casserole dishes. This stage is frequently interrupted by the discovery of forgotten items, the need to exchange recipes, and detailed discussions about whose Tupperware belongs to whom. The phrase \"Oh, don't worry about that dish, just bring it back whenever\" is ceremonially uttered at least three times.</p>\n                \n                <h3>Stage 3: The Doorway Discourse (15-30 minutes)</h3>\n                <p>The group migrates toward the exit but becomes anchored in the doorway or entryway. This is the most critical stage, where participants share their most important stories, express gratitude for the gathering, and engage in detailed weather predictions. Departure attempts during this stage are considered culturally inappropriate.</p>\n                \n                <h3>Stage 4: The Threshold Stall (10-25 minutes)</h3>\n                <p>Participants have crossed the threshold but remain in the immediate vicinity of the door. Conversations about drive times, traffic conditions, and alternative routes are mandatory. Someone will inevitably remember an important piece of information that requires returning inside briefly.</p>\n                \n                <h3>Stage 5: The Vehicle Migration (5-15 minutes)</h3>\n                <p>The group slowly moves toward parked vehicles while continuing conversation. Topics typically include car maintenance, gas prices, and observations about other attendees' vehicles. Keys are retrieved and prominently displayed, signaling serious departure intentions.</p>\n                \n                <h3>Stage 6: The Car Door Conference (10-20 minutes)</h3>\n                <p>Participants stand beside their vehicles with doors open, conducting final conversations across parking areas or driveways. This stage requires project voice levels and often involves neighbors joining the discussion. Weather observations reach peak intensity during this phase.</p>\n                \n                <h3>Stage 7: The Final Wave Protocol (2-10 minutes)</h3>\n                <p>Vehicles are finally occupied, but the departure process continues with elaborate waving rituals. Hosts must remain visible until all departing vehicles are completely out of sight, while departing guests must maintain wave contact throughout their exit from the property.</p>\n                \n                <h2>Regional Variations</h2>\n                <p>Northern Minnesota practitioners often extend Stage 6 with detailed discussions about fishing conditions and ice thickness reports. Urban Twin Cities variations may include abbreviated versions during winter months, though this is considered culturally suspect by outstate Minnesotans.</p>\n                \n                <p>Iron Range communities have developed specialized mining-related goodbye protocols, while southern Minnesota agricultural areas incorporate crop condition updates into their departure ceremonies.</p>\n                \n                <h2>Cultural Significance</h2>\n                <p>The Minnesota Goodbye serves multiple important social functions, including ensuring that all participants feel sufficiently appreciated, that no important information goes unshared, and that the transition from social gathering to individual travel occurs gradually rather than abruptly.</p>\n                \n                <p>Anthropologists have noted that the ritual also serves as a form of community bonding, as participants demonstrate their commitment to maintaining relationships through the time investment required for proper departure protocols.</p>\n                \n                <h2>Attempts at Modernization</h2>\n                <p>Various efforts to streamline the Minnesota Goodbye have been attempted, including the ill-fated \"Minnesota Speed Departure\" initiative of 1994, which resulted in widespread social anxiety and a 67% increase in follow-up phone calls to ensure that feelings hadn't been hurt.</p>\n                \n                <p>Digital variations have emerged with the advent of smartphones, allowing for extended text message goodbye sequences that can continue for hours after physical departure has been achieved.</p>\n                \n                <h2>See Also</h2>\n                <p>• <a href=\"#\" onclick=\"showArticle('hotdish-wars')\">The Great Hotdish Wars</a><br>\n                • Minnesota Nice: A Comprehensive Analysis<br>\n                • Regional Variations in Midwestern Politeness Protocols</p>"
+    "content": "<p>The <strong>Minnesota Goodbye</strong> is a complex social ritual practiced throughout the state of Minnesota, characterized by its ability to extend any social gathering by a minimum of 45 minutes to several hours beyond the initial departure announcement.</p>\n                \n                <h2>Definition and Characteristics</h2>\n                <p>Unlike the abrupt departures common in other regions, the Minnesota Goodbye follows a strict protocol that ensures no one's feelings are hurt and that all participants have multiple opportunities to share additional anecdotes, weather observations, and casserole recipes.</p>\n                \n                <p>The ritual typically begins with the phrase \"Well, I suppose we should probably think about heading out soon,\" which serves as the opening ceremony for what researchers have termed \"The Great Departure Protocol.\"</p>\n                \n                <h2>The Seven Stages</h2>\n                \n                <h3>Stage 1: The Initial Announcement (5-15 minutes)</h3>\n                <p>The departing party announces their intention to leave, usually prefaced with observations about the time, weather, or upcoming obligations. This stage involves multiple false starts as hosts immediately begin offering additional refreshments, leading to conversations about the quality of the coffee, the recipe for the bars, and whether anyone needs directions home.</p>\n                \n                <h3>Stage 2: The Coat Gathering Ceremony (10-20 minutes)</h3>\n                <p>Participants begin the ritual collection of coats, purses, and casserole dishes. This stage is frequently interrupted by the discovery of forgotten items, the need to exchange recipes, and detailed discussions about whose Tupperware belongs to whom. The phrase \"Oh, don't worry about that dish, just bring it back whenever\" is ceremonially uttered at least three times.</p>\n                \n                <h3>Stage 3: The Doorway Discourse (15-30 minutes)</h3>\n                <p>The group migrates toward the exit but becomes anchored in the doorway or entryway. This is the most critical stage, where participants share their most important stories, express gratitude for the gathering, and engage in detailed weather predictions. Departure attempts during this stage are considered culturally inappropriate.</p>\n                \n                <h3>Stage 4: The Threshold Stall (10-25 minutes)</h3>\n                <p>Participants have crossed the threshold but remain in the immediate vicinity of the door. Conversations about drive times, traffic conditions, and alternative routes are mandatory. Someone will inevitably remember an important piece of information that requires returning inside briefly.</p>\n                \n                <h3>Stage 5: The Vehicle Migration (5-15 minutes)</h3>\n                <p>The group slowly moves toward parked vehicles while continuing conversation. Topics typically include car maintenance, gas prices, and observations about other attendees' vehicles. Keys are retrieved and prominently displayed, signaling serious departure intentions.</p>\n                \n                <h3>Stage 6: The Car Door Conference (10-20 minutes)</h3>\n                <p>Participants stand beside their vehicles with doors open, conducting final conversations across parking areas or driveways. This stage requires projected voice levels and often involves neighbors joining the discussion. Weather observations reach peak intensity during this phase.</p>\n                \n                <h3>Stage 7: The Final Wave Protocol (2-10 minutes)</h3>\n                <p>Vehicles are finally occupied, but the departure process continues with elaborate waving rituals. Hosts must remain visible until all departing vehicles are completely out of sight, while departing guests must maintain wave contact throughout their exit from the property.</p>\n                \n                <h2>Regional Variations</h2>\n                <p>Northern Minnesota practitioners often extend Stage 6 with detailed discussions about fishing conditions and ice thickness reports. Urban Twin Cities variations may include abbreviated versions during winter months, though this is considered culturally suspect by outstate Minnesotans.</p>\n                \n                <p>Iron Range communities have developed specialized mining-related goodbye protocols, while southern Minnesota agricultural areas incorporate crop condition updates into their departure ceremonies.</p>\n                \n                <h2>Cultural Significance</h2>\n                <p>The Minnesota Goodbye serves multiple important social functions, including ensuring that all participants feel sufficiently appreciated, that no important information goes unshared, and that the transition from social gathering to individual travel occurs gradually rather than abruptly.</p>\n                \n                <p>Anthropologists have noted that the ritual also serves as a form of community bonding, as participants demonstrate their commitment to maintaining relationships through the time investment required for proper departure protocols.</p>\n                \n                <h2>Attempts at Modernization</h2>\n                <p>Various efforts to streamline the Minnesota Goodbye have been attempted, including the ill-fated \"Minnesota Speed Departure\" initiative of 1994, which resulted in widespread social anxiety and a 67% increase in follow-up phone calls to ensure that feelings hadn't been hurt.</p>\n                \n                <p>Digital variations have emerged with the advent of smartphones, allowing for extended text message goodbye sequences that can continue for hours after physical departure has been achieved.</p>\n                \n                <h2>See Also</h2>\n                <p>• <a href=\"#\" onclick=\"showArticle('hotdish-wars')\">The Great Hotdish Wars</a><br>\n                • Minnesota Nice: A Comprehensive Analysis<br>\n                • Regional Variations in Midwestern Politeness Protocols</p>"
   },
   "hotdish-wars": {
     "title": "The Great Hotdish Wars",
-    "content": "<p>The <strong>Great Hotdish Wars</strong> refer to the ongoing series of culinary conflicts that have shaped Minnesota's social and political landscape since the early 1950s. These battles over hotdish supremacy continue to influence everything from church fundraisers to gubernatorial elections.</p>\n                \n                <h2>Historical Background</h2>\n                <p>The conflict began innocuously in 1953 when Marge Olson of Hibbing claimed at the annual Lutheran church potluck that her tater tot hotdish was \"the best in the Range.\" This statement was immediately challenged by Dolores Peterson of Virginia, who maintained that green bean hotdish was clearly superior due to its vegetable content and nutritional value.</p>\n                \n                <p>What started as a friendly disagreement quickly escalated when both women began recruiting allies from their respective sewing circles, bridge clubs, and bowling leagues. By 1954, the entire Iron Range was divided into two distinct hotdish factions.</p>\n                \n                <h2>Major Factions</h2>\n                \n                <h3>The Tater Tot Alliance</h3>\n                <p>Led by the descendants of Marge Olson, the Tater Tot Alliance maintains that the golden, crispy potato cylinders represent the pinnacle of hotdish innovation. Their core beliefs include:</p>\n                <ul style=\"margin-left: 20px;\">\n                <li>Tater tots provide superior textural contrast</li>\n                <li>The uniform shape ensures even cooking</li>\n                <li>Frozen tater tots demonstrate proper Minnesota efficiency</li>\n                <li>The dish represents the ideal balance of comfort and convenience</li>\n                </ul>\n                \n                <h3>The Green Bean Coalition</h3>\n                <p>The Green Bean Coalition argues for the nutritional and aesthetic superiority of their signature dish. Their platform includes:</p>\n                <ul style=\"margin-left: 20px;\">\n                <li>Green beans provide essential vitamins and minerals</li>\n                <li>The French-cut variety demonstrates culinary sophistication</li>\n                <li>Cream of mushroom soup serves as the perfect binding agent</li>\n                <li>French fried onions create an elegant finishing touch</li>\n                </ul>\n                \n                <h3>The Wild Rice Rebellion</h3>\n                <p>Emerging in the 1970s, this faction promotes Minnesota's state grain as the foundation for authentic regional hotdish. Though smaller in numbers, they have gained influence through their claims of representing \"true Minnesota heritage.\"</p>\n                \n                <h3>The King Ranch Insurgency</h3>\n                <p>A controversial faction that emerged in the 1990s, advocating for the adoption of the Texas-originated King Ranch Chicken as a legitimate Minnesota hotdish. Their presence at potlucks is still considered provocative in many communities.</p>\n                \n                <h2>Notable Battles</h2>\n                \n                <h3>The Potluck Incident of 1967</h3>\n                <p>The most famous confrontation occurred at the annual Hibbing Community Center fundraiser when both Marge Olson and Dolores Peterson arrived with identical 9x13 inch casserole dishes, each claiming the coveted \"first table\" position. The standoff lasted four hours, during which no one dared approach the food table. The incident was resolved only when Pastor Johnson suggested they both occupy the table simultaneously, leading to the adoption of the \"Dual Hotdish Protocol\" still used at Minnesota potlucks today.</p>\n                \n                <h3>The Lutefisk Hotdish Compromise of 1978</h3>\n                <p>An attempt to bridge factional divides by creating a lutefisk-based hotdish backfired spectacularly when even the most devoted hotdish warriors refused to acknowledge it as legitimate food. The incident brought temporary unity to the warring factions but resulted in the permanent exile of its creator to Wisconsin.</p>\n                \n                <h3>The Casserole Carrier Controversy of 1985</h3>\n                <p>A heated debate erupted over whether hotdish transported in wheeled carriers maintained the same authenticity as those carried by hand. The controversy split families and led to the establishment of separate \"Traditional Transport\" and \"Modern Convenience\" potluck categories.</p>\n                \n                <h2>Political Ramifications</h2>\n                <p>The Hotdish Wars have significantly influenced Minnesota politics, with candidates required to declare their hotdish allegiances before seeking office. The 1990 gubernatorial race was notably decided when candidate Arne Carlson publicly praised both tater tot and green bean hotdish at the State Fair, demonstrating the diplomatic skills necessary for effective governance.</p>\n                \n                <p>Legislative sessions regularly include heated debates over official state hotdish designation, though no bill has ever successfully passed due to the impossibility of achieving consensus.</p>\n                \n                <h2>Modern Developments</h2>\n                <p>The conflict has evolved in the 21st century with the emergence of new factions promoting quinoa hotdish, gluten-free variations, and even vegan alternatives. Traditional warriors view these developments as signs of the apocalypse, leading to the formation of the \"Hotdish Purity Coalition\" dedicated to preserving authentic recipes.</p>\n                \n                <p>Social media has intensified the conflict, with Facebook groups dedicated to hotdish supremacy regularly engaging in comment warfare that makes political discussions seem civil by comparison.</p>\n                \n                <h2>The Current State</h2>\n                <p>As of 2024, the Great Hotdish Wars show no signs of resolution. Recent estimates suggest that Minnesota contains over 1,200 active hotdish-related feuds, with new battles emerging whenever someone attempts to introduce \"fusion\" variations or suggests that hotdish might not be suitable for every social occasion.</p>\n                \n                <p>The Minnesota Department of Peace and Hotdish (established in 1999) continues to mediate disputes, though their effectiveness is limited by their requirement to maintain strict neutrality in all hotdish-related matters.</p>\n                \n                <h2>See Also</h2>\n                <p>• <a href=\"#\" onclick=\"showArticle('minnesota-goodbye')\">The Minnesota Goodbye</a><br>\n                • <a href=\"#\" onclick=\"showArticle('lake-monster')\">Lake Minnetonka Monster</a><br>\n                • The Great Jello Salad Debates of the 1960s<br>\n                • Minnesota Potluck Etiquette: A Survival Guide</p>"
+    "content": "<p>The <strong>Great Hotdish Wars</strong> refer to the ongoing series of culinary conflicts that have shaped Minnesota's social and political landscape since the early 1950s. These battles over hotdish supremacy continue to influence everything from church fundraisers to gubernatorial elections.</p>\n                \n                <h2>Historical Background</h2>\n                <p>The conflict began innocuously in 1953 when Marge Olson of Hibbing claimed at the annual Lutheran church potluck that her tater tot hotdish was \"the best in the Range.\" This statement was immediately challenged by Dolores Peterson of Virginia, who maintained that green bean hotdish was clearly superior due to its vegetable content and nutritional value.</p>\n                \n                <p>What started as a friendly disagreement quickly escalated when both women began recruiting allies from their respective sewing circles, bridge clubs, and bowling leagues. By 1954, the entire Iron Range was divided into two distinct hotdish factions.</p>\n                \n                <h2>Major Factions</h2>\n                \n                <h3>The Tater Tot Alliance</h3>\n                <p>Led by the descendants of Marge Olson, the Tater Tot Alliance maintains that the golden, crispy potato cylinders represent the pinnacle of hotdish innovation. Their core beliefs include:</p>\n                <ul style=\"margin-left: 20px;\">\n                <li>Tater tots provide superior textural contrast</li>\n                <li>The uniform shape ensures even cooking</li>\n                <li>Frozen tater tots demonstrate proper Minnesota efficiency</li>\n                <li>The dish represents the ideal balance of comfort and convenience</li>\n                </ul>\n                \n                <h3>The Green Bean Coalition</h3>\n                <p>The Green Bean Coalition argues for the nutritional and aesthetic superiority of their signature dish. Their platform includes:</p>\n                <ul style=\"margin-left: 20px;\">\n                <li>Green beans provide essential vitamins and minerals</li>\n                <li>The French-cut variety demonstrates culinary sophistication</li>\n                <li>Cream of mushroom soup serves as the perfect binding agent</li>\n                <li>French fried onions create an elegant finishing touch</li>\n                </ul>\n                \n                <h3>The Wild Rice Rebellion</h3>\n                <p>Emerging in the 1970s, this faction promotes Minnesota's state grain as the foundation for authentic regional hotdish. Though smaller in numbers, they have gained influence through their claims of representing \"true Minnesota heritage.\"</p>\n                \n                <h3>The King Ranch Insurgency</h3>\n                <p>A controversial faction that emerged in the 1990s, advocating for the adoption of the Texas-originated King Ranch Chicken as a legitimate Minnesota hotdish. Their presence at potlucks is still considered provocative in many communities.</p>\n                \n                <h2>Notable Battles</h2>\n                \n                <h3>The Potluck Incident of 1967</h3>\n                <p>The most famous confrontation occurred at the annual Hibbing Community Center fundraiser when both Marge Olson and Dolores Peterson arrived with identical 9x13 inch casserole dishes, each claiming the coveted \"first table\" position. The incident was resolved only when Pastor Johnson suggested they both occupy the table simultaneously, leading to the adoption of the \"Dual Hotdish Protocol\" still used at Minnesota potlucks today.</p>\n                \n                <h2>Political Ramifications</h2>\n                <p>The Hotdish Wars have significantly influenced Minnesota politics, with candidates required to declare their hotdish allegiances before seeking office. The 1990 gubernatorial race was notably decided when candidate Arne Carlson publicly praised both tater tot and green bean hotdish at the State Fair, demonstrating the diplomatic skills necessary for effective governance.</p>\n                \n                <h2>See Also</h2>\n                <p>• <a href=\"#\" onclick=\"showArticle('minnesota-goodbye')\">The Minnesota Goodbye</a><br>\n                • <a href=\"#\" onclick=\"showArticle('lake-monster')\">Lake Minnetonka Monster</a></p>"
   },
   "lake-monster": {
     "title": "Lake Minnetonka Monster",
-    "content": "<div class=\"infobox\">\n                    <div class=\"infobox-title\">Lake Minnetonka Monster</div>\n                    <div class=\"infobox-content\">\n                        <div class=\"infobox-row\">\n                            <div class=\"infobox-label\">First Sighting:</div>\n                            <div>June 15, 1923</div>\n                        </div>\n                        <div class=\"infobox-row\">\n                            <div class=\"infobox-label\">Location:</div>\n                            <div>Lake Minnetonka, Minnesota</div>\n                        </div>\n                        <div class=\"infobox-row\">\n                            <div class=\"infobox-label\">Length:</div>\n                            <div>30-40 feet (estimated)</div>\n                        </div>\n                        <div class=\"infobox-row\">\n                            <div class=\"infobox-label\">Distinguishing Features:</div>\n                            <div>Excellent manners, aversion to cameras</div>\n                        </div>\n                        <div class=\"infobox-row\">\n                            <div class=\"infobox-label\">Status:</div>\n                            <div>Politely elusive</div>\n                        </div>\n                    </div>\n                </div>\n                \n                <p>The <strong>Lake Minnetonka Monster</strong>, affectionately known as \"Tonka\" by local residents, is Minnesota's most courteous cryptid. Unlike its more aggressive cousins in other lakes, Tonka has earned a reputation for exceptional manners and an almost supernatural ability to avoid photographic documentation.</p>\n                \n                <h2>Discovery and Early Sightings</h2>\n                <p>The creature was first spotted on June 15, 1923, by Margaret Lindström while she was hanging laundry near the shoreline. According to her account, a large, serpentine head emerged from the water, nodded politely in her direction, and submerged again without creating so much as a ripple that might disturb her freshly washed sheets.</p>\n                \n                <p>Unlike typical monster encounters, Mrs. Lindström reported feeling \"quite pleasant\" about the experience and noted that the creature had \"very considerate eyes\" and appeared to be \"well-groomed for a lake monster.\"</p>\n                \n                <h2>Behavioral Patterns</h2>\n                \n                <h3>Exemplary Manners</h3>\n                <p>Tonka has consistently demonstrated behavior that aligns with Minnesota Nice principles. Witnesses report that the creature:</p>\n                <ul style=\"margin-left: 20px;\">\n                <li>Always surfaces downwind from fishing boats to avoid disturbing anglers</li>\n                <li>Has never been seen during family gatherings or important lake events</li>\n                <li>Appears to actively avoid startling children or elderly swimmers</li>\n                <li>Maintains a respectful distance from docks and swimming areas</li>\n                </ul>\n                \n                <h3>Camera Avoidance Abilities</h3>\n                <p>Tonka possesses what researchers term \"photographic prescience\" - an uncanny ability to disappear moments before cameras are raised. This has resulted in hundreds of blurry water photos and a single, disputed image from 1987 that appears to show either Tonka's tail or a very large stick.</p>\n                \n                <p>The creature's camera-avoidance skills are so refined that some witnesses report it vanishing mid-surface when someone reaches for their phone, often accompanied by what sounds like an apologetic splash.</p>\n                \n                <h2>Notable Encounters</h2>\n                \n                <h3>The Pontoon Blessing of 1952</h3>\n                <p>During the Johnson family's 25th anniversary celebration, Tonka reportedly surfaced alongside their pontoon boat, maintained pace for several minutes while the family sang \"Happy Anniversary,\" and then dove gracefully without creating any wake that might have spilled their coffee.</p>\n                \n                <h3>The Lost Boat Incident of 1973</h3>\n                <p>When the Henderson family's fishing boat broke down near Crane Island, witnesses from shore reported seeing a large form gently push the boat toward safety. The Hendersons later found their tackle box neatly organized and their bait container refilled, though they have no memory of the creature's assistance.</p>\n                \n                <h3>The Great Fishing Tournament Courtesy of 1995</h3>\n                <p>During the annual Minnetonka Bass Tournament, multiple anglers reported seeing Tonka surface briefly near their boats, apparently checking on their success. Several participants claimed the creature appeared to nod approvingly at their catches before disappearing, and tournament officials noted an unusually high number of successful catches that year.</p>\n                \n                <h2>Physical Description</h2>\n                <p>Based on consistent eyewitness accounts, Tonka measures approximately 30-40 feet in length with a serpentine body covered in dark, smooth skin. Witnesses consistently describe the creature's eyes as \"kind\" and \"intelligent,\" with several noting that it appears to maintain well-groomed facial hair or whiskers.</p>\n                \n                <p>The creature's head is described as horse-like but more refined, with what appears to be a permanent expression of polite interest. Several witnesses have commented on its \"good posture\" and \"dignified bearing.\"</p>\n                \n                <h2>Scientific Investigation</h2>\n                <p>The University of Minnesota's Department of Cryptozoology (which officially doesn't exist) has conducted numerous studies of Lake Minnetonka, consistently finding evidence of large aquatic life forms that seem to actively avoid detection.</p>\n                \n                <p>Sonar readings from 1989 detected a large moving object that appeared to change course when the research vessel's cameras were activated. The object was observed maintaining a consistent distance from the boat while apparently matching its speed, leading researchers to conclude that Tonka was \"escorting\" them safely across the lake.</p>\n                \n                <h2>Cultural Impact</h2>\n                <p>Tonka has become an unofficial mascot for Lake Minnetonka, with local businesses adopting monster-themed names and the annual \"Tonka Appreciation Day\" featuring polite monster-spotting attempts and mandatory hotdish sharing.</p>\n                \n                <p>The creature has influenced local etiquette standards, with \"Tonka-level courtesy\" becoming a common expression for exceptional politeness. Tourism boards have struggled to market the monster due to its refusal to appear in promotional materials.</p>\n                \n                <h2>Current Status</h2>\n                <p>Tonka continues to make occasional appearances, typically during quiet moments when visitors are simply enjoying the lake rather than actively seeking monster encounters. Recent sightings suggest the creature may have learned to identify smartphones and takes evasive action accordingly.</p>\n                \n                <p>Local residents maintain that Tonka is still active but has become increasingly camera-shy as technology has improved, leading to the formation of the \"Analog Monster Watching Society\" that uses only pre-digital equipment in their observation attempts.</p>\n                \n                <h2>See Also</h2>\n                <p>• <a href=\"#\" onclick=\"showArticle('giant-paul-bunyan')\">Giant Paul Bunyan Incident</a><br>\n                • Minnesota Lake Monsters: A Comparative Study<br>\n                • The Etiquette of Cryptid Encounters<br>\n                • Lake Minnetonka Tourism: Beyond Monster Hunting</p>"
+    "content": "<div class=\"infobox\">\n                    <div class=\"infobox-title\">Lake Minnetonka Monster</div>\n                    <div class=\"infobox-content\">\n                        <div class=\"infobox-row\">\n                            <div class=\"infobox-label\">First Sighting:</div>\n                            <div>June 15, 1923</div>\n                        </div>\n                        <div class=\"infobox-row\">\n                            <div class=\"infobox-label\">Location:</div>\n                            <div>Lake Minnetonka, Minnesota</div>\n                        </div>\n                        <div class=\"infobox-row\">\n                            <div class=\"infobox-label\">Length:</div>\n                            <div>30-40 feet (estimated)</div>\n                        </div>\n                        <div class=\"infobox-row\">\n                            <div class=\"infobox-label\">Distinguishing Features:</div>\n                            <div>Excellent manners, aversion to cameras</div>\n                        </div>\n                        <div class=\"infobox-row\">\n                            <div class=\"infobox-label\">Status:</div>\n                            <div>Politely elusive</div>\n                        </div>\n                    </div>\n                </div>\n                \n                <p>The <strong>Lake Minnetonka Monster</strong>, affectionately known as \"Tonka\" by local residents, is Minnesota's most courteous cryptid. Unlike its more aggressive cousins in other lakes, Tonka has earned a reputation for exceptional manners and an almost supernatural ability to avoid photographic documentation.</p>\n                \n                <h2>Discovery and Early Sightings</h2>\n                <p>The creature was first spotted on June 15, 1923, by Margaret Lindström while she was hanging laundry near the shoreline. According to her account, a large, serpentine head emerged from the water, nodded politely in her direction, and submerged again without creating so much as a ripple that might disturb her freshly washed sheets.</p>\n                \n                <h2>Behavioral Patterns</h2>\n                \n                <h3>Exemplary Manners</h3>\n                <p>Tonka has consistently demonstrated behavior that aligns with Minnesota Nice principles. Witnesses report that the creature always surfaces downwind from fishing boats to avoid disturbing anglers and maintains a respectful distance from docks and swimming areas.</p>\n                \n                <h3>Camera Avoidance Abilities</h3>\n                <p>Tonka possesses what researchers term \"photographic prescience\" - an uncanny ability to disappear moments before cameras are raised. This has resulted in hundreds of blurry water photos and a single, disputed image from 1987 that appears to show either Tonka's tail or a very large stick.</p>\n                \n                <h2>Cultural Impact</h2>\n                <p>Tonka has become an unofficial mascot for Lake Minnetonka, with local businesses adopting monster-themed names and the annual \"Tonka Appreciation Day\" featuring polite monster-spotting attempts and mandatory hotdish sharing.</p>\n                \n                <h2>See Also</h2>\n                <p>• <a href=\"#\" onclick=\"showArticle('giant-paul-bunyan')\">Giant Paul Bunyan Incident</a><br>\n                • <a href=\"#\" onclick=\"showArticle('minnesota-goodbye')\">The Minnesota Goodbye</a></p>"
   }
 };
         
@@ -632,6 +609,7 @@
             // Hide all content sections
             document.getElementById('article-content').style.display = 'block';
             document.getElementById('edit-content').style.display = 'none';
+            document.getElementById('github-content').style.display = 'none';
             
             // Update current article
             currentArticle = articleId;
@@ -756,6 +734,7 @@
             
             document.getElementById('article-content').style.display = 'none';
             document.getElementById('edit-content').style.display = 'block';
+            document.getElementById('github-content').style.display = 'none';
             
             // Clear form
             document.getElementById('edit-title').value = '';
@@ -782,6 +761,7 @@
             
             document.getElementById('article-content').style.display = 'none';
             document.getElementById('edit-content').style.display = 'block';
+            document.getElementById('github-content').style.display = 'none';
             
             document.getElementById('edit-title').value = article.title;
             document.getElementById('edit-slug').value = currentArticle;
@@ -833,6 +813,7 @@
         function cancelEdit() {
             document.getElementById('article-content').style.display = 'block';
             document.getElementById('edit-content').style.display = 'none';
+            document.getElementById('github-content').style.display = 'none';
         }
         
         function deleteCurrentArticle() {
@@ -877,6 +858,7 @@
                 
                 document.getElementById('article-content').innerHTML = resultHtml;
                 document.getElementById('edit-content').style.display = 'none';
+                document.getElementById('github-content').style.display = 'none';
                 document.getElementById('article-content').style.display = 'block';
             }
         }
@@ -1051,112 +1033,13 @@
             );
             
             // Update the password parts in the script
-            const passwordPartsJson = JSON.stringify(defaultPasswordParts, null, 12);
+            const passwordPartsJson = JSON.stringify(defaultPasswordParts, null, 2);
             html = html.replace(
                 /const defaultPasswordParts = \{[\s\S]*?\};/,
                 `const defaultPasswordParts = ${passwordPartsJson};`
             );
             
             return html;
-        }
-        
-        function exportArticles() {
-            const exportData = {
-                articles: articles,
-                timestamp: new Date().toISOString(),
-                version: '1.0'
-            };
-            
-            const dataStr = JSON.stringify(exportData, null, 2);
-            const dataBlob = new Blob([dataStr], {type: 'application/json'});
-            const url = URL.createObjectURL(dataBlob);
-            
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'minnesota-facts-export.json';
-            link.click();
-            
-            URL.revokeObjectURL(url);
-            showMessage('Articles exported successfully.', 'success');
-        }
-        
-        function showImportForm() {
-            document.getElementById('import-section').classList.remove('hidden');
-        }
-        
-        function hideImportForm() {
-            document.getElementById('import-section').classList.add('hidden');
-            document.getElementById('import-data').value = '';
-        }
-        
-        function importArticles() {
-            const importData = document.getElementById('import-data').value;
-            
-            try {
-                const data = JSON.parse(importData);
-                
-                if (data.articles) {
-                    // Merge imported articles (but keep admin and home)
-                    Object.keys(data.articles).forEach(key => {
-                        if (key !== 'admin' && key !== 'home') {
-                            articles[key] = data.articles[key];
-                        }
-                    });
-                    
-                    updateSidebar();
-                    updateAdminArticleList();
-                    hideImportForm();
-                    showMessage('Articles imported successfully.', 'success');
-                } else {
-                    showMessage('Invalid import data format.', 'error');
-                }
-            } catch (error) {
-                showMessage('Error parsing import data: ' + error.message, 'error');
-            }
-        }
-        
-        function showPasswordChangeForm() {
-            document.getElementById('password-change-section').classList.remove('hidden');
-        }
-        
-        function hidePasswordChangeForm() {
-            document.getElementById('password-change-section').classList.add('hidden');
-            document.getElementById('current-password').value = '';
-            document.getElementById('new-password').value = '';
-            document.getElementById('confirm-password').value = '';
-        }
-        
-        function changeAdminPassword() {
-            const currentPassword = document.getElementById('current-password').value;
-            const newPassword = document.getElementById('new-password').value;
-            const confirmPassword = document.getElementById('confirm-password').value;
-            
-            if (currentPassword !== ADMIN_PASSWORD) {
-                showMessage('Current password is incorrect.', 'error');
-                return;
-            }
-            
-            if (newPassword !== confirmPassword) {
-                showMessage('New passwords do not match.', 'error');
-                return;
-            }
-            
-            if (newPassword.length < 6) {
-                showMessage('New password must be at least 6 characters long.', 'error');
-                return;
-            }
-            
-            // Update the password in memory
-            ADMIN_PASSWORD = newPassword;
-            
-            // Update the obfuscated password parts for GitHub saving
-            const newPasswordBase64 = btoa(newPassword);
-            const halfLength = Math.ceil(newPasswordBase64.length / 2);
-            defaultPasswordParts.p1 = btoa(newPasswordBase64.substring(0, halfLength));
-            defaultPasswordParts.p2 = btoa(newPasswordBase64.substring(halfLength));
-            
-            hidePasswordChangeForm();
-            showMessage('Admin password changed successfully! Make sure to save to GitHub to persist the change.', 'success');
         }
         
         function showMessage(message, type) {
