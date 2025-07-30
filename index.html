@@ -494,9 +494,8 @@
     </div>
 
     <script>
-        // Configuration - Update this to match your Cloudflare Pages domain
-        const API_BASE_URL = '/functions/api'; // For same domain deployment
-        // Alternative: const API_BASE_URL = 'https://your-site.pages.dev/functions/api'; // For different domain
+        // Configuration - Cloudflare Pages Functions are served at /api/* not /functions/api/*
+        const API_BASE_URL = '/api'; // Correct path for Cloudflare Pages Functions
         
         // Test function - you can run this in the browser console
         window.testAuthEndpoint = async function() {
@@ -517,7 +516,7 @@
                 const postResponse = await fetch(`${API_BASE_URL}/auth`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ password: 'test' })
+                    body: JSON.stringify({ password: 'BenRocks' })
                 });
                 console.log('POST Response status:', postResponse.status);
                 const postData = await postResponse.json();
