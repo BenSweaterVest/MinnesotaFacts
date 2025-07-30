@@ -498,6 +498,35 @@
         const API_BASE_URL = '/functions/api'; // For same domain deployment
         // Alternative: const API_BASE_URL = 'https://your-site.pages.dev/functions/api'; // For different domain
         
+        // Test function - you can run this in the browser console
+        window.testAuthEndpoint = async function() {
+            console.log('Testing auth endpoint...');
+            
+            // Test GET request first
+            try {
+                const getResponse = await fetch(`${API_BASE_URL}/auth`);
+                console.log('GET Response status:', getResponse.status);
+                const getData = await getResponse.json();
+                console.log('GET Response data:', getData);
+            } catch (e) {
+                console.error('GET test failed:', e);
+            }
+            
+            // Test POST request
+            try {
+                const postResponse = await fetch(`${API_BASE_URL}/auth`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password: 'test' })
+                });
+                console.log('POST Response status:', postResponse.status);
+                const postData = await postResponse.json();
+                console.log('POST Response data:', postData);
+            } catch (e) {
+                console.error('POST test failed:', e);
+            }
+        };
+        
         // State management
         let isLoggedIn = false;
         let currentArticle = 'home';
@@ -1222,4 +1251,3 @@
     </script>
 </body>
 </html>
-            
