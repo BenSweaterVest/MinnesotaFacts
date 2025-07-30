@@ -494,8 +494,9 @@
     </div>
 
     <script>
-        // Configuration
-        const API_BASE_URL = '/functions/api'; // Adjust this to match your Cloudflare Functions setup
+        // Configuration - Update this to match your Cloudflare Pages domain
+        const API_BASE_URL = '/functions/api'; // For same domain deployment
+        // Alternative: const API_BASE_URL = 'https://your-site.pages.dev/functions/api'; // For different domain
         
         // State management
         let isLoggedIn = false;
@@ -674,6 +675,9 @@
         // Authentication functions
         async function authenticateWithAPI(password) {
             try {
+                console.log('Attempting authentication with API:', `${API_BASE_URL}/auth`);
+                console.log('Password being sent:', password);
+                
                 const response = await fetch(`${API_BASE_URL}/auth`, {
                     method: 'POST',
                     headers: {
@@ -682,17 +686,22 @@
                     body: JSON.stringify({ password: password })
                 });
                 
+                console.log('Response status:', response.status);
+                console.log('Response headers:', response.headers);
+                
                 const data = await response.json();
+                console.log('Response data:', data);
                 
                 if (data.success) {
                     githubToken = data.githubToken;
                     return true;
                 } else {
+                    showMessage(`Authentication failed: ${data.message}`, 'error');
                     return false;
                 }
             } catch (error) {
                 console.error('Authentication error:', error);
-                showMessage('Authentication service unavailable. Please try again later.', 'error');
+                showMessage(`Authentication service error: ${error.message}. Check console for details.`, 'error');
                 return false;
             }
         }
@@ -1213,3 +1222,4 @@
     </script>
 </body>
 </html>
+            
