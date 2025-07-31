@@ -421,9 +421,7 @@
         <aside class="sidebar">
             <h3>Articles</h3>
             <div class="article-list-container">
-                <ul id="article-list">
-                    <!-- Articles will be loaded here by JavaScript -->
-                </ul>
+                <ul id="article-list"><li><a href="#" onclick="showHome()">Main Page</a></li><li><a href="#giant-paul-bunyan" onclick="showArticle('giant-paul-bunyan')">The Giant Paul Bunyan Incident of 1987</a></li><li><a href="#minnesota-goodbye" onclick="showArticle('minnesota-goodbye')">The Minnesota Goodbye</a></li><li><a href="#hotdish-wars" onclick="showArticle('hotdish-wars')">The Great Hotdish Wars</a></li><li><a href="#lake-monster" onclick="showArticle('lake-monster')">Lake Minnetonka Monster</a></li></ul>
             </div>
             
             <h3>Search</h3>
@@ -433,14 +431,14 @@
             </div>
 
             <div class="admin-link">
-                <a href="#admin" onclick="showArticle('admin')" class="">Login</a>
+                <a href="#admin" onclick="showArticle('admin')" class="active">Login</a>
                 <div class="last-updated" style="margin-top: 8px; padding-top: 8px; border-top: 1px solid #e0e0e0; font-size: 0.8em; color: #666;">
                     <strong>Last Ope-dated:</strong><br>
-                    <span id="public-last-updated">Never</span>
+                    <span id="public-last-updated">7/31/2025, 3:11:07 PM</span>
                 </div>
             </div>
 
-            <div id="admin-sidebar" class="hidden">
+            <div id="admin-sidebar" class="">
                 <h3>Admin Tools</h3>
                 <ul>
                     <li><a href="#" onclick="showNewArticleForm()">Create New Article</a></li>
@@ -449,10 +447,68 @@
             </div>
         </aside>
 
-        <main class="content">
+        <main class="content"><div class="success">Article deleted successfully.</div>
             <div id="article-content" style="display: block;">
-                <!-- Content will be loaded here by JavaScript -->
-            </div>
+                    <h1 class="article-title">
+                        Admin Panel
+                        <a href="#admin" class="permalink">¶</a>
+                    </h1>
+                    <div class="article-content">
+                        <div id="admin-login-section" class="admin-spacing hidden">
+                    <p>This is the administrative control panel for M.I.N.N.E.S.O.T.A. Please log in to access editing functions.</p>
+                    
+                    <div class="form-group">
+                        <label for="admin-login-password">Admin Password:</label>
+                        <input type="password" id="admin-login-password" placeholder="Enter admin password" onkeyup="handleAdminLoginKeypress(event)">
+                    </div>
+                    <div class="admin-controls">
+                        <button onclick="handleAdminLogin()" class="btn" id="login-btn">Login</button>
+                    </div>
+                </div>
+                
+                <div id="admin-dashboard" class="">
+                    <div id="save-status" class="save-status saving">💾 Saving to GitHub...</div>
+                    
+                    <p><strong>Welcome, Administrator!</strong> You now have access to all Institute editing functions.</p>
+                    
+                    <h2>Quick Actions</h2>
+                    <div class="admin-controls">
+                        <div class="version-info">v1.0.0</div>
+                        <button onclick="showNewArticleForm()" class="btn">Create New Article</button>
+                        <button onclick="showEditForm()" class="btn btn-secondary">Edit Current Article</button>
+                        <button onclick="showGitHubConfig()" class="btn btn-secondary">GitHub Settings</button>
+                        <button onclick="saveWikiToGitHub()" class="btn big-save-btn" id="big-save-btn" style="background: #28a745;">💾 Save All to GitHub</button>
+                        <button onclick="handleAdminLogout()" class="btn" style="background: #dc3545;">Logout</button>
+                    </div>
+                    
+                    <h2>Article Management</h2>
+                    <div id="article-management">
+                        <p>Current research documents in the Institute archives:</p>
+                        <ul id="admin-article-list"><li>Welcome to M.I.N.N.E.S.O.T.A. 
+                            <button onclick="editArticle('home')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;">Edit</button>
+                            <button onclick="deleteArticle('home')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;">Delete</button></li><li>The Giant Paul Bunyan Incident of 1987 
+                            <button onclick="editArticle('giant-paul-bunyan')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;">Edit</button>
+                            <button onclick="deleteArticle('giant-paul-bunyan')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;">Delete</button></li><li>The Minnesota Goodbye 
+                            <button onclick="editArticle('minnesota-goodbye')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;">Edit</button>
+                            <button onclick="deleteArticle('minnesota-goodbye')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;">Delete</button></li><li>The Great Hotdish Wars 
+                            <button onclick="editArticle('hotdish-wars')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;">Edit</button>
+                            <button onclick="deleteArticle('hotdish-wars')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;">Delete</button></li><li>Lake Minnetonka Monster 
+                            <button onclick="editArticle('lake-monster')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;">Edit</button>
+                            <button onclick="deleteArticle('lake-monster')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;">Delete</button></li></ul>
+                        <p style="font-size: 12px; color: #666; margin-top: 10px;">
+                            Last saved: <span id="last-saved-time">Never</span>
+                        </p>
+                    </div>
+                    
+                    <h2>Version History</h2>
+                    <div id="version-history" class="admin-controls">
+                        <p style="font-size: 12px; color: #666;">Current version: <strong>1.0.0</strong></p>
+                        <p style="font-size: 11px; color: #888;">Auto-incremented on each save to GitHub</p>
+                        <button onclick="showVersionHistory()" class="btn btn-secondary" style="font-size: 11px; padding: 4px 8px;">View History</button>
+                    </div>
+                </div>
+                    </div>
+                </div>
 
             <div id="edit-content" class="edit-form" style="display: none;">
                 <h1 class="article-title">Edit Article</h1>
@@ -588,10 +644,6 @@
         "lake-monster": {
                 "title": "Lake Minnetonka Monster",
                 "content": "\u003cdiv class=\"infobox\"\u003e\n                    \u003cdiv class=\"infobox-title\"\u003eLake Minnetonka Monster\u003c/div\u003e\n                    \u003cdiv class=\"infobox-content\"\u003e\n                        \u003cdiv class=\"infobox-row\"\u003e\n                            \u003cdiv class=\"infobox-label\"\u003eFirst Sighting:\u003c/div\u003e\n                            \u003cdiv\u003eJune 15, 1923\u003c/div\u003e\n                        \u003c/div\u003e\n                        \u003cdiv class=\"infobox-row\"\u003e\n                            \u003cdiv class=\"infobox-label\"\u003eStatus:\u003c/div\u003e\n                            \u003cdiv\u003ePolitely elusive\u003c/div\u003e\n                        \u003c/div\u003e\n                    \u003c/div\u003e\n                \u003c/div\u003e\n                \n                \u003cp\u003eThe \u003cstrong\u003eLake Minnetonka Monster\u003c/strong\u003e, affectionately known as \"Tonka\" by local residents, is Minnesota's most courteous cryptid.\u003c/p\u003e\n                \n                \u003ch2\u003eDiscovery and Early Sightings\u003c/h2\u003e\n                \u003cp\u003eThe creature was first spotted on June 15, 1923, by Margaret Lindström while she was hanging laundry near the shoreline.\u003c/p\u003e\n                \n                \u003ch2\u003eSee Also\u003c/h2\u003e\n                \u003cp\u003e• \u003ca href=\"#\" onclick=\"showArticle('giant-paul-bunyan')\"\u003eGiant Paul Bunyan Incident\u003c/a\u003e\u003c/p\u003e"
-        },
-        "test test": {
-                "title": "Testing",
-                "content": "this is a test"
         }
 };
         
@@ -1233,6 +1285,7 @@
             }, 5000);
         }
     </script>
+
 
 
 </body></html>
