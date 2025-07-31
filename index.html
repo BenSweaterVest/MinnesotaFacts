@@ -432,9 +432,13 @@
 
             <div class="admin-link">
                 <a href="#admin" onclick="showArticle('admin')" class="">Login</a>
+                <div class="last-updated" style="margin-top: 8px; padding-top: 8px; border-top: 1px solid #e0e0e0; font-size: 0.8em; color: #666;">
+                    <strong>Last Ope-dated:</strong><br>
+                    <span id="public-last-updated">Never</span>
+                </div>
             </div>
 
-            <div id="admin-sidebar" class="">
+            <div id="admin-sidebar" class="hidden">
                 <h3>Admin Tools</h3>
                 <ul>
                     <li><a href="#" onclick="showNewArticleForm()">Create New Article</a></li>
@@ -443,7 +447,7 @@
             </div>
         </aside>
 
-        <main class="content"><div class="success">Article saved successfully.</div>
+        <main class="content">
             <div id="article-content" style="display: block;">
                     <h1 class="article-title">
                         Testing
@@ -551,7 +555,7 @@
         let isLoggedIn = false;
         let currentArticle = 'home';
         let githubToken = null;
-        let lastSaved = null;
+        let lastSaved = new Date('2025-01-15T10:30:00'); // Set initial last updated time
         let saveInProgress = false;
         let wikiVersion = '1.0.0';
         
@@ -600,6 +604,7 @@
             loadGitHubConfig();
             showHome();
             updateSidebar();
+            updatePublicLastUpdated();
         });
         
         // Authentication functions
@@ -1140,6 +1145,14 @@
             if (timeEl && lastSaved) {
                 timeEl.textContent = lastSaved.toLocaleString();
             }
+            updatePublicLastUpdated();
+        }
+        
+        function updatePublicLastUpdated() {
+            const publicTimeEl = document.getElementById('public-last-updated');
+            if (publicTimeEl && lastSaved) {
+                publicTimeEl.textContent = lastSaved.toLocaleString();
+            }
         }
         
         function showVersionHistory() {
@@ -1188,7 +1201,6 @@
             const articlesJson = JSON.stringify(articles, null, 8)
                 .replace(/</g, '\\u003c')
                 .replace(/>/g, '\\u003e')
-                .replace(/&/g, '\\u0026');
             
             // Find and replace the articles object more carefully
             const articlesRegex = /let articles = \{[\s\S]*?\n\s*\};/;
