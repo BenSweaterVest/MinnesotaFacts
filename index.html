@@ -425,17 +425,17 @@
         </div>
     </header>
 
-    <div class="main-container" data-dashlane-rid="fc178961d89456ee" data-dashlane-classification="login">
+    <div class="main-container" data-dashlane-rid="0768597b86b9d914" data-dashlane-classification="login">
         <aside class="sidebar">
             <h3>Articles</h3>
             <div class="article-list-container">
-                <ul id="article-list"><li><a href="#" onclick="showHome()">Main Page</a></li><li><a href="#giant-paul-bunyan" onclick="showArticle('giant-paul-bunyan')">The Giant Paul Bunyan Incident of 1987</a></li><li><a href="#minnesota-goodbye" onclick="showArticle('minnesota-goodbye')">The Minnesota Goodbye</a></li><li><a href="#hotdish-wars" onclick="showArticle('hotdish-wars')">The Great Hotdish Wars</a></li><li><a href="#lake-monster" onclick="showArticle('lake-monster')">Lake Minnetonka Monster</a></li></ul>
+                <ul id="article-list"><li><a href="#" onclick="showHome()">Main Page</a></li><li><a href="#giant-paul-bunyan" onclick="showArticle('giant-paul-bunyan')">The Giant Paul Bunyan Incident of 1987</a></li><li><a href="#minnesota-goodbye" onclick="showArticle('minnesota-goodbye')">The Minnesota Goodbye</a></li><li><a href="#hotdish-wars" onclick="showArticle('hotdish-wars')">The Great Hotdish Wars</a></li></ul>
             </div>
             
             <h3>Search</h3>
-            <div class="search-container" data-dashlane-rid="3bc256d88b14c827">
-                <input type="text" class="search-input" placeholder="Search M.I.N.N.E.S.O.T.A..." id="search-input" onkeyup="handleSearch(event)" data-dashlane-rid="f39f7911d6661f89" data-dashlane-classification="username" data-kwimpalastatus="dead">
-                <button onclick="performSearch()" class="btn" style="margin-top: 5px; width: 100%; font-size: 12px; padding: 4px 8px;" data-dashlane-label="true" data-dashlane-rid="57ec33b395ca20a3" data-dashlane-classification="action,search">Search</button>
+            <div class="search-container" data-dashlane-rid="06e2b090c6231067">
+                <input type="text" class="search-input" placeholder="Search M.I.N.N.E.S.O.T.A..." id="search-input" onkeyup="handleSearch(event)" data-dashlane-rid="4651ba90eb816496" data-dashlane-classification="username" data-kwimpalastatus="dead">
+                <button onclick="performSearch()" class="btn" style="margin-top: 5px; width: 100%; font-size: 12px; padding: 4px 8px;" data-dashlane-label="true" data-dashlane-rid="f98a43f85b5027af" data-dashlane-classification="action,search">Search</button>
             </div>
 
             <div class="admin-link">
@@ -467,10 +467,10 @@
                     
                     <div class="form-group">
                         <label for="admin-login-password">Admin Password:</label>
-                        <input type="password" id="admin-login-password" placeholder="Enter admin password" onkeyup="handleAdminLoginKeypress(event)">
+                        <input type="password" id="admin-login-password" placeholder="Enter admin password" onkeyup="handleAdminLoginKeypress(event)" data-dashlane-rid="6fe467449fbd3fe9" data-dashlane-classification="password" data-dashlane-filled-by-user="true" data-kwimpalastatus="dead">
                     </div>
                     <div class="admin-controls">
-                        <button onclick="handleAdminLogin()" class="btn" id="login-btn">Login</button>
+                        <button onclick="handleAdminLogin()" class="btn" id="login-btn" data-dashlane-label="true" data-dashlane-rid="41615e69f485cec2" data-dashlane-classification="action,login" data-kwimpalastatus="dead">Login</button>
                     </div>
                 </div>
                 
@@ -482,27 +482,25 @@
                     <h2>Quick Actions</h2>
                     <div class="admin-controls">
                         <div class="version-info">v1.0.0</div>
-                        <button onclick="showNewArticleForm()" class="btn">Create New Article</button>
-                        <button onclick="showEditForm()" class="btn btn-secondary">Edit Current Article</button>
-                        <button onclick="showGitHubConfig()" class="btn btn-secondary">GitHub Settings</button>
-                        <button onclick="saveWikiToGitHub()" class="btn big-save-btn" id="big-save-btn" style="background: #28a745;">💾 Save All to GitHub</button>
-                        <button onclick="handleAdminLogout()" class="btn" style="background: #dc3545;">Logout</button>
+                        <button onclick="showNewArticleForm()" class="btn" data-dashlane-label="true" data-dashlane-rid="8ef1977936b5f35d">Create New Article</button>
+                        <button onclick="showEditForm()" class="btn btn-secondary" data-dashlane-label="true" data-dashlane-rid="e0550c26fc6df60d">Edit Current Article</button>
+                        <button onclick="showGitHubConfig()" class="btn btn-secondary" data-dashlane-label="true" data-dashlane-rid="352f222a8c59577c">GitHub Settings</button>
+                        <button onclick="saveWikiToGitHub()" class="btn big-save-btn" id="big-save-btn" style="background: #28a745;" data-dashlane-label="true" data-dashlane-rid="94c3258bc4d4ae9a">💾 Save All to GitHub</button>
+                        <button onclick="handleAdminLogout()" class="btn" style="background: #dc3545;" data-dashlane-label="true" data-dashlane-rid="9b23d1455794c68c">Logout</button>
                     </div>
                     
                     <h2>Article Management</h2>
                     <div id="article-management">
                         <p>Current research documents in the Institute archives:</p>
                         <ul id="admin-article-list"><li>Welcome to M.I.N.N.E.S.O.T.A. 
-                            <button onclick="editArticle('home')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;">Edit</button>
-                            <button onclick="deleteArticle('home')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;">Delete</button></li><li>The Giant Paul Bunyan Incident of 1987 
-                            <button onclick="editArticle('giant-paul-bunyan')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;">Edit</button>
-                            <button onclick="deleteArticle('giant-paul-bunyan')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;">Delete</button></li><li>The Minnesota Goodbye 
-                            <button onclick="editArticle('minnesota-goodbye')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;">Edit</button>
-                            <button onclick="deleteArticle('minnesota-goodbye')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;">Delete</button></li><li>The Great Hotdish Wars 
-                            <button onclick="editArticle('hotdish-wars')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;">Edit</button>
-                            <button onclick="deleteArticle('hotdish-wars')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;">Delete</button></li><li>Lake Minnetonka Monster 
-                            <button onclick="editArticle('lake-monster')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;">Edit</button>
-                            <button onclick="deleteArticle('lake-monster')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;">Delete</button></li></ul>
+                            <button onclick="editArticle('home')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;" data-dashlane-label="true" data-dashlane-rid="6660ae05f6ba726d">Edit</button>
+                            <button onclick="deleteArticle('home')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;" data-dashlane-label="true" data-dashlane-rid="4814dc3c2263a9e9">Delete</button></li><li>The Giant Paul Bunyan Incident of 1987 
+                            <button onclick="editArticle('giant-paul-bunyan')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;" data-dashlane-label="true" data-dashlane-rid="05d903ee3fa1ac79">Edit</button>
+                            <button onclick="deleteArticle('giant-paul-bunyan')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;" data-dashlane-label="true" data-dashlane-rid="fa0b640cd2a42265">Delete</button></li><li>The Minnesota Goodbye 
+                            <button onclick="editArticle('minnesota-goodbye')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;" data-dashlane-label="true" data-dashlane-rid="b2bd7526e9e5949d">Edit</button>
+                            <button onclick="deleteArticle('minnesota-goodbye')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;" data-dashlane-label="true" data-dashlane-rid="d311480e07b4a09f">Delete</button></li><li>The Great Hotdish Wars 
+                            <button onclick="editArticle('hotdish-wars')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;" data-dashlane-label="true" data-dashlane-rid="eaa2a8e6fca22577">Edit</button>
+                            <button onclick="deleteArticle('hotdish-wars')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;" data-dashlane-label="true" data-dashlane-rid="fe13d1e44c6b63b5">Delete</button></li></ul>
                         <p style="font-size: 12px; color: #666; margin-top: 10px;">
                             Last saved: <span id="last-saved-time">Never</span>
                         </p>
@@ -512,7 +510,7 @@
                     <div id="version-history" class="admin-controls">
                         <p style="font-size: 12px; color: #666;">Current version: <strong>1.0.0</strong></p>
                         <p style="font-size: 11px; color: #888;">Auto-incremented on each save to GitHub</p>
-                        <button onclick="showVersionHistory()" class="btn btn-secondary" style="font-size: 11px; padding: 4px 8px;">View History</button>
+                        <button onclick="showVersionHistory()" class="btn btn-secondary" style="font-size: 11px; padding: 4px 8px;" data-dashlane-label="true" data-dashlane-rid="d5227770dc842cb8">View History</button>
                     </div>
                 </div>
                     </div>
@@ -648,10 +646,6 @@
         "hotdish-wars": {
                 "title": "The Great Hotdish Wars",
                 "content": "\u003cp\u003eThe \u003cstrong\u003eGreat Hotdish Wars\u003c/strong\u003e refer to the ongoing series of culinary conflicts that have shaped Minnesota's social and political landscape since the early 1950s.\u003c/p\u003e\n                \n                \u003ch2\u003eHistorical Background\u003c/h2\u003e\n                \u003cp\u003eThe conflict began innocuously in 1953 when Marge Olson of Hibbing claimed at the annual Lutheran church potluck that her tater tot hotdish was \"the best in the Range.\"\u003c/p\u003e\n                \n                \u003ch2\u003eSee Also\u003c/h2\u003e\n                \u003cp\u003e• \u003ca href=\"#\" onclick=\"showArticle('minnesota-goodbye')\"\u003eThe Minnesota Goodbye\u003c/a\u003e\u003cbr\u003e\n                • \u003ca href=\"#\" onclick=\"showArticle('lake-monster')\"\u003eLake Minnetonka Monster\u003c/a\u003e\u003c/p\u003e"
-        },
-        "lake-monster": {
-                "title": "Lake Minnetonka Monster",
-                "content": "\u003cdiv class=\"infobox\"\u003e\n                    \u003cdiv class=\"infobox-title\"\u003eLake Minnetonka Monster\u003c/div\u003e\n                    \u003cdiv class=\"infobox-content\"\u003e\n                        \u003cdiv class=\"infobox-row\"\u003e\n                            \u003cdiv class=\"infobox-label\"\u003eFirst Sighting:\u003c/div\u003e\n                            \u003cdiv\u003eJune 15, 1923\u003c/div\u003e\n                        \u003c/div\u003e\n                        \u003cdiv class=\"infobox-row\"\u003e\n                            \u003cdiv class=\"infobox-label\"\u003eStatus:\u003c/div\u003e\n                            \u003cdiv\u003ePolitely elusive\u003c/div\u003e\n                        \u003c/div\u003e\n                    \u003c/div\u003e\n                \u003c/div\u003e\n                \n                \u003cp\u003eThe \u003cstrong\u003eLake Minnetonka Monster\u003c/strong\u003e, affectionately known as \"Tonka\" by local residents, is Minnesota's most courteous cryptid.\u003c/p\u003e\n                \n                \u003ch2\u003eDiscovery and Early Sightings\u003c/h2\u003e\n                \u003cp\u003eThe creature was first spotted on June 15, 1923, by Margaret Lindström while she was hanging laundry near the shoreline.\u003c/p\u003e\n                \n                \u003ch2\u003eSee Also\u003c/h2\u003e\n                \u003cp\u003e• \u003ca href=\"#\" onclick=\"showArticle('giant-paul-bunyan')\"\u003eGiant Paul Bunyan Incident\u003c/a\u003e\u003c/p\u003e"
         }
 };
         
