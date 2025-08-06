@@ -425,28 +425,30 @@
         </div>
     </header>
 
-    <div class="main-container" data-dashlane-rid="b601b59066c9bc5f" data-dashlane-classification="login">
+    <div class="main-container">
         <aside class="sidebar">
             <h3>Articles</h3>
             <div class="article-list-container">
-                <ul id="article-list"><li><a href="#" onclick="showHome()">Main Page</a></li><li><a href="#giant-paul-bunyan" onclick="showArticle('giant-paul-bunyan')">The Giant Paul Bunyan Incident of 1987</a></li><li><a href="#minnesota-goodbye" onclick="showArticle('minnesota-goodbye')">The Minnesota Goodbye</a></li><li><a href="#hotdish-wars" onclick="showArticle('hotdish-wars')">The Great Hotdish Wars</a></li><li><a href="#lake-monster" onclick="showArticle('lake-monster')">Lake Minnetonka Monster</a></li><li><a href="#test" onclick="showArticle('test')" class="">Test123</a></li></ul>
+                <ul id="article-list">
+                    <li><a href="#" onclick="showHome()">Main Page</a></li>
+                </ul>
             </div>
             
             <h3>Search</h3>
-            <div class="search-container" data-dashlane-rid="7b6297b6b3e9f4eb">
-                <input type="text" class="search-input" placeholder="Search M.I.N.N.E.S.O.T.A..." id="search-input" onkeyup="handleSearch(event)" data-dashlane-rid="3a060ded42f6f2fb" data-dashlane-classification="username" data-kwimpalastatus="dead">
-                <button onclick="performSearch()" class="btn" style="margin-top: 5px; width: 100%; font-size: 12px; padding: 4px 8px;" data-dashlane-label="true" data-dashlane-rid="8bc282932c2e268b" data-dashlane-classification="action,search">Search</button>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search M.I.N.N.E.S.O.T.A..." id="search-input" onkeyup="handleSearch(event)">
+                <button onclick="performSearch()" class="btn" style="margin-top: 5px; width: 100%; font-size: 12px; padding: 4px 8px;">Search</button>
             </div>
 
             <div class="admin-link">
-                <a href="#admin" onclick="showArticle('admin')" class="active">Login</a>
+                <a href="#admin" onclick="showArticle('admin')">Login</a>
                 <div class="last-updated">
                     <strong>Last Ope-dated:</strong><br>
-                    <span id="public-last-updated">7/31/2025, 3:11:07 PM</span>
+                    <span id="public-last-updated">Never</span>
                 </div>
             </div>
 
-            <div id="admin-sidebar" class="">
+            <div id="admin-sidebar" class="hidden">
                 <h3>Admin Tools</h3>
                 <ul>
                     <li><a href="#" onclick="showNewArticleForm()">Create New Article</a></li>
@@ -456,97 +458,38 @@
         </aside>
 
         <main class="content">
-            <div id="article-content" style="display: block;">
-                    <h1 class="article-title">Admin Panel</h1>
-                    <div class="article-content">
-                        
-                    <div id="admin-login-section" class="admin-spacing hidden">
-                        <p>This is the administrative control panel for M.I.N.N.E.S.O.T.A. Please log in to access editing functions.</p>
-                        
-                        <div class="form-group">
-                            <label for="admin-login-password">Admin Password:</label>
-                            <input type="password" id="admin-login-password" placeholder="Enter admin password" onkeyup="handleAdminLoginKeypress(event)">
-                        </div>
-                        <div class="admin-controls">
-                            <button onclick="handleAdminLogin()" class="btn" id="login-btn">Login</button>
-                        </div>
-                    </div>
-                    
-                    <div id="admin-dashboard" class="">
-                        <div id="save-status" class="save-status saving">💾 Saving to GitHub...</div>
-                        
-                        <p><strong>Welcome, Administrator!</strong> You now have access to all Institute editing functions.</p>
-                        
-                        <h2>Quick Actions</h2>
-                        <div class="admin-controls">
-                            <div class="version-info">v1.0.0</div>
-                            <button onclick="showNewArticleForm()" class="btn" data-dashlane-label="true" data-dashlane-rid="9e1f8fa8c05ee82e">Create New Article</button>
-                            <button onclick="showEditForm()" class="btn btn-secondary" data-dashlane-label="true" data-dashlane-rid="2f94d9fea1464134">Edit Current Article</button>
-                            <button onclick="showGitHubConfig()" class="btn btn-secondary" data-dashlane-label="true" data-dashlane-rid="b5fab5db0a959415">GitHub Settings</button>
-                            <button onclick="saveWikiToGitHub()" class="btn big-save-btn" id="big-save-btn" style="background: #28a745;" data-dashlane-label="true" data-dashlane-rid="71820a7f4266d3b2">💾 Save All to GitHub</button>
-                            <button onclick="handleAdminLogout()" class="btn" style="background: #dc3545;" data-dashlane-label="true" data-dashlane-rid="9ccb2b4b24a163ba">Logout</button>
-                        </div>
-                        
-                        <h2>Article Management</h2>
-                        <div id="article-management">
-                            <p>Current research documents in the Institute archives:</p>
-                            <ul id="admin-article-list"><li>Welcome to M.I.N.N.E.S.O.T.A. 
-                            <button onclick="editArticle('home')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;" data-dashlane-label="true" data-dashlane-rid="f87d32c146ba7988">Edit</button>
-                            <button onclick="deleteArticle('home')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;" data-dashlane-label="true" data-dashlane-rid="9e5105ac47877397">Delete</button></li><li>The Giant Paul Bunyan Incident of 1987 
-                            <button onclick="editArticle('giant-paul-bunyan')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;" data-dashlane-label="true" data-dashlane-rid="974198572ad0fb4d">Edit</button>
-                            <button onclick="deleteArticle('giant-paul-bunyan')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;" data-dashlane-label="true" data-dashlane-rid="825c3a1c6a90b126">Delete</button></li><li>The Minnesota Goodbye 
-                            <button onclick="editArticle('minnesota-goodbye')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;" data-dashlane-label="true" data-dashlane-rid="c69ebbc3f8068476">Edit</button>
-                            <button onclick="deleteArticle('minnesota-goodbye')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;" data-dashlane-label="true" data-dashlane-rid="cf6ca43719e4f285">Delete</button></li><li>The Great Hotdish Wars 
-                            <button onclick="editArticle('hotdish-wars')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;" data-dashlane-label="true" data-dashlane-rid="166fe8d1c38f6dfc">Edit</button>
-                            <button onclick="deleteArticle('hotdish-wars')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;" data-dashlane-label="true" data-dashlane-rid="b95dbbcdcfe72c8d">Delete</button></li><li>Lake Minnetonka Monster 
-                            <button onclick="editArticle('lake-monster')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;" data-dashlane-label="true" data-dashlane-rid="a0cc32d5615d6f62">Edit</button>
-                            <button onclick="deleteArticle('lake-monster')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;" data-dashlane-label="true" data-dashlane-rid="6834be12919e5e0f">Delete</button></li><li>Test123 
-                            <button onclick="editArticle('test')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;" data-dashlane-label="true" data-dashlane-rid="7c50531ef64a4d45">Edit</button>
-                            <button onclick="deleteArticle('test')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;" data-dashlane-label="true" data-dashlane-rid="ae0c3e4528eeca5d">Delete</button></li></ul>
-                            <p style="font-size: 12px; color: #666; margin-top: 10px;">
-                                Last saved: <span id="last-saved-time">7/31/2025, 3:11:07 PM</span>
-                            </p>
-                        </div>
-                        
-                        <h2>Version History</h2>
-                        <div id="version-history" class="admin-controls">
-                            <p style="font-size: 12px; color: #666;">Current version: <strong id="current-version-display">1.0.0</strong></p>
-                            <p style="font-size: 11px; color: #888;">Auto-incremented on each save to GitHub</p>
-                            <button onclick="showVersionHistory()" class="btn btn-secondary" style="font-size: 11px; padding: 4px 8px;" data-dashlane-label="true" data-dashlane-rid="70f5eddaf660fc26">View History</button>
-                        </div>
-                    </div>
-                
-                    </div>
-                </div>
+            <div id="article-content">
+                <!-- Content will be populated by JavaScript -->
+            </div>
 
-            <div id="edit-content" class="edit-form" style="display: none;">
+            <div id="edit-content" class="edit-form">
                 <h1 class="article-title">Edit Article</h1>
-                <form onsubmit="saveArticle(event)" data-dashlane-rid="ea1cabede6a56ebe" data-dashlane-classification="other">
+                <form onsubmit="saveArticle(event)">
                     <div class="form-group">
                         <label for="edit-title">Article Title:</label>
-                        <input type="text" id="edit-title" required="" data-dashlane-rid="5750b76636d0090f" data-dashlane-classification="title,job" data-dashlane-filled-by-user="true" data-kwimpalastatus="dead">
+                        <input type="text" id="edit-title" required>
                     </div>
                     <div class="form-group">
                         <label for="edit-slug">URL Slug:</label>
-                        <input type="text" id="edit-slug" required="" placeholder="lowercase-with-hyphens" data-dashlane-rid="8eb0f2fd92df82b4" data-dashlane-classification="other">
+                        <input type="text" id="edit-slug" required placeholder="lowercase-with-hyphens">
                     </div>
                     <div class="form-group">
                         <label for="edit-content-area">Content (HTML allowed):</label>
-                        <textarea id="edit-content-area" required="" placeholder="Enter your article content here..." data-dashlane-rid="9e0d10b0b669f5f5" data-dashlane-classification="other"></textarea>
+                        <textarea id="edit-content-area" required placeholder="Enter your article content here..."></textarea>
                     </div>
                     <div class="admin-controls">
-                        <button type="submit" class="btn" data-dashlane-label="true" data-dashlane-rid="5ffe8614fa68d025" data-dashlane-classification="action">Save Article</button>
-                        <button type="button" onclick="saveArticleAndBackup()" class="btn big-save-btn" style="background: #28a745;" data-dashlane-label="true" data-dashlane-rid="07573a4b07896fd3" data-dashlane-classification="action">💾 Save &amp; Backup to GitHub</button>
-                        <button type="button" class="btn btn-secondary" onclick="cancelEdit()" data-dashlane-label="true" data-dashlane-rid="01b1cf69f035ce31" data-dashlane-classification="other">Cancel</button>
-                        <button type="button" class="btn btn-secondary" onclick="deleteCurrentArticle()" style="background: #dc3545;" data-dashlane-label="true" data-dashlane-rid="65f38440990922bb" data-dashlane-classification="other">Delete Article</button>
+                        <button type="submit" class="btn">Save Article</button>
+                        <button type="button" onclick="saveArticleAndBackup()" class="btn big-save-btn" style="background: #28a745;">💾 Save & Backup to GitHub</button>
+                        <button type="button" class="btn btn-secondary" onclick="cancelEdit()">Cancel</button>
+                        <button type="button" class="btn btn-secondary" onclick="deleteCurrentArticle()" style="background: #dc3545;">Delete Article</button>
                     </div>
                 </form>
             </div>
             
-            <div id="github-content" class="edit-form" style="display: none;">
+            <div id="github-content" class="edit-form">
                 <h1 class="article-title">GitHub Configuration</h1>
                 <div class="article-content">
-                    <p><strong>Authentication Status:</strong> <span id="auth-status" style="color: rgb(51, 153, 102);">Authenticated with GitHub token</span></p>
+                    <p><strong>Authentication Status:</strong> <span id="auth-status">Not authenticated</span></p>
                     <p>GitHub token will be retrieved automatically upon successful authentication.</p>
                 </div>
                 <div class="form-group">
@@ -583,6 +526,231 @@
         // Configuration - Cloudflare Pages Functions are served at /api/* not /functions/api/*
         const API_BASE_URL = '/api'; // Correct path for Cloudflare Pages Functions
         
+        // State management
+        let isLoggedIn = false;
+        let currentArticle = 'home';
+        let githubToken = null;
+        let lastSaved = null; // Initialize as null
+        let saveInProgress = false;
+        let wikiVersion = '1.0.0';
+        
+        // GitHub configuration - will be saved to memory (not localStorage due to artifact restrictions)
+        let githubConfig = {
+            owner: 'BenSweaterVest',
+            repo: 'MinnesotaFacts',
+            branch: 'main',
+            path: 'index.html'
+        };
+        
+        // Sample articles data
+        let articles = {
+            "admin": {
+                "title": "Admin Panel",
+                "content": `
+                    <div id="admin-login-section" class="admin-spacing">
+                        <p>This is the administrative control panel for M.I.N.N.E.S.O.T.A. Please log in to access editing functions.</p>
+                        
+                        <div class="form-group">
+                            <label for="admin-login-password">Admin Password:</label>
+                            <input type="password" id="admin-login-password" placeholder="Enter admin password" onkeyup="handleAdminLoginKeypress(event)">
+                        </div>
+                        <div class="admin-controls">
+                            <button onclick="handleAdminLogin()" class="btn" id="login-btn">Login</button>
+                        </div>
+                    </div>
+                    
+                    <div id="admin-dashboard" class="hidden">
+                        <div id="save-status" class="save-status hidden"></div>
+                        
+                        <p><strong>Welcome, Administrator!</strong> You now have access to all Institute editing functions.</p>
+                        
+                        <h2>Quick Actions</h2>
+                        <div class="admin-controls">
+                            <div class="version-info" id="version-info-display">v1.0.0</div>
+                            <button onclick="showNewArticleForm()" class="btn">Create New Article</button>
+                            <button onclick="showEditForm()" class="btn btn-secondary">Edit Current Article</button>
+                            <button onclick="showGitHubConfig()" class="btn btn-secondary">GitHub Settings</button>
+                            <button onclick="saveWikiToGitHub()" class="btn big-save-btn" id="big-save-btn" style="background: #28a745;">💾 Save All to GitHub</button>
+                            <button onclick="handleAdminLogout()" class="btn" style="background: #dc3545;">Logout</button>
+                        </div>
+                        
+                        <h2>Article Management</h2>
+                        <div id="article-management">
+                            <p>Current research documents in the Institute archives:</p>
+                            <ul id="admin-article-list"></ul>
+                            <p style="font-size: 12px; color: #666; margin-top: 10px;">
+                                Last saved: <span id="last-saved-time">Never</span>
+                            </p>
+                        </div>
+                        
+                        <h2>Version History</h2>
+                        <div id="version-history" class="admin-controls">
+                            <p style="font-size: 12px; color: #666;">Current version: <strong id="current-version-display">1.0.0</strong></p>
+                            <p style="font-size: 11px; color: #888;">Auto-incremented on each save to GitHub</p>
+                            <button onclick="showVersionHistory()" class="btn btn-secondary" style="font-size: 11px; padding: 4px 8px;">View History</button>
+                        </div>
+                    </div>
+                `
+            },
+            "home": {
+                "title": "Welcome to M.I.N.N.E.S.O.T.A.",
+                "content": `
+                    <p><strong>M.I.N.N.E.S.O.T.A.</strong> (Minnesota Institute for Not Necessarily Evidence-Supported Observations, Theories, and Anecdotes) is the premier research institution dedicated to documenting Minnesota's most important cultural phenomena, historical events, and legendary figures—regardless of their verifiability.</p>
+                    
+                    <h2>Our Mission</h2>
+                    <p>The Institute is committed to preserving and sharing Minnesota's rich heritage of questionable facts, dubious claims, and thoroughly entertaining stories that may or may not have actually happened. We believe that truth is less important than a good story, especially when that story involves hotdish.</p>
+                    
+                    <h2>Featured Research</h2>
+                    <p>Explore our comprehensive archives documenting crucial Minnesota phenomena, from the legendary <a href="#" onclick="showArticle('giant-paul-bunyan')">Giant Paul Bunyan incident of 1987</a> to the ongoing <a href="#" onclick="showArticle('hotdish-wars')">Great Hotdish Wars</a> that continue to shape the state's culinary and political landscape.</p>
+                    
+                    <p>Our researchers have meticulously documented unique Minnesota customs like <a href="#" onclick="showArticle('minnesota-goodbye')">The Minnesota Goodbye</a>, a complex social ritual that can extend social gatherings by several hours, and investigated sightings of the elusive <a href="#" onclick="showArticle('lake-monster')">Lake Minnetonka Monster</a>, which demonstrates remarkable camera-avoidance abilities.</p>
+                    
+                    <h2>About Our Research Methods</h2>
+                    <p>The Institute employs rigorous* research methodologies to ensure the authenticity** of all documented phenomena. Our findings have been thoroughly peer-reviewed*** by leading experts**** in the field of Minnesota studies.</p>
+                    
+                    <h2>Institute Standards</h2>
+                    <p style="font-size: 0.9em; color: #666; background: #f9f9f9; padding: 15px; border-left: 4px solid #a7d8f0;">
+                        <strong>Research Quality Assurance:</strong><br>
+                        *Rigorous: We ask at least two people if they've heard the story<br>
+                        **Authenticity verified through the "Minnesota Nice Test": Does it sound like something a Minnesotan would do?<br>
+                        ***Peer review conducted at coffee shops, church basements, and ice fishing houses<br>
+                        ****Experts: Individuals who have survived more than three Minnesota winters and can pronounce "Wayzata" correctly
+                    </p>
+                    
+                    <h2>Contact the Institute</h2>
+                    <p>For research inquiries, story submissions, or hotdish-related disputes, please contact us through the traditional Minnesota method of bringing up your concerns during casual conversation at the grocery store checkout line.</p>
+                `
+            },
+            "giant-paul-bunyan": {
+                "title": "The Giant Paul Bunyan Incident of 1987",
+                "content": `
+                    <div class="infobox">
+                        <div class="infobox-title">Paul Bunyan Incident</div>
+                        <div class="infobox-content">
+                            <div class="infobox-row">
+                                <div class="infobox-label">Date:</div>
+                                <div>July 4, 1987</div>
+                            </div>
+                            <div class="infobox-row">
+                                <div class="infobox-label">Location:</div>
+                                <div>Bemidji, Minnesota</div>
+                            </div>
+                            <div class="infobox-row">
+                                <div class="infobox-label">Casualties:</div>
+                                <div>12 lawn chairs, 1 hot dog stand</div>
+                            </div>
+                            <div class="infobox-row">
+                                <div class="infobox-label">Status:</div>
+                                <div>Covered up by Big Tourism</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p>The <strong>Giant Paul Bunyan Incident of 1987</strong> remains the most controversial event in Minnesota tourism history, despite efforts by the Minnesota Tourism Board to suppress all documentation of the occurrence.</p>
+                    
+                    <h2>Background</h2>
+                    <p>The 18-foot Paul Bunyan statue in Bemidji had been behaving normally for decades, standing stoically next to Babe the Blue Ox and posing for countless tourist photographs. However, witnesses report that on the morning of July 4th, 1987, the statue began exhibiting what can only be described as "aggressive tourist interaction patterns."</p>
+                    
+                    <h2>The Incident</h2>
+                    <p>According to eyewitness testimony collected by M.I.N.N.E.S.O.T.A. researchers, the statue first showed signs of animation at approximately 10:30 AM during the annual Fourth of July picnic. Mrs. Ethel Nordstrom of Bagley reported that Paul's axe began "twitching menacingly" whenever tourists attempted to pose for photos without purchasing souvenirs from the adjacent gift shop.</p>
+                    
+                    <p>The situation escalated rapidly when the Bunyan statue reportedly stood up, stretched (causing several car alarms to activate from the sonic boom), and began actively herding tourists toward the gift shop while muttering something about "authentic Minnesota experiences" and "supporting local businesses."</p>
+                    
+                    <h2>See Also</h2>
+                    <p>• <a href="#" onclick="showArticle('minnesota-goodbye')">The Minnesota Goodbye</a><br>
+                    • <a href="#" onclick="showArticle('lake-monster')">Lake Minnetonka Monster</a></p>
+                `
+            },
+            "minnesota-goodbye": {
+                "title": "The Minnesota Goodbye",
+                "content": `
+                    <p>The <strong>Minnesota Goodbye</strong> is a complex social ritual practiced throughout the state of Minnesota, characterized by its ability to extend any social gathering by a minimum of 45 minutes to several hours beyond the initial departure announcement.</p>
+                    
+                    <h2>Definition and Characteristics</h2>
+                    <p>Unlike the abrupt departures common in other regions, the Minnesota Goodbye follows a strict protocol that ensures no one's feelings are hurt and that all participants have multiple opportunities to share additional anecdotes, weather observations, and casserole recipes.</p>
+                    
+                    <h2>The Seven Stages</h2>
+                    
+                    <h3>Stage 1: The Initial Announcement (5-15 minutes)</h3>
+                    <p>The departing party announces their intention to leave, usually prefaced with observations about the time, weather, or upcoming obligations.</p>
+                    
+                    <h3>Stage 2: The Coat Gathering Ceremony (10-20 minutes)</h3>
+                    <p>Participants begin the ritual collection of coats, purses, and casserole dishes.</p>
+                    
+                    <h2>See Also</h2>
+                    <p>• <a href="#" onclick="showArticle('hotdish-wars')">The Great Hotdish Wars</a></p>
+                `
+            },
+            "hotdish-wars": {
+                "title": "The Great Hotdish Wars",
+                "content": `
+                    <p>The <strong>Great Hotdish Wars</strong> refer to the ongoing series of culinary conflicts that have shaped Minnesota's social and political landscape since the early 1950s.</p>
+                    
+                    <h2>Historical Background</h2>
+                    <p>The conflict began innocuously in 1953 when Marge Olson of Hibbing claimed at the annual Lutheran church potluck that her tater tot hotdish was "the best in the Range."</p>
+                    
+                    <h2>See Also</h2>
+                    <p>• <a href="#" onclick="showArticle('minnesota-goodbye')">The Minnesota Goodbye</a><br>
+                    • <a href="#" onclick="showArticle('lake-monster')">Lake Minnetonka Monster</a></p>
+                `
+            },
+            "lake-monster": {
+                "title": "Lake Minnetonka Monster",
+                "content": `
+                    <div class="infobox">
+                        <div class="infobox-title">Lake Minnetonka Monster</div>
+                        <div class="infobox-content">
+                            <div class="infobox-row">
+                                <div class="infobox-label">First Sighting:</div>
+                                <div>June 15, 1923</div>
+                            </div>
+                            <div class="infobox-row">
+                                <div class="infobox-label">Status:</div>
+                                <div>Politely elusive</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p>The <strong>Lake Minnetonka Monster</strong>, affectionately known as "Tonka" by local residents, is Minnesota's most courteous cryptid.</p>
+                    
+                    <h2>Discovery and Early Sightings</h2>
+                    <p>The creature was first spotted on June 15, 1923, by Margaret Lindström while she was hanging laundry near the shoreline.</p>
+                    
+                    <h2>See Also</h2>
+                    <p>• <a href="#" onclick="showArticle('giant-paul-bunyan')">Giant Paul Bunyan Incident</a></p>
+                `
+            },
+            "test": {
+                "title": "Test123",
+                "content": "test as of 8 6 2025"
+            }
+        };
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Initializing M.I.N.N.E.S.O.T.A. wiki...');
+            
+            // Ensure admin elements are hidden on load
+            const adminSidebar = document.getElementById('admin-sidebar');
+            if (adminSidebar) {
+                adminSidebar.classList.add('hidden');
+            }
+            
+            // Remove any existing messages
+            const existingMessages = document.querySelectorAll('.error, .success');
+            existingMessages.forEach(msg => msg.remove());
+            
+            loadGitHubConfig();
+            showHome();
+            updateSidebar();
+            updatePublicLastUpdated();
+            updateVersionDisplay();
+            
+            console.log('Wiki initialized. Current version:', wikiVersion);
+            console.log('Last saved:', lastSaved);
+            console.log('Articles count:', Object.keys(articles).length);
+        });
+        
         // Test function - you can run this in the browser console
         window.testAuthEndpoint = async function() {
             console.log('Testing auth endpoint...');
@@ -611,73 +779,6 @@
                 console.error('POST test failed:', e);
             }
         };
-        
-        // State management
-        let isLoggedIn = false;
-        let currentArticle = 'home';
-        let githubToken = null;
-        let lastSaved = new Date('2025-07-31T15:11:07'); // Set to current date/time
-        let saveInProgress = false;
-        let wikiVersion = '1.0.0';
-        
-        // GitHub configuration - will be saved to localStorage
-        let githubConfig = {
-            owner: 'BenSweaterVest',
-            repo: 'MinnesotaFacts',
-            branch: 'main',
-            path: 'index.html'
-        };
-        
-        // Sample articles data
-        let articles = {
-        "admin": {
-                "title": "Admin Panel",
-                "content": "\n                    \u003cdiv id=\"admin-login-section\" class=\"admin-spacing\"\u003e\n                        \u003cp\u003eThis is the administrative control panel for M.I.N.N.E.S.O.T.A. Please log in to access editing functions.\u003c/p\u003e\n                        \n                        \u003cdiv class=\"form-group\"\u003e\n                            \u003clabel for=\"admin-login-password\"\u003eAdmin Password:\u003c/label\u003e\n                            \u003cinput type=\"password\" id=\"admin-login-password\" placeholder=\"Enter admin password\" onkeyup=\"handleAdminLoginKeypress(event)\"\u003e\n                        \u003c/div\u003e\n                        \u003cdiv class=\"admin-controls\"\u003e\n                            \u003cbutton onclick=\"handleAdminLogin()\" class=\"btn\" id=\"login-btn\"\u003eLogin\u003c/button\u003e\n                        \u003c/div\u003e\n                    \u003c/div\u003e\n                    \n                    \u003cdiv id=\"admin-dashboard\" class=\"hidden\"\u003e\n                        \u003cdiv id=\"save-status\" class=\"save-status hidden\"\u003e\u003c/div\u003e\n                        \n                        \u003cp\u003e\u003cstrong\u003eWelcome, Administrator!\u003c/strong\u003e You now have access to all Institute editing functions.\u003c/p\u003e\n                        \n                        \u003ch2\u003eQuick Actions\u003c/h2\u003e\n                        \u003cdiv class=\"admin-controls\"\u003e\n                            \u003cdiv class=\"version-info\"\u003ev1.0.0\u003c/div\u003e\n                            \u003cbutton onclick=\"showNewArticleForm()\" class=\"btn\"\u003eCreate New Article\u003c/button\u003e\n                            \u003cbutton onclick=\"showEditForm()\" class=\"btn btn-secondary\"\u003eEdit Current Article\u003c/button\u003e\n                            \u003cbutton onclick=\"showGitHubConfig()\" class=\"btn btn-secondary\"\u003eGitHub Settings\u003c/button\u003e\n                            \u003cbutton onclick=\"saveWikiToGitHub()\" class=\"btn big-save-btn\" id=\"big-save-btn\" style=\"background: #28a745;\"\u003e💾 Save All to GitHub\u003c/button\u003e\n                            \u003cbutton onclick=\"handleAdminLogout()\" class=\"btn\" style=\"background: #dc3545;\"\u003eLogout\u003c/button\u003e\n                        \u003c/div\u003e\n                        \n                        \u003ch2\u003eArticle Management\u003c/h2\u003e\n                        \u003cdiv id=\"article-management\"\u003e\n                            \u003cp\u003eCurrent research documents in the Institute archives:\u003c/p\u003e\n                            \u003cul id=\"admin-article-list\"\u003e\u003c/ul\u003e\n                            \u003cp style=\"font-size: 12px; color: #666; margin-top: 10px;\"\u003e\n                                Last saved: \u003cspan id=\"last-saved-time\"\u003eNever\u003c/span\u003e\n                            \u003c/p\u003e\n                        \u003c/div\u003e\n                        \n                        \u003ch2\u003eVersion History\u003c/h2\u003e\n                        \u003cdiv id=\"version-history\" class=\"admin-controls\"\u003e\n                            \u003cp style=\"font-size: 12px; color: #666;\"\u003eCurrent version: \u003cstrong id=\"current-version-display\"\u003e1.0.0\u003c/strong\u003e\u003c/p\u003e\n                            \u003cp style=\"font-size: 11px; color: #888;\"\u003eAuto-incremented on each save to GitHub\u003c/p\u003e\n                            \u003cbutton onclick=\"showVersionHistory()\" class=\"btn btn-secondary\" style=\"font-size: 11px; padding: 4px 8px;\"\u003eView History\u003c/button\u003e\n                        \u003c/div\u003e\n                    \u003c/div\u003e\n                "
-        },
-        "home": {
-                "title": "Welcome to M.I.N.N.E.S.O.T.A.",
-                "content": "\n                    \u003cp\u003e\u003cstrong\u003eM.I.N.N.E.S.O.T.A.\u003c/strong\u003e (Minnesota Institute for Not Necessarily Evidence-Supported Observations, Theories, and Anecdotes) is the premier research institution dedicated to documenting Minnesota's most important cultural phenomena, historical events, and legendary figures—regardless of their verifiability.\u003c/p\u003e\n                    \n                    \u003ch2\u003eOur Mission\u003c/h2\u003e\n                    \u003cp\u003eThe Institute is committed to preserving and sharing Minnesota's rich heritage of questionable facts, dubious claims, and thoroughly entertaining stories that may or may not have actually happened. We believe that truth is less important than a good story, especially when that story involves hotdish.\u003c/p\u003e\n                    \n                    \u003ch2\u003eFeatured Research\u003c/h2\u003e\n                    \u003cp\u003eExplore our comprehensive archives documenting crucial Minnesota phenomena, from the legendary \u003ca href=\"#\" onclick=\"showArticle('giant-paul-bunyan')\"\u003eGiant Paul Bunyan incident of 1987\u003c/a\u003e to the ongoing \u003ca href=\"#\" onclick=\"showArticle('hotdish-wars')\"\u003eGreat Hotdish Wars\u003c/a\u003e that continue to shape the state's culinary and political landscape.\u003c/p\u003e\n                    \n                    \u003cp\u003eOur researchers have meticulously documented unique Minnesota customs like \u003ca href=\"#\" onclick=\"showArticle('minnesota-goodbye')\"\u003eThe Minnesota Goodbye\u003c/a\u003e, a complex social ritual that can extend social gatherings by several hours, and investigated sightings of the elusive \u003ca href=\"#\" onclick=\"showArticle('lake-monster')\"\u003eLake Minnetonka Monster\u003c/a\u003e, which demonstrates remarkable camera-avoidance abilities.\u003c/p\u003e\n                    \n                    \u003ch2\u003eAbout Our Research Methods\u003c/h2\u003e\n                    \u003cp\u003eThe Institute employs rigorous* research methodologies to ensure the authenticity** of all documented phenomena. Our findings have been thoroughly peer-reviewed*** by leading experts**** in the field of Minnesota studies.\u003c/p\u003e\n                    \n                    \u003ch2\u003eInstitute Standards\u003c/h2\u003e\n                    \u003cp style=\"font-size: 0.9em; color: #666; background: #f9f9f9; padding: 15px; border-left: 4px solid #a7d8f0;\"\u003e\n                        \u003cstrong\u003eResearch Quality Assurance:\u003c/strong\u003e\u003cbr\u003e\n                        *Rigorous: We ask at least two people if they've heard the story\u003cbr\u003e\n                        **Authenticity verified through the \"Minnesota Nice Test\": Does it sound like something a Minnesotan would do?\u003cbr\u003e\n                        ***Peer review conducted at coffee shops, church basements, and ice fishing houses\u003cbr\u003e\n                        ****Experts: Individuals who have survived more than three Minnesota winters and can pronounce \"Wayzata\" correctly\n                    \u003c/p\u003e\n                    \n                    \u003ch2\u003eContact the Institute\u003c/h2\u003e\n                    \u003cp\u003eFor research inquiries, story submissions, or hotdish-related disputes, please contact us through the traditional Minnesota method of bringing up your concerns during casual conversation at the grocery store checkout line.\u003c/p\u003e\n                "
-        },
-        "giant-paul-bunyan": {
-                "title": "The Giant Paul Bunyan Incident of 1987",
-                "content": "\n                    \u003cdiv class=\"infobox\"\u003e\n                        \u003cdiv class=\"infobox-title\"\u003ePaul Bunyan Incident\u003c/div\u003e\n                        \u003cdiv class=\"infobox-content\"\u003e\n                            \u003cdiv class=\"infobox-row\"\u003e\n                                \u003cdiv class=\"infobox-label\"\u003eDate:\u003c/div\u003e\n                                \u003cdiv\u003eJuly 4, 1987\u003c/div\u003e\n                            \u003c/div\u003e\n                            \u003cdiv class=\"infobox-row\"\u003e\n                                \u003cdiv class=\"infobox-label\"\u003eLocation:\u003c/div\u003e\n                                \u003cdiv\u003eBemidji, Minnesota\u003c/div\u003e\n                            \u003c/div\u003e\n                            \u003cdiv class=\"infobox-row\"\u003e\n                                \u003cdiv class=\"infobox-label\"\u003eCasualties:\u003c/div\u003e\n                                \u003cdiv\u003e12 lawn chairs, 1 hot dog stand\u003c/div\u003e\n                            \u003c/div\u003e\n                            \u003cdiv class=\"infobox-row\"\u003e\n                                \u003cdiv class=\"infobox-label\"\u003eStatus:\u003c/div\u003e\n                                \u003cdiv\u003eCovered up by Big Tourism\u003c/div\u003e\n                            \u003c/div\u003e\n                        \u003c/div\u003e\n                    \u003c/div\u003e\n                    \n                    \u003cp\u003eThe \u003cstrong\u003eGiant Paul Bunyan Incident of 1987\u003c/strong\u003e remains the most controversial event in Minnesota tourism history, despite efforts by the Minnesota Tourism Board to suppress all documentation of the occurrence.\u003c/p\u003e\n                    \n                    \u003ch2\u003eBackground\u003c/h2\u003e\n                    \u003cp\u003eThe 18-foot Paul Bunyan statue in Bemidji had been behaving normally for decades, standing stoically next to Babe the Blue Ox and posing for countless tourist photographs. However, witnesses report that on the morning of July 4th, 1987, the statue began exhibiting what can only be described as \"aggressive tourist interaction patterns.\"\u003c/p\u003e\n                    \n                    \u003ch2\u003eThe Incident\u003c/h2\u003e\n                    \u003cp\u003eAccording to eyewitness testimony collected by M.I.N.N.E.S.O.T.A. researchers, the statue first showed signs of animation at approximately 10:30 AM during the annual Fourth of July picnic. Mrs. Ethel Nordstrom of Bagley reported that Paul's axe began \"twitching menacingly\" whenever tourists attempted to pose for photos without purchasing souvenirs from the adjacent gift shop.\u003c/p\u003e\n                    \n                    \u003cp\u003eThe situation escalated rapidly when the Bunyan statue reportedly stood up, stretched (causing several car alarms to activate from the sonic boom), and began actively herding tourists toward the gift shop while muttering something about \"authentic Minnesota experiences\" and \"supporting local businesses.\"\u003c/p\u003e\n                    \n                    \u003ch2\u003eSee Also\u003c/h2\u003e\n                    \u003cp\u003e• \u003ca href=\"#\" onclick=\"showArticle('minnesota-goodbye')\"\u003eThe Minnesota Goodbye\u003c/a\u003e\u003cbr\u003e\n                    • \u003ca href=\"#\" onclick=\"showArticle('lake-monster')\"\u003eLake Minnetonka Monster\u003c/a\u003e\u003c/p\u003e\n                "
-        },
-        "minnesota-goodbye": {
-                "title": "The Minnesota Goodbye",
-                "content": "\n                    \u003cp\u003eThe \u003cstrong\u003eMinnesota Goodbye\u003c/strong\u003e is a complex social ritual practiced throughout the state of Minnesota, characterized by its ability to extend any social gathering by a minimum of 45 minutes to several hours beyond the initial departure announcement.\u003c/p\u003e\n                    \n                    \u003ch2\u003eDefinition and Characteristics\u003c/h2\u003e\n                    \u003cp\u003eUnlike the abrupt departures common in other regions, the Minnesota Goodbye follows a strict protocol that ensures no one's feelings are hurt and that all participants have multiple opportunities to share additional anecdotes, weather observations, and casserole recipes.\u003c/p\u003e\n                    \n                    \u003ch2\u003eThe Seven Stages\u003c/h2\u003e\n                    \n                    \u003ch3\u003eStage 1: The Initial Announcement (5-15 minutes)\u003c/h3\u003e\n                    \u003cp\u003eThe departing party announces their intention to leave, usually prefaced with observations about the time, weather, or upcoming obligations.\u003c/p\u003e\n                    \n                    \u003ch3\u003eStage 2: The Coat Gathering Ceremony (10-20 minutes)\u003c/h3\u003e\n                    \u003cp\u003eParticipants begin the ritual collection of coats, purses, and casserole dishes.\u003c/p\u003e\n                    \n                    \u003ch2\u003eSee Also\u003c/h2\u003e\n                    \u003cp\u003e• \u003ca href=\"#\" onclick=\"showArticle('hotdish-wars')\"\u003eThe Great Hotdish Wars\u003c/a\u003e\u003c/p\u003e\n                "
-        },
-        "hotdish-wars": {
-                "title": "The Great Hotdish Wars",
-                "content": "\n                    \u003cp\u003eThe \u003cstrong\u003eGreat Hotdish Wars\u003c/strong\u003e refer to the ongoing series of culinary conflicts that have shaped Minnesota's social and political landscape since the early 1950s.\u003c/p\u003e\n                    \n                    \u003ch2\u003eHistorical Background\u003c/h2\u003e\n                    \u003cp\u003eThe conflict began innocuously in 1953 when Marge Olson of Hibbing claimed at the annual Lutheran church potluck that her tater tot hotdish was \"the best in the Range.\"\u003c/p\u003e\n                    \n                    \u003ch2\u003eSee Also\u003c/h2\u003e\n                    \u003cp\u003e• \u003ca href=\"#\" onclick=\"showArticle('minnesota-goodbye')\"\u003eThe Minnesota Goodbye\u003c/a\u003e\u003cbr\u003e\n                    • \u003ca href=\"#\" onclick=\"showArticle('lake-monster')\"\u003eLake Minnetonka Monster\u003c/a\u003e\u003c/p\u003e\n                "
-        },
-        "lake-monster": {
-                "title": "Lake Minnetonka Monster",
-                "content": "\n                    \u003cdiv class=\"infobox\"\u003e\n                        \u003cdiv class=\"infobox-title\"\u003eLake Minnetonka Monster\u003c/div\u003e\n                        \u003cdiv class=\"infobox-content\"\u003e\n                            \u003cdiv class=\"infobox-row\"\u003e\n                                \u003cdiv class=\"infobox-label\"\u003eFirst Sighting:\u003c/div\u003e\n                                \u003cdiv\u003eJune 15, 1923\u003c/div\u003e\n                            \u003c/div\u003e\n                            \u003cdiv class=\"infobox-row\"\u003e\n                                \u003cdiv class=\"infobox-label\"\u003eStatus:\u003c/div\u003e\n                                \u003cdiv\u003ePolitely elusive\u003c/div\u003e\n                            \u003c/div\u003e\n                        \u003c/div\u003e\n                    \u003c/div\u003e\n                    \n                    \u003cp\u003eThe \u003cstrong\u003eLake Minnetonka Monster\u003c/strong\u003e, affectionately known as \"Tonka\" by local residents, is Minnesota's most courteous cryptid.\u003c/p\u003e\n                    \n                    \u003ch2\u003eDiscovery and Early Sightings\u003c/h2\u003e\n                    \u003cp\u003eThe creature was first spotted on June 15, 1923, by Margaret Lindström while she was hanging laundry near the shoreline.\u003c/p\u003e\n                    \n                    \u003ch2\u003eSee Also\u003c/h2\u003e\n                    \u003cp\u003e• \u003ca href=\"#\" onclick=\"showArticle('giant-paul-bunyan')\"\u003eGiant Paul Bunyan Incident\u003c/a\u003e\u003c/p\u003e\n                "
-        },
-        "test": {
-                "title": "Test123",
-                "content": "test as of 8 6 2025"
-        }
-};
-        
-        // Initialize the page
-        document.addEventListener('DOMContentLoaded', function() {
-            // Ensure admin elements are hidden on load
-            const adminSidebar = document.getElementById('admin-sidebar');
-            if (adminSidebar) {
-                adminSidebar.classList.add('hidden');
-            }
-            
-            // Remove any existing messages
-            const existingMessages = document.querySelectorAll('.error, .success');
-            existingMessages.forEach(msg => msg.remove());
-            
-            loadGitHubConfig();
-            showHome();
-            updateSidebar();
-            updatePublicLastUpdated();
-            updateVersionDisplay(); // Initialize version display
-        });
         
         // Authentication functions
         async function authenticateWithAPI(password) {
@@ -783,7 +884,7 @@
                 const article = articles[articleId];
                 let titleHtml = `<h1 class="article-title">${article.title}`;
                 
-                // Only add permalink for articles that should have them (not home or admin)
+                // Only add permalink for regular articles (not home or admin)
                 if (articleId !== 'home' && articleId !== 'admin') {
                     titleHtml += `<a href="#${articleId}" class="permalink">¶</a>`;
                 }
@@ -819,9 +920,16 @@
             links.forEach(link => link.classList.remove('active'));
             
             // Add active class to current link
-            const currentLink = document.querySelector(`a[onclick*="${articleId}"]`);
-            if (currentLink) {
-                currentLink.classList.add('active');
+            // Use more specific selector to avoid issues
+            if (articleId === 'home') {
+                const homeLink = document.querySelector('a[onclick="showHome()"]');
+                if (homeLink) homeLink.classList.add('active');
+            } else if (articleId === 'admin') {
+                const adminLink = document.querySelector('a[onclick="showArticle(\'admin\')"]');
+                if (adminLink) adminLink.classList.add('active');
+            } else {
+                const articleLink = document.querySelector(`a[onclick="showArticle('${articleId}')"]`);
+                if (articleLink) articleLink.classList.add('active');
             }
         }
         
@@ -834,7 +942,7 @@
             mainItem.innerHTML = '<a href="#" onclick="showHome()">Main Page</a>';
             articleList.appendChild(mainItem);
             
-            // Add other articles
+            // Add other articles (exclude home and admin)
             Object.keys(articles).forEach(key => {
                 if (key !== 'home' && key !== 'admin') {
                     const item = document.createElement('li');
@@ -854,12 +962,14 @@
                 if (adminDashboard) adminDashboard.classList.remove('hidden');
                 if (adminSidebar) adminSidebar.classList.remove('hidden');
                 updateAdminArticleList();
-                updateLastSavedTime(); // Update the display when admin content loads
-                updateVersionDisplay(); // Update version display
+                updateLastSavedTime();
+                updateVersionDisplay();
+                console.log('Admin content updated - logged in state');
             } else {
                 if (adminLoginSection) adminLoginSection.classList.remove('hidden');
                 if (adminDashboard) adminDashboard.classList.add('hidden');
                 if (adminSidebar) adminSidebar.classList.add('hidden');
+                console.log('Admin content updated - logged out state');
             }
         }
         
@@ -1070,26 +1180,12 @@
                 path: document.getElementById('gh-path').value
             };
             
-            // Save to localStorage for persistence
-            try {
-                localStorage.setItem('minnesota-github-config', JSON.stringify(githubConfig));
-            } catch (e) {
-                // localStorage not available, config will reset on refresh
-            }
-            
             showMessage('GitHub configuration saved successfully.', 'success');
         }
         
         function loadGitHubConfig() {
-            try {
-                const saved = localStorage.getItem('minnesota-github-config');
-                if (saved) {
-                    const config = JSON.parse(saved);
-                    githubConfig = { ...githubConfig, ...config };
-                }
-            } catch (e) {
-                // localStorage not available or invalid data
-            }
+            // Config is already set in the initialization
+            // This function exists for consistency but doesn't need localStorage
         }
         
         async function testGitHubConnection() {
@@ -1137,14 +1233,21 @@
                 return;
             }
             
+            // Store original version in case we need to revert
+            const originalVersion = wikiVersion;
+            
             try {
                 saveInProgress = true;
                 updateSaveStatus('saving', '💾 Saving to GitHub...');
                 
                 // Increment version
                 const versionParts = wikiVersion.split('.');
-                versionParts[2] = (parseInt(versionParts[2]) + 1).toString();
+                const newPatchVersion = parseInt(versionParts[2]) + 1;
+                versionParts[2] = newPatchVersion.toString();
                 wikiVersion = versionParts.join('.');
+                
+                // Update displays immediately
+                updateVersionDisplay();
                 
                 // Get current file SHA if it exists
                 let sha = null;
@@ -1161,7 +1264,7 @@
                         sha = data.sha;
                     }
                 } catch (e) {
-                    // File doesn't exist, that's okay
+                    console.log('File does not exist yet, will create new file');
                 }
                 
                 // Generate the complete HTML
@@ -1192,18 +1295,23 @@
                     const result = await response.json();
                     lastSaved = new Date();
                     updateLastSavedTime();
-                    updateVersionDisplay();
                     updateSaveStatus('saved', `✅ Saved v${wikiVersion} to GitHub!`);
                     setTimeout(() => hideSaveStatus(), 3000);
+                    console.log('Successfully saved to GitHub:', result);
                 } else {
                     const errorData = await response.json();
+                    console.error('GitHub save failed:', errorData);
                     updateSaveStatus('error', `❌ Failed to save: ${errorData.message}`);
-                    // Revert version increment on error
-                    versionParts[2] = (parseInt(versionParts[2]) - 1).toString();
-                    wikiVersion = versionParts.join('.');
+                    // Revert version on error
+                    wikiVersion = originalVersion;
+                    updateVersionDisplay();
                 }
             } catch (error) {
+                console.error('Save error:', error);
                 updateSaveStatus('error', `❌ Error: ${error.message}`);
+                // Revert version on error
+                wikiVersion = originalVersion;
+                updateVersionDisplay();
             } finally {
                 saveInProgress = false;
             }
@@ -1227,31 +1335,48 @@
         
         function updateLastSavedTime() {
             const timeEl = document.getElementById('last-saved-time');
-            if (timeEl && lastSaved) {
-                timeEl.textContent = lastSaved.toLocaleString();
+            if (timeEl) {
+                if (lastSaved) {
+                    timeEl.textContent = lastSaved.toLocaleString();
+                } else {
+                    timeEl.textContent = 'Never';
+                }
             }
             updatePublicLastUpdated();
+            console.log('Updated last saved time display:', lastSaved ? lastSaved.toLocaleString() : 'Never');
         }
         
         function updatePublicLastUpdated() {
             const publicTimeEl = document.getElementById('public-last-updated');
-            if (publicTimeEl && lastSaved) {
-                publicTimeEl.textContent = lastSaved.toLocaleString();
+            if (publicTimeEl) {
+                if (lastSaved) {
+                    publicTimeEl.textContent = lastSaved.toLocaleString();
+                } else {
+                    publicTimeEl.textContent = 'Never';
+                }
             }
         }
         
         function updateVersionDisplay() {
-            // Update version info in admin panel
+            // Update version info in admin controls - use both class and ID selectors
             const versionInfoElements = document.querySelectorAll('.version-info');
             versionInfoElements.forEach(el => {
                 el.textContent = `v${wikiVersion}`;
             });
             
-            // Update version in admin dashboard using the specific ID
+            // Update specific version display element
+            const versionDisplay = document.getElementById('version-info-display');
+            if (versionDisplay) {
+                versionDisplay.textContent = `v${wikiVersion}`;
+            }
+            
+            // Update version in admin dashboard
             const currentVersionDisplay = document.getElementById('current-version-display');
             if (currentVersionDisplay) {
                 currentVersionDisplay.textContent = wikiVersion;
             }
+            
+            console.log('Updated version display to:', wikiVersion);
         }
         
         async function showVersionHistory() {
@@ -1378,35 +1503,81 @@
         }
         
         function generateCompleteHtml() {
+            console.log('Starting HTML generation...');
+            
             // Get the current document HTML
             let html = document.documentElement.outerHTML;
             
-            // Create a safe JSON string with proper escaping
-            const articlesJson = JSON.stringify(articles, null, 8)
-                .replace(/</g, '\\u003c')
-                .replace(/>/g, '\\u003e')
-            
-            // Find and replace the articles object more carefully
-            const articlesRegex = /let articles = \{[\s\S]*?\n\s*\};/;
-            const replacement = `let articles = ${articlesJson};`;
-            
-            if (articlesRegex.test(html)) {
-                html = html.replace(articlesRegex, replacement);
-            } else {
-                console.error('Could not find articles object to replace');
-                // Fallback: don't modify the HTML if we can't find the pattern
-                return html;
+            // Update the lastSaved timestamp in the HTML
+            if (lastSaved) {
+                const beforeUpdate = html.includes('let lastSaved = null;');
+                html = html.replace(
+                    /let lastSaved = null;/,
+                    `let lastSaved = new Date('${lastSaved.toISOString()}');`
+                );
+                console.log('Updated lastSaved in HTML:', beforeUpdate ? 'Success' : 'Pattern not found');
             }
             
+            // Update the version in the HTML
+            const versionBeforeUpdate = html.match(/let wikiVersion = '([^']+)';/);
+            html = html.replace(
+                /let wikiVersion = '[^']+';/,
+                `let wikiVersion = '${wikiVersion}';`
+            );
+            console.log('Updated version in HTML from', versionBeforeUpdate?.[1], 'to', wikiVersion);
+            
+            // Create a safe JSON string with proper escaping
+            const articlesJson = JSON.stringify(articles, null, 12)
+                .replace(/</g, '\\u003c')
+                .replace(/>/g, '\\u003e')
+                .replace(/\u2028/g, '\\u2028')
+                .replace(/\u2029/g, '\\u2029');
+            
+            // Find and replace the articles object with more precise pattern
+            const articlesPattern = /let articles = \{[\s\S]*?\n        \};/;
+            const replacement = `let articles = ${articlesJson};`;
+            
+            console.log('Articles object size:', JSON.stringify(articles).length, 'characters');
+            console.log('Looking for articles pattern...');
+            
+            if (articlesPattern.test(html)) {
+                html = html.replace(articlesPattern, replacement);
+                console.log('✅ Successfully updated articles in HTML using primary pattern');
+            } else {
+                console.log('❌ Primary pattern failed, trying fallback patterns...');
+                
+                // Try simpler fallback patterns
+                const fallbackPatterns = [
+                    /let articles = \{[^}]*"admin"[\s\S]*?\n\s{8}\};/,
+                    /let articles = \{[\s\S]*?"test": \{[\s\S]*?\n\s*\};/,
+                    /let articles = \{[\s\S]*?\};(?=\s*\/\/ Initialize)/,
+                    /let articles = \{[\s\S]*?\};(?=\s*$)/m
+                ];
+                
+                let patternFound = false;
+                for (let i = 0; i < fallbackPatterns.length; i++) {
+                    const pattern = fallbackPatterns[i];
+                    if (pattern.test(html)) {
+                        html = html.replace(pattern, replacement);
+                        console.log(`✅ Used fallback pattern ${i + 1} successfully`);
+                        patternFound = true;
+                        break;
+                    }
+                }
+                
+                if (!patternFound) {
+                    console.error('❌ All patterns failed. HTML will not be updated with new articles.');
+                    console.log('Sample of HTML around articles:', 
+                        html.substring(html.indexOf('let articles'), html.indexOf('let articles') + 200)
+                    );
+                }
+            }
+            
+            console.log('HTML generation complete. Size:', html.length);
             return html;
         }
         
         function showMessage(message, type) {
-            // Only show messages if we're in an admin context or if it's critical
-            if (!isLoggedIn && type !== 'error') {
-                return; // Don't show success messages to non-logged-in users
-            }
-            
             // Remove existing messages
             const existingMessages = document.querySelectorAll('.error, .success');
             existingMessages.forEach(msg => msg.remove());
@@ -1414,18 +1585,23 @@
             // Create new message
             const messageDiv = document.createElement('div');
             messageDiv.className = type;
-            messageDiv.innerHTML = message; // Use innerHTML to allow links
+            messageDiv.textContent = message;
             
             // Insert at top of content area
             const content = document.querySelector('.content');
-            content.insertBefore(messageDiv, content.firstChild);
-            
-            // Auto-remove after 5 seconds
-            setTimeout(() => {
-                messageDiv.remove();
-            }, 5000);
+            if (content) {
+                content.insertBefore(messageDiv, content.firstChild);
+                
+                // Auto-remove after 5 seconds
+                setTimeout(() => {
+                    if (messageDiv.parentNode) {
+                        messageDiv.remove();
+                    }
+                }, 5000);
+            } else {
+                console.error('Could not find content area to display message:', message);
+            }
         }
     </script>
-
-
-</body></html>
+</body>
+</html>
