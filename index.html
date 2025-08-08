@@ -418,35 +418,35 @@
 <body>
     <header class="header">
         <div class="header-content">
-            <a href="#" class="logo active" onclick="showHome()">
+            <a href="#" class="logo" onclick="showHome()">
                 M.I.N.N.E.S.O.T.A.
                 <span class="logo-subtitle">Minnesota Institute for Not Necessarily Evidence-Supported Observations, Theories, and Anecdotes</span>
             </a>
         </div>
     </header>
 
-    <div class="main-container">
+    <div class="main-container" data-dashlane-rid="b31c7cf2c900bedf" data-dashlane-classification="login">
         <aside class="sidebar">
             <h3>Articles</h3>
             <div class="article-list-container">
-                <ul id="article-list"></ul>
+                <ul id="article-list"><li><a href="#" onclick="showHome()">Main Page</a></li><li><a href="#giant-paul-bunyan" onclick="showArticle('giant-paul-bunyan')">The Giant Paul Bunyan Incident of 1987</a></li><li><a href="#minnesota-goodbye" onclick="showArticle('minnesota-goodbye')">The Minnesota Goodbye</a></li><li><a href="#hotdish-wars" onclick="showArticle('hotdish-wars')">The Great Hotdish Wars</a></li><li><a href="#lake-monster" onclick="showArticle('lake-monster')">Lake Minnetonka Monster</a></li><li><a href="#test1" onclick="showArticle('test1')">test1</a></li><li><a href="#test2" onclick="showArticle('test2')">test2</a></li><li><a href="#test3" onclick="showArticle('test3')">test3</a></li><li><a href="#test4" onclick="showArticle('test4')" class="">test4</a></li></ul>
             </div>
             
             <h3>Search</h3>
-            <div class="search-container">
-                <input type="text" class="search-input" placeholder="Search M.I.N.N.E.S.O.T.A..." id="search-input" onkeyup="handleSearch(event)">
-                <button onclick="performSearch()" class="btn" style="margin-top: 5px; width: 100%; font-size: 12px; padding: 4px 8px;">Search</button>
+            <div class="search-container" data-dashlane-rid="501dd34c32b82348">
+                <input type="text" class="search-input" placeholder="Search M.I.N.N.E.S.O.T.A..." id="search-input" onkeyup="handleSearch(event)" data-dashlane-rid="ce7ef9dd7c97db44" data-dashlane-classification="username" data-kwimpalastatus="dead">
+                <button onclick="performSearch()" class="btn" style="margin-top: 5px; width: 100%; font-size: 12px; padding: 4px 8px;" data-dashlane-label="true" data-dashlane-rid="7566f2cb417d423c" data-dashlane-classification="action,search">Search</button>
             </div>
 
             <div class="admin-link">
-                <a href="#admin" onclick="showArticle('admin')">Login</a>
+                <a href="#admin" onclick="showArticle('admin')" class="active">Login</a>
                 <div class="last-updated">
                     <strong>Last Ope-dated:</strong><br>
                     <span id="public-last-updated">Never</span>
                 </div>
             </div>
 
-            <div id="admin-sidebar" class="hidden">
+            <div id="admin-sidebar" class="">
                 <h3>Admin Tools</h3>
                 <ul>
                     <li><a href="#" onclick="showNewArticleForm()">Create New Article</a></li>
@@ -457,29 +457,94 @@
 
         <main class="content">
             <div id="article-content" style="display: block;">
-                <!-- Content will be loaded here -->
-            </div>
+                    <h1 class="article-title">Admin Panel</h1>
+                    <div class="article-content">
+                        
+                    <div id="admin-login-section" class="admin-spacing hidden">
+                        <p>This is the administrative control panel for M.I.N.N.E.S.O.T.A. Please log in to access editing functions.</p>
+                        
+                        <div class="form-group">
+                            <label for="admin-login-password">Admin Password:</label>
+                            <input type="password" id="admin-login-password" placeholder="Enter admin password" onkeyup="handleAdminLoginKeypress(event)">
+                        </div>
+                        <div class="admin-controls">
+                            <button onclick="handleAdminLogin()" class="btn" id="login-btn">Login</button>
+                        </div>
+                    </div>
+                    
+                    <div id="admin-dashboard" class="">
+                        <div id="save-status" class="save-status saving">💾 Saving to GitHub...</div>
+                        
+                        <p><strong>Welcome, Administrator!</strong> You now have access to all Institute editing functions.</p>
+                        
+                        <h2>Quick Actions</h2>
+                        <div class="admin-controls">
+                            <div class="version-info" id="version-info-display">v1.0.2</div>
+                            <button onclick="showNewArticleForm()" class="btn">Create New Article</button>
+                            <button onclick="showEditForm()" class="btn btn-secondary">Edit Current Article</button>
+                            <button onclick="showGitHubConfig()" class="btn btn-secondary">GitHub Settings</button>
+                            <button onclick="saveWikiToGitHub()" class="btn big-save-btn" id="big-save-btn" style="background: #28a745;">💾 Save All to GitHub</button>
+                            <button onclick="handleAdminLogout()" class="btn" style="background: #dc3545;">Logout</button>
+                        </div>
+                        
+                        <h2>Article Management</h2>
+                        <div id="article-management">
+                            <p>Current research documents in the Institute archives:</p>
+                            <ul id="admin-article-list"><li>Welcome to M.I.N.N.E.S.O.T.A. 
+                            <button onclick="editArticle('home')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;">Edit</button>
+                            <button onclick="deleteArticle('home')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;">Delete</button></li><li>The Giant Paul Bunyan Incident of 1987 
+                            <button onclick="editArticle('giant-paul-bunyan')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;">Edit</button>
+                            <button onclick="deleteArticle('giant-paul-bunyan')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;">Delete</button></li><li>The Minnesota Goodbye 
+                            <button onclick="editArticle('minnesota-goodbye')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;">Edit</button>
+                            <button onclick="deleteArticle('minnesota-goodbye')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;">Delete</button></li><li>The Great Hotdish Wars 
+                            <button onclick="editArticle('hotdish-wars')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;">Edit</button>
+                            <button onclick="deleteArticle('hotdish-wars')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;">Delete</button></li><li>Lake Minnetonka Monster 
+                            <button onclick="editArticle('lake-monster')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;">Edit</button>
+                            <button onclick="deleteArticle('lake-monster')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;">Delete</button></li><li>test1 
+                            <button onclick="editArticle('test1')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;">Edit</button>
+                            <button onclick="deleteArticle('test1')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;">Delete</button></li><li>test2 
+                            <button onclick="editArticle('test2')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;">Edit</button>
+                            <button onclick="deleteArticle('test2')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;">Delete</button></li><li>test3 
+                            <button onclick="editArticle('test3')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;">Edit</button>
+                            <button onclick="deleteArticle('test3')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;">Delete</button></li><li>test4 
+                            <button onclick="editArticle('test4')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 10px;">Edit</button>
+                            <button onclick="deleteArticle('test4')" class="btn" style="font-size: 10px; padding: 2px 6px; margin-left: 5px; background: #dc3545;">Delete</button></li></ul>
+                            <p style="font-size: 12px; color: #666; margin-top: 10px;">
+                                Last saved: <span id="last-saved-time">Never</span>
+                            </p>
+                        </div>
+                        
+                        <h2>Version History</h2>
+                        <div id="version-history" class="admin-controls">
+                            <p style="font-size: 12px; color: #666;">Current version: <strong id="current-version-display">1.0.2</strong></p>
+                            <p style="font-size: 11px; color: #888;">Auto-incremented on each save to GitHub</p>
+                            <button onclick="showVersionHistory()" class="btn btn-secondary" style="font-size: 11px; padding: 4px 8px;">View History</button>
+                        </div>
+                    </div>
+                
+                    </div>
+                </div>
 
             <div id="edit-content" class="edit-form" style="display: none;">
                 <h1 class="article-title">Edit Article</h1>
-                <form onsubmit="saveArticle(event)">
+                <form onsubmit="saveArticle(event)" data-dashlane-rid="b9e543c89f25f370" data-dashlane-classification="other">
                     <div class="form-group">
                         <label for="edit-title">Article Title:</label>
-                        <input type="text" id="edit-title" required>
+                        <input type="text" id="edit-title" required="" data-dashlane-rid="5c26597eb3b06aa1" data-dashlane-classification="title,job" data-dashlane-filled-by-user="true" data-kwimpalastatus="dead">
                     </div>
                     <div class="form-group">
                         <label for="edit-slug">URL Slug:</label>
-                        <input type="text" id="edit-slug" required placeholder="lowercase-with-hyphens">
+                        <input type="text" id="edit-slug" required="" placeholder="lowercase-with-hyphens" data-dashlane-rid="7a7756389dd19e22" data-dashlane-classification="other">
                     </div>
                     <div class="form-group">
                         <label for="edit-content-area">Content (HTML allowed):</label>
-                        <textarea id="edit-content-area" required placeholder="Enter your article content here..."></textarea>
+                        <textarea id="edit-content-area" required="" placeholder="Enter your article content here..." data-dashlane-rid="fdaf687c276f9274" data-dashlane-classification="other"></textarea>
                     </div>
                     <div class="admin-controls">
-                        <button type="submit" class="btn">Save Article</button>
-                        <button type="button" onclick="saveArticleAndBackup()" class="btn big-save-btn" style="background: #28a745;">💾 Save & Backup to GitHub</button>
-                        <button type="button" class="btn btn-secondary" onclick="cancelEdit()">Cancel</button>
-                        <button type="button" class="btn btn-secondary" onclick="deleteCurrentArticle()" style="background: #dc3545;">Delete Article</button>
+                        <button type="submit" class="btn" data-dashlane-label="true" data-dashlane-rid="892fab5a3359dbbd" data-dashlane-classification="action">Save Article</button>
+                        <button type="button" onclick="saveArticleAndBackup()" class="btn big-save-btn" style="background: #28a745;" data-dashlane-label="true" data-dashlane-rid="c7294769e9469fa3" data-dashlane-classification="action">💾 Save &amp; Backup to GitHub</button>
+                        <button type="button" class="btn btn-secondary" onclick="cancelEdit()" data-dashlane-label="true" data-dashlane-rid="fa539c8fbc2e61fd" data-dashlane-classification="other">Cancel</button>
+                        <button type="button" class="btn btn-secondary" onclick="deleteCurrentArticle()" style="background: #dc3545;" data-dashlane-label="true" data-dashlane-rid="b0fea2d4639f5639" data-dashlane-classification="other">Delete Article</button>
                     </div>
                 </form>
             </div>
@@ -487,7 +552,7 @@
             <div id="github-content" class="edit-form" style="display: none;">
                 <h1 class="article-title">GitHub Configuration</h1>
                 <div class="article-content">
-                    <p><strong>Authentication Status:</strong> <span id="auth-status">Not authenticated</span></p>
+                    <p><strong>Authentication Status:</strong> <span id="auth-status" style="color: rgb(51, 153, 102);">Authenticated with GitHub token</span></p>
                     <p>GitHub token will be retrieved automatically upon successful authentication.</p>
                 </div>
                 <div class="form-group">
@@ -530,7 +595,7 @@
         let githubToken = null;
         let lastSaved = null; // Will be updated when HTML is generated
         let saveInProgress = false;
-        let wikiVersion = '1.0.1'; // Will be updated when HTML is generated
+        let wikiVersion = '1.0.2'; // Will be updated when HTML is generated
         
         // GitHub configuration - will be saved to memory (not localStorage due to artifact restrictions)
         let githubConfig = {
@@ -542,183 +607,47 @@
         
         // Sample articles data
         let articles = {
-            "admin": {
-                "title": "Admin Panel",
-                "content": `
-                    <div id="admin-login-section" class="admin-spacing">
-                        <p>This is the administrative control panel for M.I.N.N.E.S.O.T.A. Please log in to access editing functions.</p>
-                        
-                        <div class="form-group">
-                            <label for="admin-login-password">Admin Password:</label>
-                            <input type="password" id="admin-login-password" placeholder="Enter admin password" onkeyup="handleAdminLoginKeypress(event)">
-                        </div>
-                        <div class="admin-controls">
-                            <button onclick="handleAdminLogin()" class="btn" id="login-btn">Login</button>
-                        </div>
-                    </div>
-                    
-                    <div id="admin-dashboard" class="hidden">
-                        <div id="save-status" class="save-status hidden"></div>
-                        
-                        <p><strong>Welcome, Administrator!</strong> You now have access to all Institute editing functions.</p>
-                        
-                        <h2>Quick Actions</h2>
-                        <div class="admin-controls">
-                            <div class="version-info" id="version-info-display">v${wikiVersion}</div>
-                            <button onclick="showNewArticleForm()" class="btn">Create New Article</button>
-                            <button onclick="showEditForm()" class="btn btn-secondary">Edit Current Article</button>
-                            <button onclick="showGitHubConfig()" class="btn btn-secondary">GitHub Settings</button>
-                            <button onclick="saveWikiToGitHub()" class="btn big-save-btn" id="big-save-btn" style="background: #28a745;">💾 Save All to GitHub</button>
-                            <button onclick="handleAdminLogout()" class="btn" style="background: #dc3545;">Logout</button>
-                        </div>
-                        
-                        <h2>Article Management</h2>
-                        <div id="article-management">
-                            <p>Current research documents in the Institute archives:</p>
-                            <ul id="admin-article-list"></ul>
-                            <p style="font-size: 12px; color: #666; margin-top: 10px;">
-                                Last saved: <span id="last-saved-time">Never</span>
-                            </p>
-                        </div>
-                        
-                        <h2>Version History</h2>
-                        <div id="version-history" class="admin-controls">
-                            <p style="font-size: 12px; color: #666;">Current version: <strong id="current-version-display">${wikiVersion}</strong></p>
-                            <p style="font-size: 11px; color: #888;">Auto-incremented on each save to GitHub</p>
-                            <button onclick="showVersionHistory()" class="btn btn-secondary" style="font-size: 11px; padding: 4px 8px;">View History</button>
-                        </div>
-                    </div>
-                `
-            },
-            "home": {
-                "title": "Welcome to M.I.N.N.E.S.O.T.A.",
-                "content": `
-                    <p><strong>M.I.N.N.E.S.O.T.A.</strong> (Minnesota Institute for Not Necessarily Evidence-Supported Observations, Theories, and Anecdotes) is the premier research institution dedicated to documenting Minnesota's most important cultural phenomena, historical events, and legendary figures—regardless of their verifiability.</p>
-                    
-                    <h2>Our Mission</h2>
-                    <p>The Institute is committed to preserving and sharing Minnesota's rich heritage of questionable facts, dubious claims, and thoroughly entertaining stories that may or may not have actually happened. We believe that truth is less important than a good story, especially when that story involves hotdish.</p>
-                    
-                    <h2>Featured Research</h2>
-                    <p>Explore our comprehensive archives documenting crucial Minnesota phenomena, from the legendary <a href="#" onclick="showArticle('giant-paul-bunyan')">Giant Paul Bunyan incident of 1987</a> to the ongoing <a href="#" onclick="showArticle('hotdish-wars')">Great Hotdish Wars</a> that continue to shape the state's culinary and political landscape.</p>
-                    
-                    <p>Our researchers have meticulously documented unique Minnesota customs like <a href="#" onclick="showArticle('minnesota-goodbye')">The Minnesota Goodbye</a>, a complex social ritual that can extend social gatherings by several hours, and investigated sightings of the elusive <a href="#" onclick="showArticle('lake-monster')">Lake Minnetonka Monster</a>, which demonstrates remarkable camera-avoidance abilities.</p>
-                    
-                    <h2>About Our Research Methods</h2>
-                    <p>The Institute employs rigorous* research methodologies to ensure the authenticity** of all documented phenomena. Our findings have been thoroughly peer-reviewed*** by leading experts**** in the field of Minnesota studies.</p>
-                    
-                    <h2>Institute Standards</h2>
-                    <p style="font-size: 0.9em; color: #666; background: #f9f9f9; padding: 15px; border-left: 4px solid #a7d8f0;">
-                        <strong>Research Quality Assurance:</strong><br>
-                        *Rigorous: We ask at least two people if they've heard the story<br>
-                        **Authenticity verified through the "Minnesota Nice Test": Does it sound like something a Minnesotan would do?<br>
-                        ***Peer review conducted at coffee shops, church basements, and ice fishing houses<br>
-                        ****Experts: Individuals who have survived more than three Minnesota winters and can pronounce "Wayzata" correctly
-                    </p>
-                    
-                    <h2>Contact the Institute</h2>
-                    <p>For research inquiries, story submissions, or hotdish-related disputes, please contact us through the traditional Minnesota method of bringing up your concerns during casual conversation at the grocery store checkout line.</p>
-                `
-            },
-            "giant-paul-bunyan": {
-                "title": "The Giant Paul Bunyan Incident of 1987",
-                "content": `
-                    <div class="infobox">
-                        <div class="infobox-title">Paul Bunyan Incident</div>
-                        <div class="infobox-content">
-                            <div class="infobox-row">
-                                <div class="infobox-label">Date:</div>
-                                <div>July 4, 1987</div>
-                            </div>
-                            <div class="infobox-row">
-                                <div class="infobox-label">Location:</div>
-                                <div>Bemidji, Minnesota</div>
-                            </div>
-                            <div class="infobox-row">
-                                <div class="infobox-label">Casualties:</div>
-                                <div>12 lawn chairs, 1 hot dog stand</div>
-                            </div>
-                            <div class="infobox-row">
-                                <div class="infobox-label">Status:</div>
-                                <div>Covered up by Big Tourism</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <p>The <strong>Giant Paul Bunyan Incident of 1987</strong> remains the most controversial event in Minnesota tourism history, despite efforts by the Minnesota Tourism Board to suppress all documentation of the occurrence.</p>
-                    
-                    <h2>Background</h2>
-                    <p>The 18-foot Paul Bunyan statue in Bemidji had been behaving normally for decades, standing stoically next to Babe the Blue Ox and posing for countless tourist photographs. However, witnesses report that on the morning of July 4th, 1987, the statue began exhibiting what can only be described as "aggressive tourist interaction patterns."</p>
-                    
-                    <h2>The Incident</h2>
-                    <p>According to eyewitness testimony collected by M.I.N.N.E.S.O.T.A. researchers, the statue first showed signs of animation at approximately 10:30 AM during the annual Fourth of July picnic. Mrs. Ethel Nordstrom of Bagley reported that Paul's axe began "twitching menacingly" whenever tourists attempted to pose for photos without purchasing souvenirs from the adjacent gift shop.</p>
-                    
-                    <p>The situation escalated rapidly when the Bunyan statue reportedly stood up, stretched (causing several car alarms to activate from the sonic boom), and began actively herding tourists toward the gift shop while muttering something about "authentic Minnesota experiences" and "supporting local businesses."</p>
-                    
-                    <h2>See Also</h2>
-                    <p>• <a href="#" onclick="showArticle('minnesota-goodbye')">The Minnesota Goodbye</a><br>
-                    • <a href="#" onclick="showArticle('lake-monster')">Lake Minnetonka Monster</a></p>
-                `
-            },
-            "minnesota-goodbye": {
-                "title": "The Minnesota Goodbye",
-                "content": `
-                    <p>The <strong>Minnesota Goodbye</strong> is a complex social ritual practiced throughout the state of Minnesota, characterized by its ability to extend any social gathering by a minimum of 45 minutes to several hours beyond the initial departure announcement.</p>
-                    
-                    <h2>Definition and Characteristics</h2>
-                    <p>Unlike the abrupt departures common in other regions, the Minnesota Goodbye follows a strict protocol that ensures no one's feelings are hurt and that all participants have multiple opportunities to share additional anecdotes, weather observations, and casserole recipes.</p>
-                    
-                    <h2>The Seven Stages</h2>
-                    
-                    <h3>Stage 1: The Initial Announcement (5-15 minutes)</h3>
-                    <p>The departing party announces their intention to leave, usually prefaced with observations about the time, weather, or upcoming obligations.</p>
-                    
-                    <h3>Stage 2: The Coat Gathering Ceremony (10-20 minutes)</h3>
-                    <p>Participants begin the ritual collection of coats, purses, and casserole dishes.</p>
-                    
-                    <h2>See Also</h2>
-                    <p>• <a href="#" onclick="showArticle('hotdish-wars')">The Great Hotdish Wars</a></p>
-                `
-            },
-            "hotdish-wars": {
-                "title": "The Great Hotdish Wars",
-                "content": `
-                    <p>The <strong>Great Hotdish Wars</strong> refer to the ongoing series of culinary conflicts that have shaped Minnesota's social and political landscape since the early 1950s.</p>
-                    
-                    <h2>Historical Background</h2>
-                    <p>The conflict began innocuously in 1953 when Marge Olson of Hibbing claimed at the annual Lutheran church potluck that her tater tot hotdish was "the best in the Range."</p>
-                    
-                    <h2>See Also</h2>
-                    <p>• <a href="#" onclick="showArticle('minnesota-goodbye')">The Minnesota Goodbye</a><br>
-                    • <a href="#" onclick="showArticle('lake-monster')">Lake Minnetonka Monster</a></p>
-                `
-            },
-            "lake-monster": {
-                "title": "Lake Minnetonka Monster",
-                "content": `
-                    <div class="infobox">
-                        <div class="infobox-title">Lake Minnetonka Monster</div>
-                        <div class="infobox-content">
-                            <div class="infobox-row">
-                                <div class="infobox-label">First Sighting:</div>
-                                <div>June 15, 1923</div>
-                            </div>
-                            <div class="infobox-row">
-                                <div class="infobox-label">Status:</div>
-                                <div>Politely elusive</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <p>The <strong>Lake Minnetonka Monster</strong>, affectionately known as "Tonka" by local residents, is Minnesota's most courteous cryptid.</p>
-                    
-                    <h2>Discovery and Early Sightings</h2>
-                    <p>The creature was first spotted on June 15, 1923, by Margaret Lindström while she was hanging laundry near the shoreline.</p>
-                    
-                    <h2>See Also</h2>
-                    <p>• <a href="#" onclick="showArticle('giant-paul-bunyan')">Giant Paul Bunyan Incident</a></p>
-                `
-            }
-        };
+          "admin": {
+                    "title": "Admin Panel",
+                    "content": "\n                    \u003cdiv id=\"admin-login-section\" class=\"admin-spacing\"\u003e\n                        \u003cp\u003eThis is the administrative control panel for M.I.N.N.E.S.O.T.A. Please log in to access editing functions.\u003c/p\u003e\n                        \n                        \u003cdiv class=\"form-group\"\u003e\n                            \u003clabel for=\"admin-login-password\"\u003eAdmin Password:\u003c/label\u003e\n                            \u003cinput type=\"password\" id=\"admin-login-password\" placeholder=\"Enter admin password\" onkeyup=\"handleAdminLoginKeypress(event)\"\u003e\n                        \u003c/div\u003e\n                        \u003cdiv class=\"admin-controls\"\u003e\n                            \u003cbutton onclick=\"handleAdminLogin()\" class=\"btn\" id=\"login-btn\"\u003eLogin\u003c/button\u003e\n                        \u003c/div\u003e\n                    \u003c/div\u003e\n                    \n                    \u003cdiv id=\"admin-dashboard\" class=\"hidden\"\u003e\n                        \u003cdiv id=\"save-status\" class=\"save-status hidden\"\u003e\u003c/div\u003e\n                        \n                        \u003cp\u003e\u003cstrong\u003eWelcome, Administrator!\u003c/strong\u003e You now have access to all Institute editing functions.\u003c/p\u003e\n                        \n                        \u003ch2\u003eQuick Actions\u003c/h2\u003e\n                        \u003cdiv class=\"admin-controls\"\u003e\n                            \u003cdiv class=\"version-info\" id=\"version-info-display\"\u003ev1.0.1\u003c/div\u003e\n                            \u003cbutton onclick=\"showNewArticleForm()\" class=\"btn\"\u003eCreate New Article\u003c/button\u003e\n                            \u003cbutton onclick=\"showEditForm()\" class=\"btn btn-secondary\"\u003eEdit Current Article\u003c/button\u003e\n                            \u003cbutton onclick=\"showGitHubConfig()\" class=\"btn btn-secondary\"\u003eGitHub Settings\u003c/button\u003e\n                            \u003cbutton onclick=\"saveWikiToGitHub()\" class=\"btn big-save-btn\" id=\"big-save-btn\" style=\"background: #28a745;\"\u003e💾 Save All to GitHub\u003c/button\u003e\n                            \u003cbutton onclick=\"handleAdminLogout()\" class=\"btn\" style=\"background: #dc3545;\"\u003eLogout\u003c/button\u003e\n                        \u003c/div\u003e\n                        \n                        \u003ch2\u003eArticle Management\u003c/h2\u003e\n                        \u003cdiv id=\"article-management\"\u003e\n                            \u003cp\u003eCurrent research documents in the Institute archives:\u003c/p\u003e\n                            \u003cul id=\"admin-article-list\"\u003e\u003c/ul\u003e\n                            \u003cp style=\"font-size: 12px; color: #666; margin-top: 10px;\"\u003e\n                                Last saved: \u003cspan id=\"last-saved-time\"\u003eNever\u003c/span\u003e\n                            \u003c/p\u003e\n                        \u003c/div\u003e\n                        \n                        \u003ch2\u003eVersion History\u003c/h2\u003e\n                        \u003cdiv id=\"version-history\" class=\"admin-controls\"\u003e\n                            \u003cp style=\"font-size: 12px; color: #666;\"\u003eCurrent version: \u003cstrong id=\"current-version-display\"\u003e1.0.1\u003c/strong\u003e\u003c/p\u003e\n                            \u003cp style=\"font-size: 11px; color: #888;\"\u003eAuto-incremented on each save to GitHub\u003c/p\u003e\n                            \u003cbutton onclick=\"showVersionHistory()\" class=\"btn btn-secondary\" style=\"font-size: 11px; padding: 4px 8px;\"\u003eView History\u003c/button\u003e\n                        \u003c/div\u003e\n                    \u003c/div\u003e\n                "
+          },
+          "home": {
+                    "title": "Welcome to M.I.N.N.E.S.O.T.A.",
+                    "content": "\n                    \u003cp\u003e\u003cstrong\u003eM.I.N.N.E.S.O.T.A.\u003c/strong\u003e (Minnesota Institute for Not Necessarily Evidence-Supported Observations, Theories, and Anecdotes) is the premier research institution dedicated to documenting Minnesota's most important cultural phenomena, historical events, and legendary figures—regardless of their verifiability.\u003c/p\u003e\n                    \n                    \u003ch2\u003eOur Mission\u003c/h2\u003e\n                    \u003cp\u003eThe Institute is committed to preserving and sharing Minnesota's rich heritage of questionable facts, dubious claims, and thoroughly entertaining stories that may or may not have actually happened. We believe that truth is less important than a good story, especially when that story involves hotdish.\u003c/p\u003e\n                    \n                    \u003ch2\u003eFeatured Research\u003c/h2\u003e\n                    \u003cp\u003eExplore our comprehensive archives documenting crucial Minnesota phenomena, from the legendary \u003ca href=\"#\" onclick=\"showArticle('giant-paul-bunyan')\"\u003eGiant Paul Bunyan incident of 1987\u003c/a\u003e to the ongoing \u003ca href=\"#\" onclick=\"showArticle('hotdish-wars')\"\u003eGreat Hotdish Wars\u003c/a\u003e that continue to shape the state's culinary and political landscape.\u003c/p\u003e\n                    \n                    \u003cp\u003eOur researchers have meticulously documented unique Minnesota customs like \u003ca href=\"#\" onclick=\"showArticle('minnesota-goodbye')\"\u003eThe Minnesota Goodbye\u003c/a\u003e, a complex social ritual that can extend social gatherings by several hours, and investigated sightings of the elusive \u003ca href=\"#\" onclick=\"showArticle('lake-monster')\"\u003eLake Minnetonka Monster\u003c/a\u003e, which demonstrates remarkable camera-avoidance abilities.\u003c/p\u003e\n                    \n                    \u003ch2\u003eAbout Our Research Methods\u003c/h2\u003e\n                    \u003cp\u003eThe Institute employs rigorous* research methodologies to ensure the authenticity** of all documented phenomena. Our findings have been thoroughly peer-reviewed*** by leading experts**** in the field of Minnesota studies.\u003c/p\u003e\n                    \n                    \u003ch2\u003eInstitute Standards\u003c/h2\u003e\n                    \u003cp style=\"font-size: 0.9em; color: #666; background: #f9f9f9; padding: 15px; border-left: 4px solid #a7d8f0;\"\u003e\n                        \u003cstrong\u003eResearch Quality Assurance:\u003c/strong\u003e\u003cbr\u003e\n                        *Rigorous: We ask at least two people if they've heard the story\u003cbr\u003e\n                        **Authenticity verified through the \"Minnesota Nice Test\": Does it sound like something a Minnesotan would do?\u003cbr\u003e\n                        ***Peer review conducted at coffee shops, church basements, and ice fishing houses\u003cbr\u003e\n                        ****Experts: Individuals who have survived more than three Minnesota winters and can pronounce \"Wayzata\" correctly\n                    \u003c/p\u003e\n                    \n                    \u003ch2\u003eContact the Institute\u003c/h2\u003e\n                    \u003cp\u003eFor research inquiries, story submissions, or hotdish-related disputes, please contact us through the traditional Minnesota method of bringing up your concerns during casual conversation at the grocery store checkout line.\u003c/p\u003e\n                "
+          },
+          "giant-paul-bunyan": {
+                    "title": "The Giant Paul Bunyan Incident of 1987",
+                    "content": "\n                    \u003cdiv class=\"infobox\"\u003e\n                        \u003cdiv class=\"infobox-title\"\u003ePaul Bunyan Incident\u003c/div\u003e\n                        \u003cdiv class=\"infobox-content\"\u003e\n                            \u003cdiv class=\"infobox-row\"\u003e\n                                \u003cdiv class=\"infobox-label\"\u003eDate:\u003c/div\u003e\n                                \u003cdiv\u003eJuly 4, 1987\u003c/div\u003e\n                            \u003c/div\u003e\n                            \u003cdiv class=\"infobox-row\"\u003e\n                                \u003cdiv class=\"infobox-label\"\u003eLocation:\u003c/div\u003e\n                                \u003cdiv\u003eBemidji, Minnesota\u003c/div\u003e\n                            \u003c/div\u003e\n                            \u003cdiv class=\"infobox-row\"\u003e\n                                \u003cdiv class=\"infobox-label\"\u003eCasualties:\u003c/div\u003e\n                                \u003cdiv\u003e12 lawn chairs, 1 hot dog stand\u003c/div\u003e\n                            \u003c/div\u003e\n                            \u003cdiv class=\"infobox-row\"\u003e\n                                \u003cdiv class=\"infobox-label\"\u003eStatus:\u003c/div\u003e\n                                \u003cdiv\u003eCovered up by Big Tourism\u003c/div\u003e\n                            \u003c/div\u003e\n                        \u003c/div\u003e\n                    \u003c/div\u003e\n                    \n                    \u003cp\u003eThe \u003cstrong\u003eGiant Paul Bunyan Incident of 1987\u003c/strong\u003e remains the most controversial event in Minnesota tourism history, despite efforts by the Minnesota Tourism Board to suppress all documentation of the occurrence.\u003c/p\u003e\n                    \n                    \u003ch2\u003eBackground\u003c/h2\u003e\n                    \u003cp\u003eThe 18-foot Paul Bunyan statue in Bemidji had been behaving normally for decades, standing stoically next to Babe the Blue Ox and posing for countless tourist photographs. However, witnesses report that on the morning of July 4th, 1987, the statue began exhibiting what can only be described as \"aggressive tourist interaction patterns.\"\u003c/p\u003e\n                    \n                    \u003ch2\u003eThe Incident\u003c/h2\u003e\n                    \u003cp\u003eAccording to eyewitness testimony collected by M.I.N.N.E.S.O.T.A. researchers, the statue first showed signs of animation at approximately 10:30 AM during the annual Fourth of July picnic. Mrs. Ethel Nordstrom of Bagley reported that Paul's axe began \"twitching menacingly\" whenever tourists attempted to pose for photos without purchasing souvenirs from the adjacent gift shop.\u003c/p\u003e\n                    \n                    \u003cp\u003eThe situation escalated rapidly when the Bunyan statue reportedly stood up, stretched (causing several car alarms to activate from the sonic boom), and began actively herding tourists toward the gift shop while muttering something about \"authentic Minnesota experiences\" and \"supporting local businesses.\"\u003c/p\u003e\n                    \n                    \u003ch2\u003eSee Also\u003c/h2\u003e\n                    \u003cp\u003e• \u003ca href=\"#\" onclick=\"showArticle('minnesota-goodbye')\"\u003eThe Minnesota Goodbye\u003c/a\u003e\u003cbr\u003e\n                    • \u003ca href=\"#\" onclick=\"showArticle('lake-monster')\"\u003eLake Minnetonka Monster\u003c/a\u003e\u003c/p\u003e\n                "
+          },
+          "minnesota-goodbye": {
+                    "title": "The Minnesota Goodbye",
+                    "content": "\n                    \u003cp\u003eThe \u003cstrong\u003eMinnesota Goodbye\u003c/strong\u003e is a complex social ritual practiced throughout the state of Minnesota, characterized by its ability to extend any social gathering by a minimum of 45 minutes to several hours beyond the initial departure announcement.\u003c/p\u003e\n                    \n                    \u003ch2\u003eDefinition and Characteristics\u003c/h2\u003e\n                    \u003cp\u003eUnlike the abrupt departures common in other regions, the Minnesota Goodbye follows a strict protocol that ensures no one's feelings are hurt and that all participants have multiple opportunities to share additional anecdotes, weather observations, and casserole recipes.\u003c/p\u003e\n                    \n                    \u003ch2\u003eThe Seven Stages\u003c/h2\u003e\n                    \n                    \u003ch3\u003eStage 1: The Initial Announcement (5-15 minutes)\u003c/h3\u003e\n                    \u003cp\u003eThe departing party announces their intention to leave, usually prefaced with observations about the time, weather, or upcoming obligations.\u003c/p\u003e\n                    \n                    \u003ch3\u003eStage 2: The Coat Gathering Ceremony (10-20 minutes)\u003c/h3\u003e\n                    \u003cp\u003eParticipants begin the ritual collection of coats, purses, and casserole dishes.\u003c/p\u003e\n                    \n                    \u003ch2\u003eSee Also\u003c/h2\u003e\n                    \u003cp\u003e• \u003ca href=\"#\" onclick=\"showArticle('hotdish-wars')\"\u003eThe Great Hotdish Wars\u003c/a\u003e\u003c/p\u003e\n                "
+          },
+          "hotdish-wars": {
+                    "title": "The Great Hotdish Wars",
+                    "content": "\n                    \u003cp\u003eThe \u003cstrong\u003eGreat Hotdish Wars\u003c/strong\u003e refer to the ongoing series of culinary conflicts that have shaped Minnesota's social and political landscape since the early 1950s.\u003c/p\u003e\n                    \n                    \u003ch2\u003eHistorical Background\u003c/h2\u003e\n                    \u003cp\u003eThe conflict began innocuously in 1953 when Marge Olson of Hibbing claimed at the annual Lutheran church potluck that her tater tot hotdish was \"the best in the Range.\"\u003c/p\u003e\n                    \n                    \u003ch2\u003eSee Also\u003c/h2\u003e\n                    \u003cp\u003e• \u003ca href=\"#\" onclick=\"showArticle('minnesota-goodbye')\"\u003eThe Minnesota Goodbye\u003c/a\u003e\u003cbr\u003e\n                    • \u003ca href=\"#\" onclick=\"showArticle('lake-monster')\"\u003eLake Minnetonka Monster\u003c/a\u003e\u003c/p\u003e\n                "
+          },
+          "lake-monster": {
+                    "title": "Lake Minnetonka Monster",
+                    "content": "\n                    \u003cdiv class=\"infobox\"\u003e\n                        \u003cdiv class=\"infobox-title\"\u003eLake Minnetonka Monster\u003c/div\u003e\n                        \u003cdiv class=\"infobox-content\"\u003e\n                            \u003cdiv class=\"infobox-row\"\u003e\n                                \u003cdiv class=\"infobox-label\"\u003eFirst Sighting:\u003c/div\u003e\n                                \u003cdiv\u003eJune 15, 1923\u003c/div\u003e\n                            \u003c/div\u003e\n                            \u003cdiv class=\"infobox-row\"\u003e\n                                \u003cdiv class=\"infobox-label\"\u003eStatus:\u003c/div\u003e\n                                \u003cdiv\u003ePolitely elusive\u003c/div\u003e\n                            \u003c/div\u003e\n                        \u003c/div\u003e\n                    \u003c/div\u003e\n                    \n                    \u003cp\u003eThe \u003cstrong\u003eLake Minnetonka Monster\u003c/strong\u003e, affectionately known as \"Tonka\" by local residents, is Minnesota's most courteous cryptid.\u003c/p\u003e\n                    \n                    \u003ch2\u003eDiscovery and Early Sightings\u003c/h2\u003e\n                    \u003cp\u003eThe creature was first spotted on June 15, 1923, by Margaret Lindström while she was hanging laundry near the shoreline.\u003c/p\u003e\n                    \n                    \u003ch2\u003eSee Also\u003c/h2\u003e\n                    \u003cp\u003e• \u003ca href=\"#\" onclick=\"showArticle('giant-paul-bunyan')\"\u003eGiant Paul Bunyan Incident\u003c/a\u003e\u003c/p\u003e\n                "
+          },
+          "test1": {
+                    "title": "test1",
+                    "content": "Test1"
+          },
+          "test2": {
+                    "title": "test2",
+                    "content": "test2"
+          },
+          "test3": {
+                    "title": "test3",
+                    "content": "test3"
+          },
+          "test4": {
+                    "title": "test4",
+                    "content": "test4"
+          }
+};
         
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
@@ -1605,5 +1534,6 @@
         }
     </script>
 
-</body>
-</html>
+
+
+</body></html>
