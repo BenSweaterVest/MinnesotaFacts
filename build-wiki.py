@@ -211,14 +211,15 @@ def inject_tiddlers(html_path, output_path, tiddlers):
     with open(html_path, 'r', encoding='utf-8') as f:
         html = f.read()
 
-    # Find the tiddler store
-    pattern = r'(<script class="tiddlywiki-tiddler-store" type="application/json">)\['
+    # Find the tiddler store - it's a JSON array starting with [
+    pattern = r'<script class="tiddlywiki-tiddler-store" type="application/json">\['
     match = re.search(pattern, html)
     if not match:
         print("ERROR: Could not find tiddler store in HTML")
         return False
 
-    insert_pos = match.end() - 1  # Position before the '['
+    # Position right after the opening bracket [
+    insert_pos = match.end()
     print(f"Found tiddler store at position {insert_pos}")
 
     # Convert tiddlers dict to list of tiddler objects
@@ -226,20 +227,16 @@ def inject_tiddlers(html_path, output_path, tiddlers):
     for data in tiddlers.values():
         tiddler_list.append(data)
 
-    # Create JSON for new tiddlers
-    tiddlers_json = json.dumps(tiddler_list, ensure_ascii=False, indent=2)
-    # Remove outer brackets since we're injecting into existing array
-    tiddlers_json = tiddlers_json.strip()[1:-1].strip()
+    # Create JSON for new tiddlers (without outer array brackets)
+    tiddlers_json = json.dumps(tiddler_list, ensure_ascii=False, indent=0)[1:-1]
+    # Add comma after our tiddlers
+    tiddlers_json = tiddlers_json + ','
 
-    # Inject tiddlers into the array (add comma if array is not empty)
+    # Inject tiddlers right after the opening bracket
     html_before = html[:insert_pos]
     html_after = html[insert_pos:]
 
-    # Check if array has content
-    next_char = html_after[1:2].strip()
-    comma = ',\n' if next_char and next_char != ']' else '\n'
-
-    new_html = html_before + comma + tiddlers_json + html_after
+    new_html = html_before + '\n' + tiddlers_json + html_after
 
     # Update title and subtitle in HTML head
     new_html = re.sub(
