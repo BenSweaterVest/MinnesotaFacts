@@ -1,0 +1,30 @@
+title: Categories
+tags: Page
+type: text/vnd.tiddlywiki
+
+<div class="cb-toc">
+
+<h2>Browse by Category</h2>
+
+<$list filter="[tag[Post]!tag[Draft]tags[]!tag[Post]!tag[Featured]!tag[Draft]sort[title]]" variable="category">
+
+<h3 style="margin-top: 2rem; color: #3498db;"><<category>></h3>
+
+<ul class="cb-toc-list">
+<$list filter="[tag<category>tag[Post]!tag[Draft]has[date]!sort[date]]">
+  <li>
+    <$link to=<<currentTiddler>>>
+      <strong><$view field="title"/></strong>
+    </$link>
+    <$list filter="[<currentTiddler>has[date]]" variable="null">
+      <span style="color: #7f8c8d; margin-left: 1rem;">
+        <$view field="date" format="date" template="DD MMM YYYY"/>
+      </span>
+    </$list>
+  </li>
+</$list>
+</ul>
+
+</$list>
+
+</div>

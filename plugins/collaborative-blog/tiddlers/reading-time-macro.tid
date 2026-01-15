@@ -1,0 +1,23 @@
+title: $:/plugins/collaborative-blog/reading-time-macro
+tags: $:/tags/Macro
+type: text/vnd.tiddlywiki
+
+\define reading-time(tiddler wordsPerMinute:"200")
+<$vars
+  wordCount={{{ [<__tiddler__>get[text]split[ ]count[]] }}}
+  minutes={{{ [<wordCount>divide<__wordsPerMinute__>ceiling[]] }}}
+>
+<span class="cb-reading-time" title="Estimated reading time based on {{!!wordCount}} words">
+  📖 <$text text=<<minutes>>/> min read
+</span>
+</$vars>
+\end
+
+<style>
+.cb-reading-time {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: var(--cb-text-meta);
+  font-weight: 500;
+}
+</style>

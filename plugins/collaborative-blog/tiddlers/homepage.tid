@@ -1,0 +1,105 @@
+title: Home
+type: text/vnd.tiddlywiki
+
+<!--
+  Homepage Template for Collaborative Blog Plugin
+
+  This template displays:
+  - One featured post (if tagged with "Featured")
+  - Recent posts in reverse chronological order (up to 10)
+  - Empty state message if no posts exist
+-->
+
+<!-- Macro: post-excerpt
+     Displays the excerpt field if it exists, otherwise shows the full post text
+     Used to show post previews on the homepage
+-->
+\define post-excerpt()
+<$transclude field="excerpt"><$transclude field="text" mode="block" /></$transclude>
+\end
+
+<!-- Macro: post-list-item
+     Renders a single post in list view with title, metadata, excerpt, and read more link
+
+     Parameters:
+       - featured: Set to "yes" to show featured badge, "no" for regular posts (default: "no")
+
+     Context: Expects to be called within a list where currentTiddler is a post
+-->
+\define post-list-item(featured:"no")
+<div class="cb-post-list-item $if$">
+  <!-- Show featured badge only if featured parameter is "yes" -->
+  <$list filter="[<featured>match[yes]]" variable="null">
+    <div class="cb-featured-badge">Featured</div>
+  </$list>
+
+  <h2 class="cb-post-list-title">
+    <$link to=<<currentTiddler>>><$view field="title"/></$link>
+  </h2>
+
+  <!-- Post metadata: author, date, and category tags -->
+  <div class="cb-post-meta">
+    <!-- Show author only if the field exists -->
+    <$list filter="[<currentTiddler>has[author]]" variable="null">
+      <span class="cb-post-author">
+        By <$view field="author"/>
+      </span>
+    </$list>
+
+    <!-- Show date only if the field exists (format: YYYYMMDD -> DD MMM YYYY) -->
+    <$list filter="[<currentTiddler>has[date]]" variable="null">
+      <span class="cb-post-date">
+        <$view field="date" format="date" template="DD MMM YYYY"/>
+      </span>
+    </$list>
+
+    <!-- Show category tags (excludes Post, Featured, and Draft system tags) -->
+    <$list filter="[<currentTiddler>tags[]!tag[Post]!tag[Featured]!tag[Draft]]" variable="tag">
+      <span class="cb-post-categories">
+        <a class="cb-category-tag" href={{{ [<tag>addprefix[#]] }}}>
+          <<tag>>
+        </a>
+      </span>
+    </$list>
+  </div>
+
+  <!-- Post excerpt or preview text -->
+  <div class="cb-post-excerpt">
+    <<post-excerpt>>
+  </div>
+
+  <!-- Read more link -->
+  <$link to=<<currentTiddler>> class="cb-read-more">
+    Read more →
+  </$link>
+</div>
+\end
+
+<!-- Featured Post Section
+     Filter: [tag[Post]tag[Featured]!tag[Draft]has[date]!sort[date]limit[1]]
+     Selects the most recent post tagged with both "Post" and "Featured"
+     Excludes drafts and posts without dates
+     !sort[date] = reverse chronological order (newest first)
+-->
+<$list filter="[tag[Post]tag[Featured]!tag[Draft]has[date]!sort[date]limit[1]]">
+  <div class="cb-featured-post">
+    <<post-list-item featured:"yes">>
+  </div>
+</$list>
+
+<!-- Recent Posts Section
+     Filter: [tag[Post]!tag[Featured]!tag[Draft]has[date]!sort[date]limit[10]]
+     Selects up to 10 recent posts (excludes featured posts to avoid duplication)
+     Excludes drafts and posts without dates
+     Posts are in reverse chronological order
+-->
+<$list filter="[tag[Post]!tag[Featured]!tag[Draft]has[date]!sort[date]limit[10]]">
+  <<post-list-item>>
+</$list>
+
+<!-- Empty State Handler
+     If no published posts exist, display a helpful message
+     This checks if there are any posts (count > 0) and shows emptyMessage if not
+-->
+<$list filter="[tag[Post]!tag[Draft]count[]compare:number:gt[0]]" variable="null" emptyMessage="<div class='cb-post-list-item'><p>No posts yet. Use the Admin link in the sidebar to create your first post!</p></div>">
+</$list>

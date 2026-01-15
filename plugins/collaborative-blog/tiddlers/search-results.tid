@@ -1,0 +1,331 @@
+title: $:/plugins/collaborative-blog/search-results
+caption: Search Results
+tags: Page
+
+\define search-base() $:/temp/search
+
+!! Advanced Search
+
+<div class="cb-advanced-search">
+
+<!-- Search Input -->
+<div class="cb-search-input-group">
+<$edit-text tiddler=<<search-base>> field="text" type="search" tag="input" placeholder="Search posts, pages, and content..." class="cb-search-input-large"/>
+<$button class="cb-search-clear-button">
+Clear
+<$action-setfield $tiddler=<<search-base>> text=""/>
+<$action-setfield $tiddler=<<search-base>> search-filter-tag=""/>
+<$action-setfield $tiddler=<<search-base>> search-filter-author=""/>
+<$action-setfield $tiddler=<<search-base>> search-filter-type=""/>
+</$button>
+</div>
+
+<!-- Filters -->
+<div class="cb-search-filters-panel">
+
+  <!-- Filter by Post Type -->
+  <div class="cb-filter-group">
+    <label>Post Type:</label>
+    <$select tiddler=<<search-base>> field="search-filter-type" default="">
+      <option value="">All Types</option>
+      <option value="Post">Standard Post</option>
+      <option value="Event">Event</option>
+      <option value="Gallery">Gallery</option>
+      <option value="Video">Video</option>
+      <option value="Quote">Quote</option>
+      <option value="Page">Page</option>
+    </$select>
+  </div>
+
+  <!-- Filter by Category -->
+  <div class="cb-filter-group">
+    <label>Category:</label>
+    <$select tiddler=<<search-base>> field="search-filter-tag" default="">
+      <option value="">All Categories</option>
+      <$list filter="[tag[Post]!tag[Draft]tags[]!tag[Post]!tag[Draft]!tag[Featured]!tag[Favorite]!tag[Event]!tag[Gallery]!tag[Video]!tag[Quote]!tag[Page]sort[title]]">
+        <option value=<<currentTiddler>>><$text text=<<currentTiddler>>/></option>
+      </$list>
+    </$select>
+  </div>
+
+  <!-- Filter by Author -->
+  <div class="cb-filter-group">
+    <label>Author:</label>
+    <$select tiddler=<<search-base>> field="search-filter-author" default="">
+      <option value="">All Authors</option>
+      <$list filter="[tag[Post]!tag[Draft]has[author]get[author]unique[]sort[title]]">
+        <option value=<<currentTiddler>>><$text text=<<currentTiddler>>/></option>
+      </$list>
+    </$select>
+  </div>
+
+</div>
+
+<!-- Results -->
+<$let
+  searchText={{{ [<search-base>get[text]else[]] }}}
+  filterTag={{{ [<search-base>get[search-filter-tag]else[]] }}}
+  filterAuthor={{{ [<search-base>get[search-filter-author]else[]] }}}
+  filterType={{{ [<search-base>get[search-filter-type]else[]] }}}
+>
+
+<!-- Build the filter dynamically -->
+<$set name="baseFilter" value="[!is[system]!tag[Draft]]">
+<$set name="searchFilter" filter="[<searchText>!match[]then[search:title,text]]" value="search:title,text" emptyValue="">
+<$set name="tagFilter" filter="[<filterTag>!match[]then[tag]]" value={{{ [<filterTag>addprefix[tag[]] addsuffix[]] }}} emptyValue="">
+<$set name="authorFilter" filter="[<filterAuthor>!match[]then[author]]" value={{{ [<filterAuthor>addprefix[author[]] addsuffix[]] }}} emptyValue="">
+<$set name="typeFilter" filter="[<filterType>!match[]then[tag]]" value={{{ [<filterType>addprefix[tag[]] addsuffix[]] }}} emptyValue="">
+
+<!-- Construct final filter -->
+<$set name="finalFilter" value={{{ [[[]addprefix<baseFilter>]addsuffix<searchFilter>addsuffix<tagFilter>addsuffix<authorFilter>addsuffix<typeFilter>addsuffix[sort[title]]] }}}>
+
+<!-- Results Count -->
+<div class="cb-search-results-header">
+  <$list filter=<<finalFilter>> variable="result">
+    <$list filter="[<result>count[]]" variable="count">
+      <$reveal type="match" state=<<searchText>> text="">
+        <h3>All Content (<$text text=<<count>>/>)</h3>
+      </$reveal>
+      <$reveal type="nomatch" state=<<searchText>> text="">
+        <h3>Found <$text text=<<count>>/> Results</h3>
+      </$reveal>
+    </$list>
+  </$list>
+</div>
+
+<!-- Results List -->
+<div class="cb-search-results-list">
+<$list filter=<<finalFilter>> emptyMessage="<div class='cb-no-results'>No results found. Try different search terms or filters.</div>">
+
+  <div class="cb-search-result-card">
+    <!-- Title -->
+    <h4 class="cb-result-title">
+      <$link to={{!!title}}>
+        <$view field="title"/>
+      </$link>
+    </h4>
+
+    <!-- Metadata -->
+    <div class="cb-result-metadata">
+      <!-- Post Type Badge -->
+      <$list filter="[all[current]tag[Event]]" variable="null">
+        <span class="cb-type-badge cb-badge-event">📅 Event</span>
+      </$list>
+      <$list filter="[all[current]tag[Gallery]]" variable="null">
+        <span class="cb-type-badge cb-badge-gallery">🖼️ Gallery</span>
+      </$list>
+      <$list filter="[all[current]tag[Video]]" variable="null">
+        <span class="cb-type-badge cb-badge-video">🎥 Video</span>
+      </$list>
+      <$list filter="[all[current]tag[Quote]]" variable="null">
+        <span class="cb-type-badge cb-badge-quote">💬 Quote</span>
+      </$list>
+      <$list filter="[all[current]tag[Page]]" variable="null">
+        <span class="cb-type-badge cb-badge-page">📄 Page</span>
+      </$list>
+
+      <!-- Date -->
+      <$list filter="[all[current]has[date]]" variable="null">
+        <span class="cb-result-date">
+          <$view field="date" format="date" template="DD MMM YYYY"/>
+        </span>
+      </$list>
+
+      <!-- Author -->
+      <$list filter="[all[current]has[author]]" variable="null">
+        <span class="cb-result-author">
+          by <$view field="author"/>
+        </span>
+      </$list>
+    </div>
+
+    <!-- Excerpt -->
+    <div class="cb-result-excerpt">
+      <$list filter="[all[current]has[excerpt]]" variable="null" emptyMessage="""<$transclude mode="block" />""">
+        <$view field="excerpt"/>
+      </$list>
+    </div>
+
+    <!-- Tags -->
+    <div class="cb-result-tags">
+      <$list filter="[all[current]tags[]!tag[Post]!tag[Page]!tag[Draft]!tag[Featured]!tag[Favorite]!tag[Event]!tag[Gallery]!tag[Video]!tag[Quote]sort[title]]">
+        <span class="tc-tag-label" style="margin-right: 0.25rem;">
+          <$text text=<<currentTiddler>>/>
+        </span>
+      </$list>
+    </div>
+
+  </div>
+
+</$list>
+</div>
+
+</$set>
+</$set>
+</$set>
+</$set>
+</$set>
+</$set>
+
+</$let>
+
+</div>
+
+<style>
+.cb-advanced-search {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.cb-search-input-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.cb-search-input-large {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 2px solid var(--cb-border-light);
+  border-radius: var(--cb-radius-md);
+}
+
+.cb-search-input-large:focus {
+  outline: none;
+  border-color: var(--cb-accent);
+}
+
+.cb-search-clear-button {
+  padding: 0.75rem 1.5rem;
+  background: var(--cb-bg-highlight);
+  border: 1px solid var(--cb-border-light);
+  border-radius: var(--cb-radius-md);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.cb-search-clear-button:hover {
+  background: var(--cb-border-light);
+}
+
+.cb-search-filters-panel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--cb-bg-highlight);
+  border-radius: var(--cb-radius-md);
+}
+
+.cb-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cb-filter-group label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--cb-heading);
+}
+
+.cb-filter-group select {
+  padding: 0.5rem;
+  border: 1px solid var(--cb-border-light);
+  border-radius: var(--cb-radius-sm);
+  background: var(--cb-bg-page);
+  font-size: 0.9rem;
+}
+
+.cb-search-results-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--cb-border-light);
+}
+
+.cb-search-results-header h3 {
+  margin: 0;
+  color: var(--cb-heading);
+}
+
+.cb-search-results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cb-search-result-card {
+  padding: 1.5rem;
+  background: var(--cb-bg-page);
+  border: 1px solid var(--cb-border-light);
+  border-radius: var(--cb-radius-md);
+  box-shadow: var(--cb-shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.cb-search-result-card:hover {
+  box-shadow: var(--cb-shadow-md);
+  border-color: var(--cb-accent-light);
+}
+
+.cb-result-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+}
+
+.cb-result-title a {
+  color: var(--cb-accent);
+  text-decoration: none;
+}
+
+.cb-result-title a:hover {
+  text-decoration: underline;
+}
+
+.cb-result-metadata {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--cb-text-muted);
+}
+
+.cb-type-badge {
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--cb-radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+}
+
+.cb-badge-event { background: #f39c12; }
+.cb-badge-gallery { background: #9b59b6; }
+.cb-badge-video { background: #e74c3c; }
+.cb-badge-quote { background: #16a085; }
+.cb-badge-page { background: #34495e; }
+
+.cb-result-excerpt {
+  margin: 0.75rem 0;
+  line-height: 1.6;
+  color: var(--cb-text-body);
+}
+
+.cb-result-tags {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--cb-border-light);
+}
+
+.cb-no-results {
+  padding: 3rem;
+  text-align: center;
+  color: var(--cb-text-muted);
+  font-size: 1.1rem;
+  background: var(--cb-bg-highlight);
+  border-radius: var(--cb-radius-md);
+}
+</style>

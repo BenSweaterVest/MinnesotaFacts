@@ -1,0 +1,211 @@
+title: $:/plugins/collaborative-blog/ViewTemplate/Post/Quote
+tags: $:/tags/ViewTemplate
+type: text/vnd.tiddlywiki
+
+\define isQuotePost() [all[current]tag[Post]tag[Quote]]
+
+<$list filter=<<isQuotePost>> variable="null">
+
+<div class="cb-post cb-quote-post">
+
+<!-- Quote Badge -->
+<div class="cb-quote-badge">
+💬 QUOTE
+</div>
+
+<!-- Post Title (if provided) -->
+<$list filter="[all[current]has[title]]" variable="null">
+<h1 class="cb-post-title">
+<$view field="title"/>
+</h1>
+</$list>
+
+<!-- Post Meta -->
+<div class="cb-post-meta">
+
+<!-- Author (curator/poster) -->
+<$list filter="[all[current]has[author]]" variable="null">
+<span class="cb-post-author">Posted by <$view field="author"/></span>
+</$list>
+
+<!-- Date -->
+<$list filter="[all[current]has[date]]" variable="null">
+<span class="cb-post-date">
+<$view field="date" format="date" template="DD MMM YYYY"/>
+</span>
+</$list>
+
+</div>
+
+<!-- Main Quote Block -->
+<div class="cb-quote-container">
+
+<div class="cb-quote-marks-open">"</div>
+
+<div class="cb-quote-text">
+<!-- Quote text field OR post content -->
+<$list filter="[all[current]has[quote-text]]" variable="null">
+<$view field="quote-text"/>
+</$list>
+<$list filter="[all[current]!has[quote-text]]" variable="null">
+<$transclude mode="block"/>
+</$list>
+</div>
+
+<div class="cb-quote-marks-close">"</div>
+
+<!-- Quote Attribution -->
+<div class="cb-quote-attribution">
+
+<!-- Quote Author -->
+<$list filter="[all[current]has[quote-author]]" variable="null">
+<div class="cb-quote-author-name">
+— <$view field="quote-author"/>
+</div>
+</$list>
+
+<!-- Quote Source -->
+<$list filter="[all[current]has[quote-source]]" variable="null">
+<div class="cb-quote-source">
+<$view field="quote-source"/>
+</div>
+</$list>
+
+</div>
+
+</div>
+
+<!-- Additional Commentary (if post content exists and quote-text is used) -->
+<$list filter="[all[current]has[quote-text]]" variable="null">
+<$let postContent={{{ [all[current]get[text]] }}}>
+<$list filter="[<postContent>!match[]]" variable="null">
+<div class="cb-quote-commentary">
+<h3>Commentary</h3>
+<$transclude mode="block"/>
+</div>
+</$list>
+</$let>
+</$list>
+
+<!-- Categories/Tags -->
+<div style="margin-top: 2rem;">
+<$list filter="[all[current]tags[]!prefix[$:/]!match[Post]!match[Quote]!match[Draft]!match[Featured]!match[Favorite]]" variable="tag">
+<a href={{{ [<tag>encodeuricomponent[]addprefix[#]] }}} class="cb-category-tag">
+<$text text=<<tag>>/>
+</a>
+</$list>
+</div>
+
+</div>
+
+</$list>
+
+<style>
+.cb-quote-post {
+  position: relative;
+}
+
+.cb-quote-badge {
+  display: inline-block;
+  background: #16a085;
+  color: var(--cb-text-white);
+  padding: 0.4rem 1rem;
+  border-radius: var(--cb-radius-md);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 1.5rem;
+}
+
+.cb-quote-container {
+  position: relative;
+  background: linear-gradient(135deg, var(--cb-accent-light) 0%, var(--cb-accent) 100%);
+  padding: 3rem 2.5rem;
+  margin: 2.5rem 0;
+  border-radius: var(--cb-radius-lg);
+  box-shadow: var(--cb-shadow-xl);
+  text-align: center;
+}
+
+.cb-quote-marks-open,
+.cb-quote-marks-close {
+  font-size: 6rem;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.3);
+  font-family: Georgia, serif;
+  font-weight: bold;
+  position: absolute;
+  user-select: none;
+}
+
+.cb-quote-marks-open {
+  top: 1rem;
+  left: 1.5rem;
+}
+
+.cb-quote-marks-close {
+  bottom: 1rem;
+  right: 1.5rem;
+}
+
+.cb-quote-text {
+  font-size: 1.75rem;
+  line-height: 1.6;
+  color: var(--cb-text-white);
+  font-style: italic;
+  margin: 2rem 0;
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cb-quote-attribution {
+  margin-top: 2.5rem;
+  color: var(--cb-text-white);
+  position: relative;
+  z-index: 1;
+}
+
+.cb-quote-author-name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.cb-quote-source {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  font-style: italic;
+}
+
+.cb-quote-commentary {
+  margin-top: 2.5rem;
+  padding: 2rem;
+  background: var(--cb-bg-content);
+  border-left: 4px solid var(--cb-accent);
+  border-radius: var(--cb-radius-md);
+}
+
+.cb-quote-commentary h3 {
+  margin-top: 0;
+  color: var(--cb-accent);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cb-quote-text {
+    font-size: 1.3rem;
+  }
+
+  .cb-quote-marks-open,
+  .cb-quote-marks-close {
+    font-size: 4rem;
+  }
+
+  .cb-quote-container {
+    padding: 2rem 1.5rem;
+  }
+}
+</style>

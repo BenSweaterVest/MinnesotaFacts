@@ -1,0 +1,32 @@
+title: All Posts
+tags: Page
+type: text/vnd.tiddlywiki
+
+<div class="cb-toc">
+
+<h2>All Posts</h2>
+
+<ul class="cb-toc-list">
+<$list filter="[tag[Post]!tag[Draft]has[date]!sort[date]]">
+  <li>
+    <$link to=<<currentTiddler>>>
+      <strong><$view field="title"/></strong>
+    </$link>
+    <$list filter="[<currentTiddler>has[date]]" variable="null">
+      <span style="color: #7f8c8d; margin-left: 1rem;">
+        <$view field="date" format="date" template="DD MMM YYYY"/>
+      </span>
+    </$list>
+    <$list filter="[<currentTiddler>has[author]]" variable="null">
+      <span style="color: #7f8c8d; margin-left: 0.5rem;">
+        by <$view field="author"/>
+      </span>
+    </$list>
+    <div style="margin-top: 0.5rem; color: #555;">
+      <$transclude field="excerpt"><$transclude field="text" mode="inline"/></$transclude>
+    </div>
+  </li>
+</$list>
+</ul>
+
+</div>

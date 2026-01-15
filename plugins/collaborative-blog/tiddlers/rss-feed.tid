@@ -1,0 +1,46 @@
+title: $:/plugins/collaborative-blog/rss-feed
+tags:
+type: text/vnd.tiddlywiki
+
+\define rss-date(dateField)
+<$view field="$dateField$" format="date" template="ddd, DD MMM YYYY 12:00:00 +0000"/>
+\end
+
+\define rss-item()
+  <item>
+    <title><$view field="title"/></title>
+    <link>{{$:/config/collaborative-blog/site-url}}#<$view field="title" format="urlencoded"/></link>
+    <guid isPermaLink="false"><$view field="title" format="urlencoded"/></guid>
+    <pubDate><<rss-date date>></pubDate>
+    <$list filter="[all[current]has[author]]" variable="null">
+    <author><$view field="author"/></author>
+    </$list>
+    <description><![CDATA[
+    <$list filter="[all[current]has[excerpt]]" variable="null" emptyMessage="""<$transclude mode="inline"/>""">
+      <$view field="excerpt"/>
+    </$list>
+    ]]></description>
+    <$list filter="[all[current]tags[]!tag[Post]!tag[Draft]!tag[Featured]!tag[Favorite]!tag[Event]!tag[Gallery]!tag[Video]!tag[Quote]!tag[Page]]">
+    <category><$view field="title"/></category>
+    </$list>
+  </item>
+\end
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{$:/SiteTitle}}</title>
+    <link>{{$:/config/collaborative-blog/site-url}}</link>
+    <description>{{$:/SiteSubtitle}}</description>
+    <language>en-us</language>
+    <pubDate><$view tiddler="$:/SiteTitle" field="modified" format="date" template="ddd, DD MMM YYYY 12:00:00 +0000"/></pubDate>
+    <lastBuildDate><$view tiddler="$:/SiteTitle" field="modified" format="date" template="ddd, DD MMM YYYY 12:00:00 +0000"/></lastBuildDate>
+    <atom:link href="{{$:/config/collaborative-blog/site-url}}/rss.xml" rel="self" type="application/rss+xml" />
+    <generator>TiddlyWiki Collaborative Blog Plugin</generator>
+
+<$list filter="[tag[Post]!tag[Draft]has[date]sort[date]reverse[]limit[20]]">
+<<rss-item>>
+</$list>
+
+  </channel>
+</rss>

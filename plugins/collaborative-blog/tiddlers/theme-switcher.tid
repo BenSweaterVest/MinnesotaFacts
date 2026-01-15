@@ -1,0 +1,96 @@
+title: $:/plugins/collaborative-blog/theme-switcher
+caption: Appearance
+tags: $:/tags/ControlPanel/Appearance
+type: text/vnd.tiddlywiki
+
+!! Theme Selection
+
+Choose a theme for your blog:
+
+<div style="padding: 15px; background: #f5f5f5; border-radius: 8px; margin: 20px 0;">
+
+<$list filter="historical modern dark vibrant professional" variable="themeId">
+<div style="margin-bottom: 15px; padding: 15px; background: white; border-radius: 6px; border: 2px solid transparent;" class={{{ [[$:/config/collaborative-blog/theme]get[text]match<themeId>then[theme-selected]] ~[[]] }}}>
+
+<$radio tiddler="$:/config/collaborative-blog/theme" field="text" value=<<themeId>>>
+<span style="font-weight: 600; font-size: 1.1em; margin-left: 10px;">
+<$list filter="[<themeId>match[historical]]">Historical Society</$list>
+<$list filter="[<themeId>match[modern]]">Modern Minimalist</$list>
+<$list filter="[<themeId>match[dark]]">Dark Mode</$list>
+<$list filter="[<themeId>match[vibrant]]">Vibrant Creative</$list>
+<$list filter="[<themeId>match[professional]]">Professional Corporate</$list>
+</span>
+</$radio>
+
+<div style="margin-left: 30px; margin-top: 8px; color: #666; font-size: 0.9em;">
+<$list filter="[<themeId>match[historical]]">Warm earth tones and classic serif typography, perfect for historical societies and traditional organizations</$list>
+<$list filter="[<themeId>match[modern]]">Clean lines, ample white space, and modern sans-serif typography for a contemporary look</$list>
+<$list filter="[<themeId>match[dark]]">Easy on the eyes with dark backgrounds and light text, perfect for nighttime reading</$list>
+<$list filter="[<themeId>match[vibrant]]">Bold colors and playful design for creative professionals and artistic communities</$list>
+<$list filter="[<themeId>match[professional]]">Clean navy and gray palette with refined typography for business and corporate blogs</$list>
+</div>
+
+<$list filter="[<themeId>match[historical]]">
+<div style="margin-left: 30px; margin-top: 10px; display: flex; gap: 8px;">
+<div style="width: 40px; height: 40px; background: #2c3e50; border-radius: 4px;" title="Primary"></div>
+<div style="width: 40px; height: 40px; background: #8b7355; border-radius: 4px;" title="Secondary"></div>
+<div style="width: 40px; height: 40px; background: #3498db; border-radius: 4px;" title="Accent"></div>
+<div style="width: 40px; height: 40px; background: #f8f8f6; border-radius: 4px; border: 1px solid #ddd;" title="Background"></div>
+</div>
+</$list>
+
+<$list filter="[<themeId>match[modern]]">
+<div style="margin-left: 30px; margin-top: 10px; display: flex; gap: 8px;">
+<div style="width: 40px; height: 40px; background: #1a1a1a; border-radius: 4px;" title="Primary"></div>
+<div style="width: 40px; height: 40px; background: #666666; border-radius: 4px;" title="Secondary"></div>
+<div style="width: 40px; height: 40px; background: #0066ff; border-radius: 4px;" title="Accent"></div>
+<div style="width: 40px; height: 40px; background: #ffffff; border-radius: 4px; border: 1px solid #ddd;" title="Background"></div>
+</div>
+</$list>
+
+<$list filter="[<themeId>match[dark]]">
+<div style="margin-left: 30px; margin-top: 10px; display: flex; gap: 8px;">
+<div style="width: 40px; height: 40px; background: #1e1e1e; border-radius: 4px;" title="Primary"></div>
+<div style="width: 40px; height: 40px; background: #4a90e2; border-radius: 4px;" title="Secondary"></div>
+<div style="width: 40px; height: 40px; background: #64b5f6; border-radius: 4px;" title="Accent"></div>
+<div style="width: 40px; height: 40px; background: #121212; border-radius: 4px; border: 1px solid #333;" title="Background"></div>
+</div>
+</$list>
+
+<$list filter="[<themeId>match[vibrant]]">
+<div style="margin-left: 30px; margin-top: 10px; display: flex; gap: 8px;">
+<div style="width: 40px; height: 40px; background: #ff6b6b; border-radius: 4px;" title="Primary"></div>
+<div style="width: 40px; height: 40px; background: #4ecdc4; border-radius: 4px;" title="Secondary"></div>
+<div style="width: 40px; height: 40px; background: #ffe66d; border-radius: 4px;" title="Accent"></div>
+<div style="width: 40px; height: 40px; background: #fffef9; border-radius: 4px; border: 1px solid #ddd;" title="Background"></div>
+</div>
+</$list>
+
+<$list filter="[<themeId>match[professional]]">
+<div style="margin-left: 30px; margin-top: 10px; display: flex; gap: 8px;">
+<div style="width: 40px; height: 40px; background: #1e3a5f; border-radius: 4px;" title="Primary"></div>
+<div style="width: 40px; height: 40px; background: #718096; border-radius: 4px;" title="Secondary"></div>
+<div style="width: 40px; height: 40px; background: #0ea5e9; border-radius: 4px;" title="Accent"></div>
+<div style="width: 40px; height: 40px; background: #f8fafc; border-radius: 4px; border: 1px solid #ddd;" title="Background"></div>
+</div>
+</$list>
+
+</div>
+</$list>
+
+</div>
+
+<style>
+.theme-selected {
+  border-color: #3498db !important;
+  background: #f0f8ff !important;
+}
+</style>
+
+---
+
+''Current theme:'' <$text text={{{ [[$:/config/collaborative-blog/theme]get[text]else[historical]] }}}/>
+
+<div style="margin-top: 20px; padding: 15px; background: #fffef0; border-left: 4px solid #f39c12; border-radius: 4px;">
+💡 ''Tip:'' Theme changes apply immediately. Navigate to your blog to see the new theme in action!
+</div>

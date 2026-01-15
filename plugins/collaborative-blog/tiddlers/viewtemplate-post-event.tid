@@ -1,0 +1,181 @@
+title: $:/plugins/collaborative-blog/ViewTemplate/Post/Event
+tags: $:/tags/ViewTemplate
+type: text/vnd.tiddlywiki
+
+\define isEventPost() [all[current]tag[Post]tag[Event]]
+
+<$list filter=<<isEventPost>> variable="null">
+
+<div class="cb-post cb-event-post">
+
+<!-- Event Badge -->
+<div class="cb-event-badge">
+📅 EVENT
+</div>
+
+<!-- Post Title -->
+<h1 class="cb-post-title">
+<$view field="title"/>
+</h1>
+
+<!-- Event Meta Information -->
+<div class="cb-post-meta cb-event-meta">
+
+<!-- Author -->
+<$list filter="[all[current]has[author]]" variable="null">
+<span class="cb-post-author">By <$view field="author"/></span>
+</$list>
+
+<!-- Date -->
+<$list filter="[all[current]has[date]]" variable="null">
+<span class="cb-post-date">
+Posted: <$view field="date" format="date" template="DD MMM YYYY"/>
+</span>
+</$list>
+
+</div>
+
+<!-- Event Details Box -->
+<div class="cb-event-details">
+
+<h3 style="margin-top: 0; color: var(--cb-accent);">Event Details</h3>
+
+<!-- Event Date -->
+<$list filter="[all[current]has[event-date]]" variable="null">
+<div class="cb-event-detail-item">
+<strong>📆 Date:</strong>
+<$view field="event-date" format="date" template="DDD, DD MMM YYYY"/>
+</div>
+</$list>
+
+<!-- Event Time -->
+<$list filter="[all[current]has[event-time]]" variable="null">
+<div class="cb-event-detail-item">
+<strong>🕐 Time:</strong>
+<$view field="event-time"/>
+</div>
+</$list>
+
+<!-- Event Location -->
+<$list filter="[all[current]has[event-location]]" variable="null">
+<div class="cb-event-detail-item">
+<strong>📍 Location:</strong>
+<$view field="event-location"/>
+</div>
+</$list>
+
+<!-- Event Status -->
+<$list filter="[all[current]has[event-status]]" variable="null">
+<div class="cb-event-detail-item">
+<strong>Status:</strong>
+<span class="cb-event-status cb-event-status-{{{ [all[current]get[event-status]] }}}">
+<$view field="event-status"/>
+</span>
+</div>
+</$list>
+
+<!-- RSVP Link -->
+<$list filter="[all[current]has[event-rsvp-link]]" variable="null">
+<div class="cb-event-detail-item" style="margin-top: 15px;">
+<a href={{{ [all[current]get[event-rsvp-link]] }}} class="cb-event-rsvp-button" target="_blank" rel="noopener">
+RSVP / Register
+</a>
+</div>
+</$list>
+
+</div>
+
+<!-- Post Content -->
+<div class="cb-post-content">
+<$transclude mode="block"/>
+</div>
+
+<!-- Categories/Tags -->
+<$list filter="[all[current]tags[]!prefix[$:/]!match[Post]!match[Event]!match[Draft]!match[Featured]!match[Favorite]]" variable="tag">
+<a href={{{ [<tag>encodeuricomponent[]addprefix[#]] }}} class="cb-category-tag">
+<$text text=<<tag>>/>
+</a>
+</$list>
+
+</div>
+
+</$list>
+
+<style>
+.cb-event-post {
+  position: relative;
+}
+
+.cb-event-badge {
+  display: inline-block;
+  background: var(--cb-accent);
+  color: var(--cb-text-white);
+  padding: 0.4rem 1rem;
+  border-radius: var(--cb-radius-md);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 1.5rem;
+}
+
+.cb-event-details {
+  background: linear-gradient(135deg, var(--cb-accent-light) 0%, var(--cb-accent) 100%);
+  color: var(--cb-text-white);
+  padding: 2rem;
+  border-radius: var(--cb-radius-lg);
+  margin: 2rem 0;
+  box-shadow: var(--cb-shadow-lg);
+}
+
+.cb-event-detail-item {
+  margin: 0.75rem 0;
+  font-size: 1.05rem;
+}
+
+.cb-event-detail-item strong {
+  display: inline-block;
+  min-width: 100px;
+}
+
+.cb-event-status {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--cb-radius-sm);
+  font-size: 0.9em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.cb-event-status-upcoming {
+  background: rgba(255,255,255,0.3);
+  color: var(--cb-text-white);
+}
+
+.cb-event-status-past {
+  background: rgba(0,0,0,0.2);
+  color: rgba(255,255,255,0.7);
+}
+
+.cb-event-status-cancelled {
+  background: #e74c3c;
+  color: var(--cb-text-white);
+}
+
+.cb-event-rsvp-button {
+  display: inline-block;
+  background: var(--cb-text-white);
+  color: var(--cb-accent);
+  padding: 0.75rem 2rem;
+  border-radius: var(--cb-radius-md);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.05rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.cb-event-rsvp-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+</style>

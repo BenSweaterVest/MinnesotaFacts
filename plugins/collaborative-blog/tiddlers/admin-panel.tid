@@ -1,0 +1,99 @@
+title: $:/plugins/collaborative-blog/AdminPanel
+tags: $:/tags/PageTemplate
+type: text/vnd.tiddlywiki
+
+<!--
+  Admin Panel Component
+
+  This panel appears at the top of the page when activated via the "Admin" link in the sidebar
+  Provides quick access to common blog management tasks
+
+  Features:
+  - Hidden by default (only renders when state tiddler is "yes")
+  - Activated by clicking "Admin" link which toggles state tiddler
+  - Contains buttons for creating posts, pages, and accessing settings
+  - Fixed position at top of page when active
+
+  State management: Uses $:/state/admin-panel-visible tiddler to track visibility
+  Authentication: Handled by Cloudflare saver when saving changes
+-->
+
+<!-- Only render admin panel if panel visibility is "yes" -->
+<$list filter="[[$:/state/admin-panel-visible]get[text]match[yes]]" variable="null">
+<div class="cb-admin-panel active">
+  <h3>Admin Panel</h3>
+  <div class="cb-admin-actions">
+
+    <!-- New Post Type Selector -->
+    <div class="cb-post-type-group">
+      <div class="cb-post-type-label">Create New:</div>
+
+      <!-- Standard Post -->
+      <$button class="cb-admin-button cb-post-type-button" aria-label="Create standard blog post">
+        📝 Post
+        <$action-sendmessage $message="tm-new-tiddler" tags="Post" />
+      </$button>
+
+      <!-- Event Post -->
+      <$button class="cb-admin-button cb-post-type-button cb-event-button" aria-label="Create event post">
+        📅 Event
+        <$action-sendmessage $message="tm-new-tiddler" tags="Post Event" event-status="upcoming" />
+      </$button>
+
+      <!-- Gallery Post -->
+      <$button class="cb-admin-button cb-post-type-button cb-gallery-button" aria-label="Create gallery post">
+        🖼️ Gallery
+        <$action-sendmessage $message="tm-new-tiddler" tags="Post Gallery" />
+      </$button>
+
+      <!-- Video Post -->
+      <$button class="cb-admin-button cb-post-type-button cb-video-button" aria-label="Create video post">
+        🎥 Video
+        <$action-sendmessage $message="tm-new-tiddler" tags="Post Video" />
+      </$button>
+
+      <!-- Quote Post -->
+      <$button class="cb-admin-button cb-post-type-button cb-quote-button" aria-label="Create quote post">
+        💬 Quote
+        <$action-sendmessage $message="tm-new-tiddler" tags="Post Quote" />
+      </$button>
+    </div>
+
+    <!-- New Page Button
+         Creates a new tiddler with the "Page" tag pre-applied
+         ARIA: Screen readers will announce "Create new static page"
+    -->
+    <$button class="cb-admin-button" aria-label="Create new static page">
+      {{$:/core/images/new-button}} New Page
+      <$action-sendmessage $message="tm-new-tiddler" tags="Page" />
+    </$button>
+
+    <!-- Control Panel Button
+         Opens TiddlyWiki's control panel modal for advanced settings
+         ARIA: Screen readers will announce "Open TiddlyWiki control panel"
+    -->
+    <$button class="cb-admin-button" aria-label="Open TiddlyWiki control panel">
+      {{$:/core/images/options-button}} Control Panel
+      <$action-sendmessage $message="tm-modal" $param="$:/ControlPanel" />
+    </$button>
+
+    <!-- Save Changes Button
+         Triggers the save operation to download the updated HTML file
+         ARIA: Screen readers will announce "Save all changes to wiki"
+    -->
+    <$button class="cb-admin-button" aria-label="Save all changes to wiki">
+      {{$:/core/images/save-button}} Save Changes
+      <$action-sendmessage $message="tm-save-wiki" />
+    </$button>
+
+    <!-- Advanced Search Button
+         Opens TiddlyWiki's advanced search modal
+         ARIA: Screen readers will announce "Open advanced search"
+    -->
+    <$button class="cb-admin-button" aria-label="Open advanced search">
+      {{$:/core/images/advanced-search-button}} Advanced Search
+      <$action-sendmessage $message="tm-modal" $param="$:/AdvancedSearch" />
+    </$button>
+  </div>
+</div>
+</$list>

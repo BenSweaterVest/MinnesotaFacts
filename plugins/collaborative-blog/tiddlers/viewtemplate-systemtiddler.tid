@@ -1,0 +1,20 @@
+title: $:/plugins/collaborative-blog/ViewTemplate/SystemTiddler
+tags: $:/tags/ViewTemplate
+type: text/vnd.tiddlywiki
+list-before: $:/core/ui/ViewTemplate/body
+
+<!--
+  ViewTemplate to hide system tiddlers from story view
+
+  System tiddlers (those starting with $:/) should not appear in the blog's story river
+  They should only be accessible via modals (Control Panel, Advanced Search, etc.)
+
+  This template runs before the body template and prevents system tiddlers from rendering
+  Exception: Our own plugin tiddlers that need to be visible are excluded
+-->
+
+<$list filter="[<currentTiddler>prefix[$:/]!prefix[$:/plugins/collaborative-blog]]" variable="null">
+  <div style="display: none;">
+    <!-- System tiddler hidden from story view -->
+  </div>
+</$list>

@@ -1,0 +1,54 @@
+title: $:/plugins/collaborative-blog/social-meta-tags
+tags: $:/tags/RawMarkup
+type: text/html
+
+<!--
+Social Media Meta Tags
+Provides Open Graph and Twitter Card metadata for better social sharing
+Configure site-specific settings in Control Panel → Settings → SEO
+-->
+
+<$let
+  siteUrl={{{ [[$:/config/collaborative-blog/site-url]get[text]else[https://your-site.pages.dev]] }}}
+  siteName={{{ [[$:/SiteTitle]get[text]else[My Blog]] }}}
+  siteDescription={{{ [[$:/SiteSubtitle]get[text]else[]] }}}
+  ogImageUrl={{{ [[$:/config/collaborative-blog/og-image]get[text]else[]] }}}
+  twitterHandle={{{ [[$:/config/collaborative-blog/twitter-handle]get[text]else[]] }}}
+>
+
+<!-- Basic Meta Tags -->
+<meta name="description" content=<<siteDescription>> />
+<meta name="author" content=<<siteName>> />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content=<<siteUrl>> />
+<meta property="og:site_name" content=<<siteName>> />
+<meta property="og:title" content=<<siteName>> />
+<meta property="og:description" content=<<siteDescription>> />
+<$list filter="[<ogImageUrl>!match[]]" variable="null">
+<meta property="og:image" content=<<ogImageUrl>> />
+<meta property="og:image:alt" content=<<siteName>> />
+</$list>
+
+<!-- Twitter Card -->
+<$list filter="[<ogImageUrl>!match[]]" variable="null" emptyMessage="""<meta name="twitter:card" content="summary" />""">
+<meta name="twitter:card" content="summary_large_image" />
+</$list>
+<meta name="twitter:url" content=<<siteUrl>> />
+<meta name="twitter:title" content=<<siteName>> />
+<meta name="twitter:description" content=<<siteDescription>> />
+<$list filter="[<ogImageUrl>!match[]]" variable="null">
+<meta name="twitter:image" content=<<ogImageUrl>> />
+</$list>
+<$list filter="[<twitterHandle>!match[]]" variable="null">
+<meta name="twitter:site" content=<<twitterHandle>> />
+<meta name="twitter:creator" content=<<twitterHandle>> />
+</$list>
+
+<!-- Additional SEO Meta Tags -->
+<meta name="robots" content="index, follow" />
+<meta name="googlebot" content="index, follow" />
+<link rel="canonical" href=<<siteUrl>> />
+
+</$let>

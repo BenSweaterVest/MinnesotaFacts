@@ -1,0 +1,98 @@
+title: $:/plugins/collaborative-blog/table-of-contents-macro
+tags: $:/tags/Macro
+type: text/vnd.tiddlywiki
+
+\define toc-item()
+<li class="cb-toc-item cb-toc-level-{{!!heading-level}}">
+  <a href="#{{!!anchor-id}}" class="cb-toc-link">
+    <$view field="heading-text"/>
+  </a>
+</li>
+\end
+
+\define table-of-contents(tiddler)
+<nav class="cb-table-of-contents" role="navigation" aria-label="Table of Contents">
+  <h4 class="cb-toc-title">Table of Contents</h4>
+  <ul class="cb-toc-list">
+    <$list filter="[<__tiddler__>get[text]splitregexp[\n(?=!!+ )]rest[]limit[50]]" variable="section">
+      <$set name="heading-text" filter="[<section>removeprefix[!]removeprefix[!]removeprefix[!]removeprefix[!]removeprefix[!]trim[]]">
+        <$set name="heading-level" filter="[<section>search-replace:g:regexp[^(!+).*,$1]length[]]">
+          <$set name="anchor-id" filter="[<heading-text>lowercase[]search-replace:g:regexp[[^a-z0-9]+],[-]]">
+            <$wikify name="dummy" text="""<span id=<<anchor-id>>/>""" mode="inline" output="html">
+            </$wikify>
+            <<toc-item>>
+          </$set>
+        </$set>
+      </$set>
+    </$list>
+  </ul>
+</nav>
+\end
+
+<style>
+.cb-table-of-contents {
+  background: var(--cb-bg-highlight, #f5f5f5);
+  border: 1px solid var(--cb-border-light, #e0e0e0);
+  border-radius: var(--cb-radius-md, 6px);
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.cb-toc-title {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  color: var(--cb-heading, #2c3e50);
+  font-weight: 600;
+}
+
+.cb-toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cb-toc-item {
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+.cb-toc-level-2 {
+  padding-left: 0;
+}
+
+.cb-toc-level-3 {
+  padding-left: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.cb-toc-level-4 {
+  padding-left: 3rem;
+  font-size: 0.9rem;
+}
+
+.cb-toc-level-5 {
+  padding-left: 4.5rem;
+  font-size: 0.85rem;
+}
+
+.cb-toc-link {
+  color: var(--cb-accent, #3498db);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.cb-toc-link:hover {
+  color: var(--cb-accent-hover, #2980b9);
+  text-decoration: underline;
+}
+
+/* Sticky TOC on larger screens */
+@media (min-width: 1200px) {
+  .cb-table-of-contents.cb-toc-sticky {
+    position: sticky;
+    top: 2rem;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+  }
+}
+</style>

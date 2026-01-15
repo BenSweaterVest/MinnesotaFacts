@@ -1,0 +1,74 @@
+title: $:/plugins/collaborative-blog/ViewTemplate/Post
+tags: $:/tags/ViewTemplate
+type: text/vnd.tiddlywiki
+list-after: $:/core/ui/ViewTemplate/title
+
+<!--
+  ViewTemplate for Blog Posts
+
+  This template activates when viewing any tiddler tagged with "Post"
+  It replaces the default TiddlyWiki view with a blog-style post layout
+
+  Key features:
+  - Shows post title, author, date, and category tags
+  - Displays full post content
+  - Provides back navigation to homepage
+  - Automatically hides wiki controls via CSS
+
+  list-after: Ensures this template runs after the core title template
+-->
+
+<!-- Macro: post-body
+     Renders the complete blog post layout including title, metadata, content, and navigation
+     Context: Called only when currentTiddler has "Post" tag
+-->
+\define post-body()
+<div class="cb-post">
+  <!-- Post title -->
+  <h1 class="cb-post-title"><$view field="title"/></h1>
+
+  <!-- Post metadata section: author, date, categories -->
+  <div class="cb-post-meta">
+    <!-- Display author name if the author field exists -->
+    <$list filter="[<currentTiddler>has[author]]" variable="null">
+      <span class="cb-post-author">
+        By <$view field="author"/>
+      </span>
+    </$list>
+
+    <!-- Display formatted date if the date field exists (YYYYMMDD -> DD MMM YYYY) -->
+    <$list filter="[<currentTiddler>has[date]]" variable="null">
+      <span class="cb-post-date">
+        <$view field="date" format="date" template="DD MMM YYYY"/>
+      </span>
+    </$list>
+
+    <!-- Display category tags (filters out system tags: Post, Featured, Draft) -->
+    <$list filter="[<currentTiddler>tags[]!tag[Post]!tag[Featured]!tag[Draft]]" variable="tag">
+      <span class="cb-post-categories">
+        <a class="cb-category-tag" href={{{ [<tag>addprefix[#]] }}}>
+          <<tag>>
+        </a>
+      </span>
+    </$list>
+  </div>
+
+  <!-- Full post content (transcluded from the text field) -->
+  <div class="cb-post-content">
+    <$transclude field="text" mode="block"/>
+  </div>
+
+  <!-- Navigation: Back to homepage link -->
+  <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #ecf0f1;">
+    <$link to="Home" style="color: #3498db; text-decoration: none;">← Back to Home</$link>
+  </div>
+</div>
+\end
+
+<!-- Template activation: Only render this template for tiddlers tagged with "Post"
+     Filter: [<currentTiddler>tag[Post]]
+     This prevents the blog post layout from appearing on pages, admin tiddlers, etc.
+-->
+<$list filter="[<currentTiddler>tag[Post]]" variable="null">
+  <<post-body>>
+</$list>

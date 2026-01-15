@@ -1,0 +1,166 @@
+title: $:/plugins/collaborative-blog/search-panel
+tags: $:/tags/SideBar
+caption: Search
+
+\define search-actions()
+<$action-setfield $tiddler="$:/temp/search" $field="search-filter-tag" $value=<<__tag__>>/>
+<$action-navigate $to="$:/plugins/collaborative-blog/search-results"/>
+\end
+
+!! Search Posts
+
+<!-- Quick Search Input -->
+<div class="cb-search-box">
+<$edit-text tiddler="$:/temp/search" field="text" type="search" tag="input" default="" placeholder="Search posts..." class="cb-search-input"/>
+</div>
+
+<!-- Search Results Summary -->
+<$reveal state="$:/temp/search" type="nomatch" text="">
+<div class="cb-search-summary">
+<$set name="searchResults" filter="[tag[Post]!tag[Draft]search:title,text{$:/temp/search}]">
+<$list filter="[<searchResults>count[]]" variable="count">
+Found <$text text=<<count>>/> {{$:/language/Search/Matches}}
+</$list>
+</$set>
+</div>
+
+<!-- Quick Results (Top 5) -->
+<div class="cb-search-quick-results">
+<$list filter="[tag[Post]!tag[Draft]search:title,text{$:/temp/search}limit[5]]">
+<div class="cb-search-result-item">
+<$link to={{!!title}}>
+<div class="cb-search-result-title"><$view field="title"/></div>
+</$link>
+<div class="cb-search-result-meta">
+<$list filter="[all[current]has[date]]" variable="null">
+<$view field="date" format="date" template="DD MMM YYYY"/>
+</$list>
+<$list filter="[all[current]has[author]]" variable="null">
+ • <$view field="author"/>
+</$list>
+</div>
+</div>
+</$list>
+
+<!-- Show More Link -->
+<$list filter="[tag[Post]!tag[Draft]search:title,text{$:/temp/search}count[]compare:number:gt[5]]" variable="null">
+<div class="cb-search-show-more">
+<$button class="tc-btn-invisible tc-tiddlylink">
+View All Results →
+<$action-navigate $to="$:/plugins/collaborative-blog/search-results"/>
+</$button>
+</div>
+</$list>
+</div>
+</$reveal>
+
+<!-- Filter by Category -->
+<$reveal state="$:/temp/search" type="nomatch" text="">
+<div class="cb-search-filters">
+<details>
+<summary>Filter by Category</summary>
+<div class="cb-search-filter-tags">
+<$list filter="[tag[Post]!tag[Draft]tags[]!tag[Post]!tag[Draft]!tag[Featured]!tag[Favorite]!tag[Event]!tag[Gallery]!tag[Video]!tag[Quote]!tag[Page]sort[title]]">
+<$button class="tc-btn-invisible tc-tag-label" style="margin: 2px;">
+<$text text=<<currentTiddler>>/>
+<$action-setfield $tiddler="$:/temp/search" $field="search-filter-tag" $value=<<currentTiddler>>/>
+<$action-navigate $to="$:/plugins/collaborative-blog/search-results"/>
+</$button>
+</$list>
+</div>
+</details>
+</div>
+</$reveal>
+
+<!-- Advanced Search Link -->
+<div class="cb-search-advanced">
+<$button class="tc-btn-invisible tc-tiddlylink">
+🔍 Advanced Search
+<$action-navigate $to="$:/plugins/collaborative-blog/search-results"/>
+</$button>
+</div>
+
+<style>
+.cb-search-box {
+  margin: 1rem 0;
+}
+
+.cb-search-input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--cb-border-light);
+  border-radius: var(--cb-radius-sm);
+  font-size: 0.9rem;
+}
+
+.cb-search-summary {
+  font-size: 0.85rem;
+  color: var(--cb-text-muted);
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  background: var(--cb-bg-highlight);
+  border-radius: var(--cb-radius-sm);
+}
+
+.cb-search-quick-results {
+  margin: 0.5rem 0;
+}
+
+.cb-search-result-item {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-left: 3px solid var(--cb-accent);
+  background: var(--cb-bg-page);
+  border-radius: var(--cb-radius-sm);
+}
+
+.cb-search-result-title {
+  font-weight: 600;
+  color: var(--cb-accent);
+  font-size: 0.9rem;
+}
+
+.cb-search-result-meta {
+  font-size: 0.75rem;
+  color: var(--cb-text-muted);
+  margin-top: 0.25rem;
+}
+
+.cb-search-show-more {
+  text-align: center;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--cb-border-light);
+}
+
+.cb-search-filters {
+  margin-top: 1rem;
+}
+
+.cb-search-filters details {
+  background: var(--cb-bg-highlight);
+  padding: 0.5rem;
+  border-radius: var(--cb-radius-sm);
+}
+
+.cb-search-filters summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.25rem;
+}
+
+.cb-search-filter-tags {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.cb-search-advanced {
+  margin-top: 1rem;
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid var(--cb-border-light);
+}
+</style>

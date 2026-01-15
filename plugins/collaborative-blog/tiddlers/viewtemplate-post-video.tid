@@ -1,0 +1,188 @@
+title: $:/plugins/collaborative-blog/ViewTemplate/Post/Video
+tags: $:/tags/ViewTemplate
+type: text/vnd.tiddlywiki
+
+\define isVideoPost() [all[current]tag[Post]tag[Video]]
+
+<$list filter=<<isVideoPost>> variable="null">
+
+<div class="cb-post cb-video-post">
+
+<!-- Video Badge -->
+<div class="cb-video-badge">
+🎥 VIDEO
+</div>
+
+<!-- Post Title -->
+<h1 class="cb-post-title">
+<$view field="title"/>
+</h1>
+
+<!-- Post Meta -->
+<div class="cb-post-meta">
+
+<!-- Author -->
+<$list filter="[all[current]has[author]]" variable="null">
+<span class="cb-post-author">By <$view field="author"/></span>
+</$list>
+
+<!-- Date -->
+<$list filter="[all[current]has[date]]" variable="null">
+<span class="cb-post-date">
+<$view field="date" format="date" template="DD MMM YYYY"/>
+</span>
+</$list>
+
+<!-- Video Duration -->
+<$list filter="[all[current]has[video-duration]]" variable="null">
+<span class="cb-video-duration">
+⏱️ <$view field="video-duration"/>
+</span>
+</$list>
+
+</div>
+
+<!-- Video Embed -->
+<$list filter="[all[current]has[video-url]]" variable="null">
+<div class="cb-video-container">
+<$let videoUrl={{{ [all[current]get[video-url]] }}}>
+
+<!-- YouTube embed -->
+<$list filter="[<videoUrl>search:title[youtube.com]] [<videoUrl>search:title[youtu.be]]" variable="null">
+<$let videoId={{{ [<videoUrl>split[v=]last[]] [<videoUrl>split[/]last[]] +[first[]] }}}>
+<iframe
+  class="cb-video-iframe"
+  src={{{ [<videoId>addprefix[https://www.youtube.com/embed/]] }}}
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+</$let>
+</$list>
+
+<!-- Vimeo embed -->
+<$list filter="[<videoUrl>search:title[vimeo.com]]" variable="null">
+<$let videoId={{{ [<videoUrl>split[/]last[]] }}}>
+<iframe
+  class="cb-video-iframe"
+  src={{{ [<videoId>addprefix[https://player.vimeo.com/video/]] }}}
+  frameborder="0"
+  allow="autoplay; fullscreen; picture-in-picture"
+  allowfullscreen>
+</iframe>
+</$let>
+</$list>
+
+<!-- Generic video link -->
+<$list filter="[<videoUrl>!search:title[youtube.com]!search:title[youtu.be]!search:title[vimeo.com]]" variable="null">
+<div class="cb-video-link-fallback">
+<a href=<<videoUrl>> target="_blank" rel="noopener" class="cb-video-link-button">
+▶️ Watch Video
+</a>
+</div>
+</$list>
+
+</$let>
+</div>
+</$list>
+
+<!-- Post Content -->
+<div class="cb-post-content">
+<$transclude mode="block"/>
+</div>
+
+<!-- Video Transcript Toggle -->
+<$list filter="[all[current]has[video-transcript]]" variable="null">
+<details class="cb-video-transcript">
+<summary style="cursor: pointer; font-weight: 600; padding: 1rem; background: var(--cb-border-light); border-radius: var(--cb-radius-md);">
+📄 View Transcript
+</summary>
+<div style="padding: 1.5rem; margin-top: 1rem; background: var(--cb-bg-content); border-radius: var(--cb-radius-md); border-left: 4px solid var(--cb-accent);">
+<$view field="video-transcript"/>
+</div>
+</details>
+</$list>
+
+<!-- Categories/Tags -->
+<div style="margin-top: 2rem;">
+<$list filter="[all[current]tags[]!prefix[$:/]!match[Post]!match[Video]!match[Draft]!match[Featured]!match[Favorite]]" variable="tag">
+<a href={{{ [<tag>encodeuricomponent[]addprefix[#]] }}} class="cb-category-tag">
+<$text text=<<tag>>/>
+</a>
+</$list>
+</div>
+
+</div>
+
+</$list>
+
+<style>
+.cb-video-post {
+  position: relative;
+}
+
+.cb-video-badge {
+  display: inline-block;
+  background: #e74c3c;
+  color: var(--cb-text-white);
+  padding: 0.4rem 1rem;
+  border-radius: var(--cb-radius-md);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 1.5rem;
+}
+
+.cb-video-duration {
+  margin-left: 1rem;
+  color: var(--cb-text-meta);
+  font-weight: 600;
+}
+
+.cb-video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  margin: 2rem 0;
+  border-radius: var(--cb-radius-lg);
+  box-shadow: var(--cb-shadow-xl);
+}
+
+.cb-video-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--cb-radius-lg);
+}
+
+.cb-video-link-fallback {
+  padding: 3rem;
+  background: linear-gradient(135deg, var(--cb-accent) 0%, var(--cb-accent-hover) 100%);
+  border-radius: var(--cb-radius-lg);
+  text-align: center;
+}
+
+.cb-video-link-button {
+  display: inline-block;
+  background: var(--cb-text-white);
+  color: var(--cb-accent);
+  padding: 1rem 3rem;
+  border-radius: var(--cb-radius-lg);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.2rem;
+  box-shadow: var(--cb-shadow-lg);
+  transition: transform 0.2s;
+}
+
+.cb-video-link-button:hover {
+  transform: scale(1.05);
+}
+
+.cb-video-transcript {
+  margin-top: 2rem;
+}
+</style>

@@ -1,0 +1,114 @@
+title: $:/plugins/collaborative-blog/Navigation
+tags: $:/tags/PageTemplate
+type: text/vnd.tiddlywiki
+
+<!--
+  Left Sidebar Navigation Component
+
+  This template creates the fixed left sidebar navigation that appears on every page
+  Tagged with $:/tags/PageTemplate to render as part of the page template
+
+  Features:
+  - Fixed position sidebar (280px wide on desktop)
+  - Site title and subtitle displayed at top
+  - Main navigation menu
+  - Discrete "Admin" link to toggle admin panel
+  - Responsive design (full width on mobile)
+
+  Customization:
+  - Edit $:/SiteTitle and $:/SiteSubtitle to change site branding
+  - Modify the menu items below to add/remove navigation links
+  - Styles defined in styles.tid (.cb-sidebar, .cb-nav-menu, etc.)
+-->
+
+<!-- Macro: site-title
+     Retrieves the site title from $:/SiteTitle tiddler
+     Allows users to change the site title in one place
+-->
+\define site-title()
+<$view tiddler="$:/SiteTitle" field="text"/>
+\end
+
+<!-- Macro: site-subtitle
+     Retrieves the site subtitle/tagline from $:/SiteSubtitle tiddler
+     Displayed below the main title in muted text
+-->
+\define site-subtitle()
+<$view tiddler="$:/SiteSubtitle" field="text"/>
+\end
+
+<div class="cb-sidebar">
+  <!-- Site branding: title and subtitle -->
+  <div class="cb-site-title"><<site-title>></div>
+  <div class="cb-site-subtitle"><<site-subtitle>></div>
+
+  <!-- Main navigation menu
+       To customize: Add or remove <li> items below
+       Each <$link> creates a link to the specified tiddler title
+  -->
+  <nav>
+    <ul class="cb-nav-menu">
+      <li><$link to="Home">Home</$link></li>
+      <li><$link to="About">About</$link></li>
+      <li><$link to="All Posts">Archive</$link></li>
+      <li><$link to="Categories">Categories</$link></li>
+      <li><$link to="Contact">Contact</$link></li>
+    </ul>
+  </nav>
+
+  <!-- Recently Updated Section
+       Shows the 5 most recently modified posts
+       Uses TiddlyWiki's automatic 'modified' field for sorting
+  -->
+  <div class="cb-sidebar-section">
+    <h4 class="cb-sidebar-heading">Recently Updated</h4>
+    <ul class="cb-sidebar-list">
+      <$list filter="[tag[Post]!tag[Draft]has[modified]!sort[modified]limit[5]]">
+        <li class="cb-sidebar-list-item">
+          <$link to=<<currentTiddler>>>
+            <$view field="title"/>
+          </$link>
+        </li>
+      </$list>
+    </ul>
+  </div>
+
+  <!-- Favorite Articles Section
+       Shows posts tagged with "Favorite"
+       Limited to 5 items
+  -->
+  <div class="cb-sidebar-section">
+    <h4 class="cb-sidebar-heading">Favorite Articles</h4>
+    <ul class="cb-sidebar-list">
+      <$list filter="[tag[Post]tag[Favorite]!tag[Draft]limit[5]]">
+        <li class="cb-sidebar-list-item">
+          <$link to=<<currentTiddler>>>
+            <$view field="title"/>
+          </$link>
+        </li>
+      </$list>
+      <$list filter="[tag[Post]tag[Favorite]!tag[Draft]count[]compare:number:eq[0]]" variable="null">
+        <li class="cb-sidebar-list-item cb-sidebar-empty">
+          No favorites yet
+        </li>
+      </$list>
+    </ul>
+  </div>
+
+  <!-- Admin Panel Toggle
+       Toggles the visibility of the admin panel
+       Authentication is handled by Cloudflare saver when you save changes
+  -->
+  <div class="cb-admin-link">
+    <$button class="tc-btn-invisible tc-tiddlylink">
+      Admin
+      <$action-setfield $tiddler="$:/state/admin-panel-visible" text={{$:/state/admin-panel-visible}} />
+      <$list filter="[[$:/state/admin-panel-visible]get[text]match[yes]]">
+        <$action-setfield $tiddler="$:/state/admin-panel-visible" text="no" />
+      </$list>
+      <$list filter="[[$:/state/admin-panel-visible]get[text]!match[yes]]">
+        <$action-setfield $tiddler="$:/state/admin-panel-visible" text="yes" />
+      </$list>
+    </$button>
+  </div>
+</div>

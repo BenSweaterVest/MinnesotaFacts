@@ -1,0 +1,213 @@
+title: $:/plugins/collaborative-blog/theme-controller
+tags: $:/tags/RawMarkup
+type: text/html
+
+<$list filter="[[$:/config/collaborative-blog/theme]get[text]else[historical]]" variable="selectedTheme">
+<style>
+<$list filter="[<selectedTheme>match[modern]]">
+html body.tc-body {
+  --cb-primary: #1a1a1a;
+  --cb-primary-light: #333333;
+  --cb-primary-dark: #000000;
+  --cb-secondary: #666666;
+  --cb-secondary-light: #888888;
+  --cb-secondary-dark: #444444;
+  --cb-accent: #0066ff;
+  --cb-accent-hover: #0052cc;
+  --cb-accent-light: #3385ff;
+  --cb-bg-page: #ffffff;
+  --cb-bg-content: #fafafa;
+  --cb-bg-sidebar: #f5f5f5;
+  --cb-bg-featured: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --cb-text-primary: #1a1a1a;
+  --cb-text-secondary: #4a4a4a;
+  --cb-text-meta: #666666;
+  --cb-text-light: #999999;
+  --cb-text-inverse: #1a1a1a;
+  --cb-text-white: #ffffff;
+  --cb-heading: #000000;
+  --cb-heading-light: #1a1a1a;
+  --cb-border-light: #e0e0e0;
+  --cb-border-medium: rgba(0,0,0,0.05);
+  --cb-font-serif: Georgia, 'Times New Roman', serif;
+  --cb-font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --cb-font-body: var(--cb-font-sans);
+  --cb-font-heading: var(--cb-font-sans);
+  --cb-shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --cb-shadow-md: 0 2px 4px rgba(0,0,0,0.06);
+  --cb-shadow-lg: 0 4px 8px rgba(0,0,0,0.08);
+  --cb-shadow-xl: 0 8px 16px rgba(0,0,0,0.1);
+  --cb-shadow-sidebar: 0 0 20px rgba(0,0,0,0.05);
+  --cb-sidebar-width: 280px;
+  --cb-content-max-width: 900px;
+  --cb-radius-sm: 6px;
+  --cb-radius-md: 8px;
+  --cb-radius-lg: 12px;
+}
+</$list>
+<$list filter="[<selectedTheme>match[dark]]">
+html body.tc-body {
+  --cb-primary: #1e1e1e;
+  --cb-primary-light: #2d2d2d;
+  --cb-primary-dark: #0d0d0d;
+  --cb-secondary: #4a90e2;
+  --cb-secondary-light: #6ba3e8;
+  --cb-secondary-dark: #3a7acc;
+  --cb-accent: #64b5f6;
+  --cb-accent-hover: #42a5f5;
+  --cb-accent-light: #90caf9;
+  --cb-bg-page: #121212;
+  --cb-bg-content: #1e1e1e;
+  --cb-bg-sidebar: #0d0d0d;
+  --cb-bg-featured: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --cb-text-primary: #e0e0e0;
+  --cb-text-secondary: #b0b0b0;
+  --cb-text-meta: #888888;
+  --cb-text-light: #666666;
+  --cb-text-inverse: #e0e0e0;
+  --cb-text-white: #ffffff;
+  --cb-heading: #ffffff;
+  --cb-heading-light: #f0f0f0;
+  --cb-border-light: #2d2d2d;
+  --cb-border-medium: rgba(255,255,255,0.08);
+  --cb-font-serif: Georgia, 'Times New Roman', serif;
+  --cb-font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  --cb-font-body: var(--cb-font-sans);
+  --cb-font-heading: var(--cb-font-sans);
+  --cb-shadow-sm: 0 1px 3px rgba(0,0,0,0.5);
+  --cb-shadow-md: 0 2px 6px rgba(0,0,0,0.6);
+  --cb-shadow-lg: 0 4px 12px rgba(0,0,0,0.7);
+  --cb-shadow-xl: 0 8px 20px rgba(0,0,0,0.8);
+  --cb-shadow-sidebar: 0 0 20px rgba(0,0,0,0.6);
+  --cb-sidebar-width: 280px;
+  --cb-content-max-width: 900px;
+  --cb-radius-sm: 4px;
+  --cb-radius-md: 6px;
+  --cb-radius-lg: 8px;
+}
+</$list>
+<$list filter="[<selectedTheme>match[vibrant]]">
+html body.tc-body {
+  --cb-primary: #ff6b6b;
+  --cb-primary-light: #ff8787;
+  --cb-primary-dark: #ee5a5a;
+  --cb-secondary: #4ecdc4;
+  --cb-secondary-light: #6eddd6;
+  --cb-secondary-dark: #3db8af;
+  --cb-accent: #ffe66d;
+  --cb-accent-hover: #ffeb8a;
+  --cb-accent-light: #fff29c;
+  --cb-bg-page: #fffef9;
+  --cb-bg-content: #ffffff;
+  --cb-bg-sidebar: #2c3e50;
+  --cb-bg-featured: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+  --cb-text-primary: #2d3436;
+  --cb-text-secondary: #636e72;
+  --cb-text-meta: #b2bec3;
+  --cb-text-light: #dfe6e9;
+  --cb-text-inverse: #ffffff;
+  --cb-text-white: #ffffff;
+  --cb-heading: #2d3436;
+  --cb-heading-light: #636e72;
+  --cb-border-light: #dfe6e9;
+  --cb-border-medium: rgba(255,255,255,0.15);
+  --cb-font-serif: Georgia, 'Times New Roman', serif;
+  --cb-font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Rounded Mplus 1c', Arial, sans-serif;
+  --cb-font-body: var(--cb-font-sans);
+  --cb-font-heading: var(--cb-font-sans);
+  --cb-shadow-sm: 0 2px 4px rgba(255,107,107,0.12);
+  --cb-shadow-md: 0 4px 8px rgba(255,107,107,0.15);
+  --cb-shadow-lg: 0 8px 16px rgba(255,107,107,0.18);
+  --cb-shadow-xl: 0 12px 24px rgba(255,107,107,0.22);
+  --cb-shadow-sidebar: 0 0 30px rgba(0,0,0,0.15);
+  --cb-sidebar-width: 280px;
+  --cb-content-max-width: 900px;
+  --cb-radius-sm: 8px;
+  --cb-radius-md: 12px;
+  --cb-radius-lg: 16px;
+}
+</$list>
+<$list filter="[<selectedTheme>match[professional]]">
+html body.tc-body {
+  --cb-primary: #1e3a5f;
+  --cb-primary-light: #2c5282;
+  --cb-primary-dark: #152a43;
+  --cb-secondary: #718096;
+  --cb-secondary-light: #a0aec0;
+  --cb-secondary-dark: #4a5568;
+  --cb-accent: #0ea5e9;
+  --cb-accent-hover: #0284c7;
+  --cb-accent-light: #38bdf8;
+  --cb-bg-page: #f8fafc;
+  --cb-bg-content: #ffffff;
+  --cb-bg-sidebar: #1e3a5f;
+  --cb-bg-featured: linear-gradient(135deg, #1e3a5f 0%, #0ea5e9 100%);
+  --cb-text-primary: #1a202c;
+  --cb-text-secondary: #4a5568;
+  --cb-text-meta: #718096;
+  --cb-text-light: #cbd5e0;
+  --cb-text-inverse: #f7fafc;
+  --cb-text-white: #ffffff;
+  --cb-heading: #1a202c;
+  --cb-heading-light: #2d3748;
+  --cb-border-light: #e2e8f0;
+  --cb-border-medium: rgba(255,255,255,0.12);
+  --cb-font-serif: Georgia, 'Times New Roman', serif;
+  --cb-font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Arial, sans-serif;
+  --cb-font-body: var(--cb-font-sans);
+  --cb-font-heading: var(--cb-font-sans);
+  --cb-shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --cb-shadow-md: 0 2px 6px rgba(0,0,0,0.08);
+  --cb-shadow-lg: 0 4px 12px rgba(0,0,0,0.1);
+  --cb-shadow-xl: 0 8px 20px rgba(0,0,0,0.12);
+  --cb-shadow-sidebar: 0 0 24px rgba(0,0,0,0.08);
+  --cb-sidebar-width: 280px;
+  --cb-content-max-width: 900px;
+  --cb-radius-sm: 4px;
+  --cb-radius-md: 6px;
+  --cb-radius-lg: 8px;
+}
+</$list>
+<$list filter="[<selectedTheme>match[historical]]">
+html body.tc-body {
+  --cb-primary: #2c3e50;
+  --cb-primary-light: #34495e;
+  --cb-primary-dark: #1a252f;
+  --cb-secondary: #8b7355;
+  --cb-secondary-light: #a68968;
+  --cb-secondary-dark: #6d5a43;
+  --cb-accent: #3498db;
+  --cb-accent-hover: #2980b9;
+  --cb-accent-light: #5dade2;
+  --cb-bg-page: #f8f8f6;
+  --cb-bg-content: #ffffff;
+  --cb-bg-sidebar: #2c3e50;
+  --cb-bg-featured: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --cb-text-primary: #333333;
+  --cb-text-secondary: #555555;
+  --cb-text-meta: #7f8c8d;
+  --cb-text-light: #95a5a6;
+  --cb-text-inverse: #ecf0f1;
+  --cb-text-white: #ffffff;
+  --cb-heading: #2c3e50;
+  --cb-heading-light: #34495e;
+  --cb-border-light: #ecf0f1;
+  --cb-border-medium: rgba(255,255,255,0.1);
+  --cb-font-serif: Georgia, 'Times New Roman', serif;
+  --cb-font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  --cb-font-body: var(--cb-font-serif);
+  --cb-font-heading: var(--cb-font-sans);
+  --cb-shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --cb-shadow-md: 0 1px 3px rgba(0,0,0,0.1);
+  --cb-shadow-lg: 0 4px 12px rgba(0,0,0,0.12);
+  --cb-shadow-xl: 0 4px 15px rgba(0,0,0,0.2);
+  --cb-shadow-sidebar: 2px 0 10px rgba(0,0,0,0.1);
+  --cb-sidebar-width: 280px;
+  --cb-content-max-width: 900px;
+  --cb-radius-sm: 2px;
+  --cb-radius-md: 3px;
+  --cb-radius-lg: 4px;
+}
+</$list>
+</style>
+</$list>

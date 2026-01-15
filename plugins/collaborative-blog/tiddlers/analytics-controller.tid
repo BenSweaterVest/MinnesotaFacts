@@ -1,0 +1,55 @@
+title: $:/plugins/collaborative-blog/analytics-controller
+tags: $:/tags/RawMarkup
+
+<!--
+Analytics Controller
+Dynamically injects analytics tracking scripts based on user configuration.
+Supports Plausible, Simple Analytics, Google Analytics, and custom scripts.
+-->
+
+<$let
+  analyticsEnabled={{{ [[$:/config/collaborative-blog/analytics/enabled]get[text]else[no]] }}}
+  analyticsProvider={{{ [[$:/config/collaborative-blog/analytics/provider]get[text]else[]] }}}
+  analyticsDomain={{{ [[$:/config/collaborative-blog/analytics/domain]get[text]else[]] }}}
+  analyticsId={{{ [[$:/config/collaborative-blog/analytics/id]get[text]else[]] }}}
+  customScript={{{ [[$:/config/collaborative-blog/analytics/custom-script]get[text]else[]] }}}
+>
+
+<$list filter="[<analyticsEnabled>match[yes]]" variable="null">
+
+  <!-- Plausible Analytics -->
+  <$list filter="[<analyticsProvider>match[plausible]]" variable="null">
+    <$list filter="[<analyticsDomain>!match[]]" variable="null">
+      <script defer data-domain=<<analyticsDomain>> src="https://plausible.io/js/script.js"></script>
+    </$list>
+  </$list>
+
+  <!-- Simple Analytics -->
+  <$list filter="[<analyticsProvider>match[simple]]" variable="null">
+    <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+    <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" /></noscript>
+  </$list>
+
+  <!-- Google Analytics (GA4) -->
+  <$list filter="[<analyticsProvider>match[google]]" variable="null">
+    <$list filter="[<analyticsId>!match[]]" variable="null">
+      <script async src={{{ [<analyticsId>addprefix[https://www.googletagmanager.com/gtag/js?id=]] }}}></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '<$text text=<<analyticsId>>/>');
+      </script>
+    </$list>
+  </$list>
+
+  <!-- Custom Analytics Script -->
+  <$list filter="[<analyticsProvider>match[custom]]" variable="null">
+    <$list filter="[<customScript>!match[]]" variable="null">
+      <$text text=<<customScript>>/>
+    </$list>
+  </$list>
+
+</$list>
+
+</$let>

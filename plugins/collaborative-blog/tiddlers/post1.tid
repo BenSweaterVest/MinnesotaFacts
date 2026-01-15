@@ -1,0 +1,36 @@
+title: Welcome to Our New Website
+tags: Post Featured News
+date: 20251108
+author: Sarah Johnson
+excerpt: We're excited to launch our new collaborative blog platform, designed to share stories and connect with our community.
+type: text/vnd.tiddlywiki
+
+We're thrilled to announce the launch of our new collaborative blog! After months of planning and development, we've created a platform that makes it easy for multiple contributors to share their knowledge, stories, and insights with our community.
+
+!! Why We Created This Site
+
+Traditional content management systems can be heavy, complicated, and expensive to maintain. We wanted something different:
+
+* '''Lightweight''': Fast loading times and minimal server requirements
+* '''Collaborative''': Easy for multiple authors to contribute
+* '''Accessible''': Clean, readable design that works for everyone
+* '''Sustainable''': Low maintenance overhead and costs
+
+!! What Makes This Different
+
+This site is built on TiddlyWiki, a unique "non-linear personal web notebook" that we've customized to work like a modern blog. Unlike WordPress or other traditional platforms, everything runs in a single HTML file - no database, no complex server setup.
+
+!! What's Next
+
+In the coming weeks, you'll see:
+
+* Regular blog posts from our team members
+* Historical articles and research findings
+* Community stories and oral histories
+* Resource guides and educational materials
+
+We invite you to explore the site, read our content, and check back regularly for updates!
+
+---
+
+''Have feedback about the new site? We'd love to hear from you on our [[Contact]] page.''

@@ -1,0 +1,150 @@
+title: $:/plugins/collaborative-blog/analytics-settings
+caption: Analytics
+tags: $:/tags/ControlPanel/Settings
+
+\define config-base() $:/config/collaborative-blog/analytics/
+
+!! Analytics Integration
+
+Track visitor statistics with privacy-friendly analytics services or Google Analytics.
+
+<$checkbox tiddler={{{ [<config-base>addsuffix[enabled]] }}} field="text" checked="yes" unchecked="no" default="no"> Enable analytics tracking</$checkbox>
+
+<div class="tc-control-panel-hint">
+When enabled, analytics scripts will be injected into your site automatically. Recommended: Use privacy-friendly services like Plausible or Simple Analytics.
+</div>
+
+<$reveal state={{{ [<config-base>addsuffix[enabled]] }}} type="match" text="yes" animate="yes">
+
+!!! Analytics Provider
+
+<$radio tiddler={{{ [<config-base>addsuffix[provider]] }}} field="text" value="plausible"> ''Plausible Analytics'' (Recommended)</$radio>
+
+<div style="margin-left: 25px; margin-bottom: 10px;">
+<div class="tc-control-panel-hint">
+Privacy-friendly, lightweight, open-source analytics. No cookies, GDPR compliant.
+<br>
+Website: [[plausible.io|https://plausible.io]]
+</div>
+
+<$reveal state={{{ [<config-base>addsuffix[provider]] }}} type="match" text="plausible">
+<div style="margin-top: 10px;">
+''Your Domain:''<br>
+<$edit-text tiddler={{{ [<config-base>addsuffix[domain]] }}} field="text" default="" placeholder="example.com" tag="input" class="tc-edit-text" style="width: 300px;"/>
+<div class="tc-control-panel-hint">
+Enter your domain exactly as configured in Plausible (e.g., `example.com` or `blog.example.com`)
+</div>
+</div>
+</$reveal>
+</div>
+
+<$radio tiddler={{{ [<config-base>addsuffix[provider]] }}} field="text" value="simple"> ''Simple Analytics''</$radio>
+
+<div style="margin-left: 25px; margin-bottom: 10px;">
+<div class="tc-control-panel-hint">
+Privacy-first analytics with a clean interface. No cookies, GDPR compliant.
+<br>
+Website: [[simpleanalytics.com|https://simpleanalytics.com]]
+</div>
+</div>
+
+<$radio tiddler={{{ [<config-base>addsuffix[provider]] }}} field="text" value="google"> ''Google Analytics (GA4)''</$radio>
+
+<div style="margin-left: 25px; margin-bottom: 10px;">
+<div class="tc-control-panel-hint">
+Comprehensive analytics with advanced features. Requires cookie consent in some jurisdictions.
+<br>
+Website: [[analytics.google.com|https://analytics.google.com]]
+</div>
+
+<$reveal state={{{ [<config-base>addsuffix[provider]] }}} type="match" text="google">
+<div style="margin-top: 10px;">
+''Measurement ID:''<br>
+<$edit-text tiddler={{{ [<config-base>addsuffix[id]] }}} field="text" default="" placeholder="G-XXXXXXXXXX" tag="input" class="tc-edit-text" style="width: 300px;"/>
+<div class="tc-control-panel-hint">
+Your Google Analytics 4 Measurement ID (format: G-XXXXXXXXXX)
+</div>
+</div>
+</$reveal>
+</div>
+
+<$radio tiddler={{{ [<config-base>addsuffix[provider]] }}} field="text" value="custom"> ''Custom Analytics Script''</$radio>
+
+<div style="margin-left: 25px; margin-bottom: 10px;">
+<div class="tc-control-panel-hint">
+Use a custom analytics provider or self-hosted solution. Enter the complete HTML/JavaScript code.
+</div>
+
+<$reveal state={{{ [<config-base>addsuffix[provider]] }}} type="match" text="custom">
+<div style="margin-top: 10px;">
+''Custom HTML/JavaScript:''<br>
+<$edit-text tiddler={{{ [<config-base>addsuffix[custom-script]] }}} field="text" default="" tag="textarea" class="tc-edit-text" style="width: 100%; min-height: 150px; font-family: monospace; font-size: 0.85rem;"/>
+<div class="tc-control-panel-hint">
+Paste your analytics script tags here (e.g., `<script>...</script>`). This will be injected into the HTML head.
+</div>
+</div>
+</$reveal>
+</div>
+
+!!! Privacy & Compliance
+
+<div style="padding: 15px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 4px; margin: 15px 0;">
+<strong>⚠️ Privacy Notice</strong>
+<ul style="margin: 10px 0;">
+<li><strong>Plausible & Simple Analytics:</strong> Privacy-friendly by default. No cookies, no personal data collection, GDPR/CCPA compliant.</li>
+<li><strong>Google Analytics:</strong> May require cookie consent banners depending on your jurisdiction (EU, California, etc.).</li>
+<li><strong>Custom Scripts:</strong> Ensure your chosen provider complies with applicable privacy laws.</li>
+</ul>
+
+<strong>Best Practices:</strong>
+<ul style="margin: 10px 0;">
+<li>Add a Privacy Policy page to your site</li>
+<li>Inform visitors about analytics tracking</li>
+<li>Consider using privacy-friendly alternatives (Plausible/Simple Analytics)</li>
+<li>Respect "Do Not Track" signals when possible</li>
+</ul>
+</div>
+
+!!! Testing
+
+<$let provider={{{ [<config-base>addsuffix[provider]get[text]else[none]] }}}>
+
+<div style="padding: 15px; background: #e7f3ff; border-left: 4px solid #2196F3; border-radius: 4px; margin: 15px 0;">
+<strong>Current Configuration:</strong><br>
+<strong>Enabled:</strong> <$text text={{{ [<config-base>addsuffix[enabled]get[text]else[no]] }}}/><br>
+<strong>Provider:</strong> <$text text=<<provider>>/><br>
+
+<$list filter="[<provider>match[plausible]]" variable="null">
+<strong>Domain:</strong> <$text text={{{ [<config-base>addsuffix[domain]get[text]else[(not set)]] }}}/><br>
+</$list>
+
+<$list filter="[<provider>match[google]]" variable="null">
+<strong>Measurement ID:</strong> <$text text={{{ [<config-base>addsuffix[id]get[text]else[(not set)]] }}}/><br>
+</$list>
+
+<div style="margin-top: 10px;">
+After saving your wiki, check your browser's developer console (F12 → Network tab) to verify the analytics script is loading correctly.
+</div>
+</div>
+
+</$let>
+
+</$reveal>
+
+<style>
+.tc-control-panel-hint {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 5px;
+  line-height: 1.4;
+}
+
+.tc-control-panel-hint a {
+  color: #2196F3;
+  text-decoration: none;
+}
+
+.tc-control-panel-hint a:hover {
+  text-decoration: underline;
+}
+</style>

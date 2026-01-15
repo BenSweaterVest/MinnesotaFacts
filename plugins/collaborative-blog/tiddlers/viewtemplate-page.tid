@@ -1,0 +1,50 @@
+title: $:/plugins/collaborative-blog/ViewTemplate/Page
+tags: $:/tags/ViewTemplate
+type: text/vnd.tiddlywiki
+list-after: $:/plugins/collaborative-blog/ViewTemplate/Post
+
+<!--
+  ViewTemplate for Static Pages
+
+  This template activates when viewing any tiddler tagged with "Page"
+  It provides a simpler layout than blog posts (no author, date, or category metadata)
+
+  Use this for static content like:
+  - About page
+  - Contact page
+  - Privacy policy
+  - Terms of service
+  - Project pages
+
+  list-after: Runs after the Post ViewTemplate to avoid conflicts
+-->
+
+<!-- Macro: page-body
+     Renders a simple page layout with title, content, and navigation
+     Simpler than post-body - no metadata fields
+     Context: Called only when currentTiddler has "Page" tag
+-->
+\define page-body()
+<div class="cb-page">
+  <!-- Page title -->
+  <h1 class="cb-post-title"><$view field="title"/></h1>
+
+  <!-- Page content (transcluded from the text field) -->
+  <div class="cb-post-content">
+    <$transclude field="text" mode="block"/>
+  </div>
+
+  <!-- Navigation: Back to homepage link -->
+  <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #ecf0f1;">
+    <$link to="Home" style="color: #3498db; text-decoration: none;">← Back to Home</$link>
+  </div>
+</div>
+\end
+
+<!-- Template activation: Only render this template for tiddlers tagged with "Page"
+     Filter: [<currentTiddler>tag[Page]]
+     This prevents the page layout from appearing on posts, admin tiddlers, etc.
+-->
+<$list filter="[<currentTiddler>tag[Page]]" variable="null">
+  <<page-body>>
+</$list>

@@ -1,0 +1,34 @@
+title: $:/plugins/collaborative-blog/sitemap
+tags:
+type: text/vnd.tiddlywiki
+
+\define sitemap-url()
+  <url>
+    <loc>{{$:/config/collaborative-blog/site-url}}#<$view field="title" format="urlencoded"/></loc>
+    <lastmod><$view field="modified" format="date" template="YYYY-MM-DD"/></lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+\end
+
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Homepage -->
+  <url>
+    <loc>{{$:/config/collaborative-blog/site-url}}</loc>
+    <lastmod><$view tiddler="$:/SiteTitle" field="modified" format="date" template="YYYY-MM-DD"/></lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Blog Posts -->
+<$list filter="[tag[Post]!tag[Draft]has[date]sort[date]reverse[]]">
+<<sitemap-url>>
+</$list>
+
+  <!-- Static Pages -->
+<$list filter="[tag[Page]!tag[Draft]sort[title]]">
+<<sitemap-url>>
+</$list>
+
+</urlset>

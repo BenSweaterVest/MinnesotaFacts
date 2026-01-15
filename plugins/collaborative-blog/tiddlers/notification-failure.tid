@@ -1,0 +1,7 @@
+title: $:/plugins/collaborative-blog/notifications/failure
+type: text/vnd.tiddlywiki
+
+<div class="tc-notification-banner tc-notification-banner-error">
+<$button class="tc-btn-invisible tc-notification-btn" message="tm-close-tiddler">{{$:/core/images/close-button}}</$button>
+{{$:/core/images/warning}} Save failed. Check console for details.
+</div>
